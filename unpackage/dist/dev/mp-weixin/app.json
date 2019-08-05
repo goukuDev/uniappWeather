@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/life/main",
+    "pages/index/main",
+    "pages/news/main",
+    "pages/todydetail/main",
+    "pages/weatherdetail/main",
+    "pages/newslist/main",
+    "pages/searchline/main",
+    "pages/linedetail/main",
+    "pages/line/main"
+  ],
+  "subPackages": [],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#22a0e4",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "backgroundColor": "#fafafa",
+    "selectedColor": "#22a0e4",
+    "borderStyle": "white",
+    "list": [
+      {
+        "text": "天气",
+        "pagePath": "pages/index/main",
+        "iconPath": "static/tabs/home.png",
+        "selectedIconPath": "static/tabs/homes.png"
+      },
+      {
+        "text": "新闻",
+        "pagePath": "pages/news/main",
+        "iconPath": "static/tabs/kind.png",
+        "selectedIconPath": "static/tabs/kinds.png"
+      },
+      {
+        "text": "生活",
+        "pagePath": "pages/life/main",
+        "iconPath": "static/tabs/user.png",
+        "selectedIconPath": "static/tabs/users.png"
+      }
+    ],
+    "position": "bottom"
+  },
+  "usingComponents": {}
+}

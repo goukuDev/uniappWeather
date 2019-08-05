@@ -1,0 +1,108 @@
+{
+  "pages": [
+	  {
+		"path":"pages/life/main",
+		"style":{
+			"navigationBarTitleText":"生活"
+		}
+	  },
+	{
+		"path":"pages/index/main",
+		"style": {
+            "navigationBarTitleText": "天气",
+			"enablePullDownRefresh": true,  //设置为true表示当前页面开启下拉刷新
+            "backgroundTextStyle": "dark"  //下拉 loading 的样式，仅支持 dark/light
+        }
+	},
+	{
+		"path":"pages/news/main",
+		"style":{
+			"navigationBarTitleText":"新闻",
+			"enablePullDownRefresh": true,  //设置为true表示当前页面开启下拉刷新
+			"backgroundTextStyle": "dark"  //下拉 loading 的样式，仅支持 dark/light
+		}
+	},
+	{
+		"path":"pages/todydetail/main",
+		"style":{
+			"navigationBarTitleText":"实时天气"
+		}
+	},
+	{
+		"path":"pages/weatherdetail/main",
+		"style":{
+			"navigationBarTitleText":"天气详情"
+		}
+	},
+	{
+		"path":"pages/newslist/main",
+		"style":{
+			"navigationBarTitleText":""
+		}
+	},
+	{
+		"path":"pages/searchline/main",
+		"style":{
+			"navigationBarTitleText":"搜索"
+		}
+	},
+	{
+		"path":"pages/linedetail/main",
+		"style":{
+			"navigationBarTitleText":"线路详情"
+		}
+	},
+	{
+		"path":"pages/line/main",
+		"style":{
+			"navigationBarTitleText":"线路"
+		}
+	}
+  ],
+  "globalStyle": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#22a0e4",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "backgroundColor": "#fafafa",
+    "selectedColor": "#22a0e4",
+    "borderStyle": "white",
+
+    "list": [{
+      "text": "天气",
+      "pagePath": "pages/index/main",
+      "iconPath": "static/tabs/home.png",
+      "selectedIconPath": "static/tabs/homes.png"
+    },{
+      "text": "新闻",
+      "pagePath": "pages/news/main",
+      "iconPath": "static/tabs/kind.png",
+      "selectedIconPath": "static/tabs/kinds.png"
+    }, {
+      "text": "生活",
+      "pagePath": "pages/life/main",
+      "iconPath": "static/tabs/user.png",
+      "selectedIconPath": "static/tabs/users.png"
+    }],
+    "position": "bottom"
+  },
+  "usingComponents":{
+    "i-icon":"./static/iview/icon/index",
+    "i-tag":"./static/iview/tag/index",
+    "i-sticky": "./static/iview/sticky/index",
+    "i-sticky-item": "./static/iview/sticky-item/index",
+    "i-swipeout": "./static/iview/swipeout/index",
+    "i-action-sheet":"./static/iview/action-sheet/index",
+    "i-button":"./static/iview/button/index",
+    "i-collapse": "./static/iview/collapse/index",
+    "i-collapse-item": "./static/iview/collapse-item/index"
+  },
+  "permission":{
+    "scope.userLocation":{
+      "desc":"你的位置信息将用于小程序位置接口的效果展示"
+    }
+  }
+}

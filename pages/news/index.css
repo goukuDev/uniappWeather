@@ -1,0 +1,29 @@
+.kind{
+  height: 100%;
+  width:100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling:touch;
+  background: #f5f7f9;
+}
+.kind .kindnews{
+  width: 100%;
+  padding: 0 8px;
+  box-sizing: border-box;
+  margin-top:10px;
+  background:#fff;
+}
+.kindnews .newslistdetail{
+  width: 100%;
+  height: 80px;
+  padding:10px 0;
+  display: flex;
+}
+.newslistdetail .right{
+  width: 120px;
+  height: 100%;
+  margin-left:10px;
+}
+.newslistdetail .left{
+  flex: 1;
+  height:100%;
+}
