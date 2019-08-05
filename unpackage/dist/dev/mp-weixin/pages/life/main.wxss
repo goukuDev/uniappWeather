@@ -1,8 +1,8 @@
-.life.data-v-3d3c2fab{
+.life.data-v-1b33daf2{
   height: 100%;
   overflow: hidden;
 }
-.life .play.data-v-3d3c2fab{
+.life .play.data-v-1b33daf2{
   position:fixed;
   width:94%;
   height:40px;
@@ -21,7 +21,7 @@
   display: -ms-flexbox;
   display: flex;
 }
-.life .play .inputbox.data-v-3d3c2fab{
+.life .play .inputbox.data-v-1b33daf2{
   height: 100%;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -29,13 +29,13 @@
           flex: 1;
   line-height: 40px;
 }
-.life .play .deletebox.data-v-3d3c2fab{
+.life .play .deletebox.data-v-1b33daf2{
   height: 100%;
   width: 10%;
   line-height: 40px;
   text-align: center;
 }
-.life .backpoint.data-v-3d3c2fab{
+.life .backpoint.data-v-1b33daf2{
   position: fixed;
   bottom:140px;
   left:10px;
@@ -47,21 +47,21 @@
   background: rgba(0,0,0,0.4);
   border-radius:3px;
 }
-.life .backpoint .bigcircle.data-v-3d3c2fab{
+.life .backpoint .bigcircle.data-v-1b33daf2{
   width:34px;
   height:34px;
   margin:3px;
   background:#ccc;
   border-radius:18px;
 }
-.life .backpoint .bigcircle cover-view.data-v-3d3c2fab{
+.life .backpoint .bigcircle cover-view.data-v-1b33daf2{
   width:24px;
   height:24px;
   margin:5px;
   background:#fff;
   border-radius:18px;
 }
-.life .bottom.data-v-3d3c2fab{
+.life .bottom.data-v-1b33daf2{
   position:fixed;
   bottom:10px;
   width:94%;
@@ -69,14 +69,14 @@
   background:#fff;
   border-radius:3px;
 }
-.life .bottom .title.data-v-3d3c2fab{
+.life .bottom .title.data-v-1b33daf2{
   height: 30px;
   line-height: 30px;
   padding:10px 10px 0;
   color: #000;
   font-size:18px;
 }
-.life .bottom .address.data-v-3d3c2fab{
+.life .bottom .address.data-v-1b33daf2{
   height: 20px;
   line-height: 20px;
   padding: 10px;
@@ -87,7 +87,7 @@
      text-overflow: ellipsis;
   white-space: nowrap;
 }
-.life .bottom .line.data-v-3d3c2fab{
+.life .bottom .line.data-v-1b33daf2{
   height: 35px;
   background:#396de5;
   color:#fff;

@@ -4,20 +4,20 @@ i-swipeout .swipeout .i-swipeout-item{
     padding: 0;
 }
 
-.searchline.data-v-f88f506a{
+.searchline.data-v-a768b4b2{
     height: 100%;
 }
 /* 搜索框 */
-.searchline .autofocus.data-v-f88f506a{
+.searchline .autofocus.data-v-a768b4b2{
     height: 40px;
     position: relative;
 }
-.autofocus icon.data-v-f88f506a{
+.autofocus icon.data-v-a768b4b2{
     position: absolute;
     top: 8px;
     right: 10px;
 }
-.autofocus input.data-v-f88f506a{
+.autofocus input.data-v-a768b4b2{
     float:left;
     width:100%;
     height:100%;
@@ -30,7 +30,7 @@ i-swipeout .swipeout .i-swipeout-item{
     font-size:15px;
     padding:0 20px;
 }
-.autofocus .search.data-v-f88f506a{
+.autofocus .search.data-v-a768b4b2{
     float:left;
     width:10%;
     height:100%;
@@ -41,12 +41,12 @@ i-swipeout .swipeout .i-swipeout-item{
     font-size:15px;
 }
 /* 历史搜索记录 */
-.searchline .pointhistory.data-v-f88f506a{
+.searchline .pointhistory.data-v-a768b4b2{
     height: calc(100% - 70px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
-.pointhistory label.data-v-f88f506a{
+.pointhistory label.data-v-a768b4b2{
     display:block;
     margin:0 10px;
     height:50px;
@@ -91,12 +91,12 @@ i-swipeout .swipeout .i-swipeout-item{
     width:100%;
 } */
 /* 当前搜索列表 */
-.searchline .lifelist.data-v-f88f506a{
+.searchline .lifelist.data-v-a768b4b2{
     height: calc(100% - 40px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
-.lifelist label.data-v-f88f506a{
+.lifelist label.data-v-a768b4b2{
     display:block;
     margin:0 10px;
     height:50px;
@@ -104,7 +104,7 @@ i-swipeout .swipeout .i-swipeout-item{
     text-align:center;
     font-size:15px;
 }
-.lifelist .lists.data-v-f88f506a{
+.lifelist .lists.data-v-a768b4b2{
     height: 58px;
     text-align:left;
     padding: 4px 0;
@@ -113,10 +113,10 @@ i-swipeout .swipeout .i-swipeout-item{
     border-bottom: 1px solid #999;
     margin: 0 10px;
 }
-.lifelist .lists.data-v-f88f506a:last-child{
+.lifelist .lists.data-v-a768b4b2:last-child{
     border: none;
 }
-.lifelist .lists view.data-v-f88f506a:first-child{
+.lifelist .lists view.data-v-a768b4b2:first-child{
     height: 35px;
     line-height: 35px;
     font-size:18px;
@@ -126,7 +126,7 @@ i-swipeout .swipeout .i-swipeout-item{
        text-overflow: ellipsis;
     white-space: nowrap;
 }
-.lifelist .lists view.data-v-f88f506a:last-child{
+.lifelist .lists view.data-v-a768b4b2:last-child{
     height: 15px;
     line-height:15px;
     font-size:13px;

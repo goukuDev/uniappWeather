@@ -49,7 +49,8 @@ import qqMap from '../../static/js/qqmap-wx-jssdk.js';
 const qqmapsdk = new qqMap({
         key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL'
       });
-let from,to;
+let from;
+let to;
 export default {
     data(){
         return{
@@ -122,7 +123,7 @@ export default {
 		fromToLocation: function () {
 		   wx.chooseLocation({
 		      success: res => {
-				 let mobileLocation = {//移动选择位置数据
+				 let fromLocation = {
 									   title: res.name,
 									   address:res.address,
 									   category:'地名地址:行政地名',
@@ -130,7 +131,8 @@ export default {
 									   longitude:res.longitude
 									};
 		         this.mypoint = res.name;
-				 this.getline(mobileLocation,to,this.chooseLineType);
+				 from = fromLocation;
+				 this.getline(from,to,this.chooseLineType);
 		      },
 		      fail: function (err) {
 		         console.log(err)
@@ -142,15 +144,16 @@ export default {
 		toToLocation: function () {
 		   wx.chooseLocation({
 		      success: res => {
-				 let mobileLocation = {//移动选择位置数据
-									   title: res.name,
-									   address:res.address,
-									   category:'地名地址:行政地名',
-									   latitude:res.latitude,
-									   longitude:res.longitude
-									};
+				 let toLocation = {
+								   title: res.name,
+								   address:res.address,
+								   category:'地名地址:行政地名',
+								   lat:res.latitude,
+								   lng:res.longitude
+								};
 		         this.topoint = res.name;
-				 this.getline(from,mobileLocation,this.chooseLineType);
+				 to = toLocation;
+				 this.getline(from,to,this.chooseLineType);
 		      },
 		      fail: function (err) {
 		         console.log(err)
