@@ -118,7 +118,6 @@ export default {
             linelist.get({
                 success:res=>{
                     this.checkpoint = res.data;
-					console.log(this.checkpoint)
                 }
             })
         },
