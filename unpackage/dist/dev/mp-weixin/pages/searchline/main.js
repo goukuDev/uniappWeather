@@ -232,6 +232,7 @@ var linelist = db.collection('linelist');var _default =
       linelist.get({
         success: function success(res) {
           _this2.checkpoint = res.data;
+          console.log(_this2.checkpoint);
         } });
 
     },

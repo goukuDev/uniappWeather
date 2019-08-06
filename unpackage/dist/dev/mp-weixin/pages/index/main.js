@@ -257,67 +257,28 @@ var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-D
 });var dayaqi;var lifeindex;var result;var _default = { data: function data() {return { region: ['北京市', '北京市', '东城区'], twodateweather: [], // 今天天气信息
       dateweather: {}, // 15天天气
       forecastlist: [], // 24小时天气
-      hourlist: [] };}, onLoad: function onLoad() {this.getUserLocation();}, //转发分享
+      hourlist: [] };}, onLoad: function onLoad() {this.GetLocation();}, //转发分享
   onShareAppMessage: function onShareAppMessage(ops) {if (ops.from === "button") {// 来自页面内转发按钮
       console.log(ops.target);}return { title: "天气", //这里是定义转发的标题
       path: "pages/index/main", //这里是定义转发的地址
       success: function success(res) {// 转发成功
         console.log("转发成功:" + JSON.stringify(res));var shareTickets = res.shareTickets;}, fail: function fail(res) {// 转发失败
-        console.log("转发失败:" + JSON.stringify(res));} };}, onPullDownRefresh: function onPullDownRefresh() {this.getUserLocation();wx.showLoading({ title: '加载中' });}, methods: { getUserLocation: function getUserLocation() {var _this = this;wx.getSetting({ success: function success(res) {if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {wx.showModal({ title: '请求授权当前位置', content: '需要获取您的地理位置，请确认授权', success: function success(res) {if (res.cancel) {wx.showToast({ title: '拒绝授权', icon: 'none', duration: 1000 });} else if (res.confirm) {wx.openSetting({ success: function success(data) {console.log(data);if (data.authSetting["scope.userLocation"] == true) {wx.showToast({ title: '授权成功', icon: 'success', duration: 1000 }); //再次授权，调用wx.getLocation的API
-                        _this.getLocation();
-                      } else {
-                        wx.showToast({
-                          title: '授权失败',
-                          icon: 'none',
-                          duration: 1000 });
+        console.log("转发失败:" + JSON.stringify(res));} };}, onPullDownRefresh: function onPullDownRefresh() {// this.getUserLocation();
+    this.GetLocation();wx.showLoading({ title: '加载中' });}, methods: { GetLocation: function GetLocation() {var _this = this;wx.getSetting({ success: function success(res) {if (!JSON.stringify(res.authSetting).includes('scope.userLocation')) {//3.1 每次进入程序判断当前是否获得授权，如果没有就去获得授权，如果获得授权，就直接获取当前地理位置
+            _this.getAuthorizeInfo();} else {_this.getLocationInfo();}} });}, getAuthorizeInfo: function getAuthorizeInfo() {var _this2 = this; //1. uniapp弹窗弹出获取授权（地理，个人微信信息等授权信息）弹窗
+      wx.authorize({ scope: "scope.userLocation", success: function success(res) {//1.1 允许授权
+          _this2.getLocationInfo();}, fail: function fail() {//1.2 拒绝授权
+          console.log("你拒绝了授权，无法获得周边信息");} });}, getLocationInfo: function getLocationInfo() {var _this3 = this; //2. 获取地理位置
+      wx.getLocation({ type: 'wgs84', success: function success(data) {qqmapsdk.reverseGeocoder({ location: { latitude: data.latitude, longitude: data.longitude },
 
-                      }
-                    } });
+            success: function success(res) {
+              _this3.region = [res.result.address_component.province, res.result.address_component.city, res.result.address_component.district];
+              _this3.getweather(_this3.region);
+            },
+            fail: function fail(err) {
+              console.log(err);
+            } });
 
-                }
-              } });
-
-          } else if (res.authSetting['scope.userLocation'] == undefined) {
-            //调用wx.getLocation的API
-            _this.getLocation();
-          } else
-          {
-            //调用wx.getLocation的API
-            _this.getLocation();
-          }
-        } });
-
-    },
-    // 微信获得经纬度
-    getLocation: function getLocation() {var _this2 = this;
-      wx.getLocation({
-        type: 'gcj02',
-        success: function success(res) {
-          var latitude = res.latitude;
-          var longitude = res.longitude;
-          var speed = res.speed;
-          var accuracy = res.accuracy;
-          _this2.getLocal(latitude, longitude);
-        },
-        fail: function fail(res) {
-          console.log('fail' + JSON.stringify(res));
-        },
-        altitude: true });
-
-    },
-    // 获取当前地理位置
-    getLocal: function getLocal(latitude, longitude) {var _this3 = this;
-      qqmapsdk.reverseGeocoder({
-        location: {
-          latitude: latitude,
-          longitude: longitude },
-
-        success: function success(res) {
-          _this3.region = [res.result.address_component.province, res.result.address_component.city, res.result.address_component.district];
-          _this3.getweather(_this3.region);
-        },
-        fail: function fail(res) {
-          console.log(res);
         } });
 
     },

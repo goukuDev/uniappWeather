@@ -9,7 +9,7 @@
 			<!-- <div style='flex: 1;text-align: center;font-size: 16px;line-height: 30px;color: #396DE5;'>我的位置</div> -->
 			<div style='flex: 1;text-align: center;font-size: 16px;line-height: 30px;color: #396DE5;' @click='moveToLocation'><icon type="search" size="15" style="height:30px;" color="#396DE5"></icon>地图选点</div>
 		</div>
-        <div class="pointhistory" v-if="!!checkpoint.length && !value">
+        <div class="pointhistory" v-if="!!checkpoint && !value">
 				<uni-swipe-action style='text-indent:10px;' :options="options" v-for="(item,index) in checkpoint" :key="index" @click="bindClick($event,item._id)" >
 					<view class='cont' @click.stop="backfill(item.data)">
 						<view style="font-size:20px;height:35px;">{{item.data.title}}</view>
@@ -118,6 +118,7 @@ export default {
             linelist.get({
                 success:res=>{
                     this.checkpoint = res.data;
+					console.log(this.checkpoint)
                 }
             })
         },

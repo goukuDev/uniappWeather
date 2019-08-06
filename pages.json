@@ -3,10 +3,10 @@
 	{
 		"path":"pages/index/main",
 		"style": {
-            "navigationBarTitleText": "天气",
+	        "navigationBarTitleText": "天气",
 			"enablePullDownRefresh": true,  //设置为true表示当前页面开启下拉刷新
-            "backgroundTextStyle": "dark"  //下拉 loading 的样式，仅支持 dark/light
-        }
+	        "backgroundTextStyle": "dark"  //下拉 loading 的样式，仅支持 dark/light
+	    }
 	},
 	{
 		"path":"pages/news/main",
@@ -89,15 +89,10 @@
     }],
     "position": "bottom"
   },
-  "usingComponents":{
-    "i-icon":"./static/iview/icon/index",
-    "i-tag":"./static/iview/tag/index",
-    "i-sticky": "./static/iview/sticky/index",
-    "i-sticky-item": "./static/iview/sticky-item/index",
-    "i-swipeout": "./static/iview/swipeout/index",
-    "i-action-sheet":"./static/iview/action-sheet/index",
-    "i-button":"./static/iview/button/index",
-    "i-collapse": "./static/iview/collapse/index",
-    "i-collapse-item": "./static/iview/collapse-item/index"
-  }
+  "permission":{
+    "scope.userLocation":{
+      "desc":"你的位置信息将用于小程序位置接口的效果展示"
+    }
+   }
+	
 }

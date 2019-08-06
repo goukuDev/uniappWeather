@@ -105,32 +105,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var _index = __webpack_require__(/*! ../../utils/index.js */ 17); //
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -154,7 +129,31 @@ var _index = __webpack_require__(/*! ../../utils/index.js */ 17); //
 //
 //
 //
-var dayindex;var _default = { data: function data() {return { sevendayweather: [], clickindex: null, displaymultipleitems: '4', dayaqi: [], lifeindex: '' };}, onLoad: function onLoad(options) {this.clickindex = options.index;this.sevendayweather = JSON.parse(options.data);this.dayaqi = this.sevendayweather[this.clickindex];dayindex = JSON.parse(options.lifeindex);this.lifeindex = dayindex[this.clickindex];}, methods: { addclickindex: function addclickindex(index) {this.clickindex = index;} }, watch: {
+
+var dayindex;var _default =
+{
+  data: function data() {
+    return {
+      sevendayweather: [],
+      clickindex: null,
+      displaymultipleitems: '4',
+      dayaqi: [],
+      lifeindex: '' };
+
+  },
+  onLoad: function onLoad(options) {
+    this.clickindex = options.index;
+    this.sevendayweather = JSON.parse(options.data);
+    this.dayaqi = this.sevendayweather[this.clickindex];
+    dayindex = JSON.parse(options.lifeindex);
+    this.lifeindex = dayindex[this.clickindex];
+  },
+  methods: {
+    addclickindex: function addclickindex(index) {
+      this.clickindex = index;
+    } },
+
+  watch: {
     clickindex: function clickindex(val, oldval) {
       this.dayaqi = this.sevendayweather[val];
       this.lifeindex = dayindex[val];

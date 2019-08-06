@@ -53,7 +53,7 @@ export default {
         this.newslist = JSON.parse(data)[listtype]
         this.banner = JSON.parse(data)[listtype].slice(0,3)
       })
-    },
+    }
   }
 }
 </script>

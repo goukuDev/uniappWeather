@@ -27,3 +27,6 @@
   flex: 1;
   height:100%;
 }
+.newslistdetail .left .title{
+	height: 70px;
+}

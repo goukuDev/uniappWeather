@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import {request} from '../../utils/index.js';
 let dayindex;
 export default {
   data(){

@@ -7,12 +7,12 @@
         </picker>
       </div>
       <div class='data_weather' @click="totodydetail">
-        <div class='now_weather' v-if="Object.values(dateweather).length">
+        <div class='now_weather' v-if="!!Object.values(dateweather).length">
           <div class='temperature'>{{dateweather.current_temperature}}℃</div>
           <div class='wind'>{{dateweather.wind_direction}} {{dateweather.wind_level}} 湿度:{{dateweather.humidity}}%</div>
         </div>
-        <div class='condition' v-if="Object.values(dateweather).length">{{dateweather.current_condition}}</div>
-        <div class="quality" v-if="Object.values(dateweather).length" :style="'background:'+dateweather.background">{{dateweather.quality_level}}    {{dateweather.aqi}}</div>
+        <div class='condition' v-if="!!Object.values(dateweather).length">{{dateweather.current_condition}}</div>
+        <div class="quality"  v-if="!!Object.values(dateweather).length" :style="'background:'+dateweather.background">{{dateweather.quality_level}}    {{dateweather.aqi}}</div>
       </div>
       <!-- 今明两天天气 -->
       <div class='tomorrow_weather' v-if="twodateweather.length">
@@ -83,7 +83,7 @@ export default {
     }
   },
   onLoad(){
-    this.getUserLocation();
+    this.GetLocation();
   },
   //转发分享
   onShareAppMessage: function(ops) {
@@ -106,94 +106,55 @@ export default {
     };
   },
   onPullDownRefresh () {
-    this.getUserLocation();
+    // this.getUserLocation();
+	this.GetLocation();
     wx.showLoading({
       title: '加载中',
     })
   },
   methods: {
-    getUserLocation: function () {
-      wx.getSetting({
-        success: (res) => {
-          if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
-            wx.showModal({
-              title: '请求授权当前位置',
-              content: '需要获取您的地理位置，请确认授权',
-              success: (res) => {
-                if (res.cancel) {
-                  wx.showToast({
-                    title: '拒绝授权',
-                    icon: 'none',
-                    duration: 1000
-                  })
-                } else if (res.confirm) {
-                  wx.openSetting({
-                    success: (data) => {
-                      console.log(data)
-                      if (data.authSetting["scope.userLocation"] == true) {
-                        wx.showToast({
-                          title: '授权成功',
-                          icon: 'success',
-                          duration: 1000
-                        })
-                        //再次授权，调用wx.getLocation的API
-                        this.getLocation();
-                      } else {
-                        wx.showToast({
-                          title: '授权失败',
-                          icon: 'none',
-                          duration: 1000
-                        })
-                      }
-                    }
-                  })
-                }
-              }
-            })
-          } else if (res.authSetting['scope.userLocation'] == undefined) {
-            //调用wx.getLocation的API
-            this.getLocation();
-          }
-          else {
-            //调用wx.getLocation的API
-            this.getLocation();
-          }
-        }
-      })
-    },
-    // 微信获得经纬度
-    getLocation: function () {
-      wx.getLocation({
-        type: 'gcj02',
-        success: (res) => {
-          var latitude = res.latitude
-          var longitude = res.longitude
-          var speed = res.speed
-          var accuracy = res.accuracy;
-          this.getLocal(latitude, longitude)
-        },
-        fail: function (res) {
-          console.log('fail' + JSON.stringify(res))
-        },
-        altitude:true
-      })
-    },
-    // 获取当前地理位置
-    getLocal: function (latitude, longitude) {
-      qqmapsdk.reverseGeocoder({
-        location: {
-          latitude: latitude,
-          longitude: longitude
-        },
-        success: (res) =>{
-          this.region = [res.result.address_component.province, res.result.address_component.city, res.result.address_component.district];
-          this.getweather(this.region);
-        },
-        fail:  (res) => {
-          console.log(res);
-        }
-      });
-    },
+	GetLocation(){
+		wx.getSetting({
+			success:res=>{			
+				if (!JSON.stringify(res.authSetting).includes('scope.userLocation')) {  //3.1 每次进入程序判断当前是否获得授权，如果没有就去获得授权，如果获得授权，就直接获取当前地理位置
+					this.getAuthorizeInfo()
+				}else{
+					this.getLocationInfo()
+				}
+			}
+		});
+	},
+	getAuthorizeInfo(){  //1. uniapp弹窗弹出获取授权（地理，个人微信信息等授权信息）弹窗
+		wx.authorize({
+			scope: "scope.userLocation",
+			success:res=>{ //1.1 允许授权
+				this.getLocationInfo();
+			},
+			fail(){    //1.2 拒绝授权
+				console.log("你拒绝了授权，无法获得周边信息")
+			}
+		})
+	},
+	getLocationInfo(){  //2. 获取地理位置
+		wx.getLocation({
+			type: 'wgs84',
+			success:data=> {
+				qqmapsdk.reverseGeocoder({
+				  location: {
+				    latitude: data.latitude,
+				    longitude: data.longitude
+				  },
+				  success: (res) =>{
+				    this.region = [res.result.address_component.province, res.result.address_component.city, res.result.address_component.district];
+				    this.getweather(this.region);
+				  },
+				  fail:  (err) => {
+				    console.log(err);
+				  }
+				});
+			}
+		});
+	},
     getweather(position){
       request('https://jisutqybmf.market.alicloudapi.com/weather/query?city='+position[2],{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000' })
       .then(res=>{
