@@ -200,7 +200,6 @@ export default {
                 color: '#3CB371',
                 width: 6
             }]
-            console.log(ret)
         },
         getline(from,to,type){
             qqmapsdk.direction({

@@ -152,7 +152,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ../../static/js/qqmap-wx-jssdk.js */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ../../static/js/qqmap-wx-jssdk.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -307,7 +307,6 @@ var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-D
         color: '#3CB371',
         width: 6 }];
 
-      console.log(ret);
     },
     getline: function getline(from, to, type) {var _this3 = this;
       qqmapsdk.direction({

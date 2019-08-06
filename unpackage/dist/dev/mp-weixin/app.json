@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/life/main",
     "pages/index/main",
     "pages/news/main",
+    "pages/life/main",
     "pages/todydetail/main",
     "pages/weatherdetail/main",
     "pages/newslist/main",
@@ -43,6 +43,11 @@
       }
     ],
     "position": "bottom"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   },
   "usingComponents": {}
 }

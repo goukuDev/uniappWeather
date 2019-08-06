@@ -1,11 +1,5 @@
 {
   "pages": [
-	  {
-		"path":"pages/life/main",
-		"style":{
-			"navigationBarTitleText":"生活"
-		}
-	  },
 	{
 		"path":"pages/index/main",
 		"style": {
@@ -21,6 +15,12 @@
 			"enablePullDownRefresh": true,  //设置为true表示当前页面开启下拉刷新
 			"backgroundTextStyle": "dark"  //下拉 loading 的样式，仅支持 dark/light
 		}
+	},
+	{
+			"path":"pages/life/main",
+			"style":{
+				"navigationBarTitleText":"生活"
+			}
 	},
 	{
 		"path":"pages/todydetail/main",
@@ -99,10 +99,5 @@
     "i-button":"./static/iview/button/index",
     "i-collapse": "./static/iview/collapse/index",
     "i-collapse-item": "./static/iview/collapse-item/index"
-  },
-  "permission":{
-    "scope.userLocation":{
-      "desc":"你的位置信息将用于小程序位置接口的效果展示"
-    }
   }
 }
