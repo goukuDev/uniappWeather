@@ -312,7 +312,6 @@ var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-D
           humidity: result.humidity,
           img: result.img },
 
-        console.log(result);
         _this4.forecastlist = result.daily;
         _this4.hourlist = result.hourly.map(function (o) {return Object.assign({}, { 'condition': o.weather, 'hour': o.time, 'temperature': o.temp });});
         wx.stopPullDownRefresh();

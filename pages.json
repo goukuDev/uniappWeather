@@ -1,20 +1,20 @@
 {
   "pages": [
 	{
-		"path":"pages/index/main",
-		"style": {
-	        "navigationBarTitleText": "天气",
-			"enablePullDownRefresh": true,  //设置为true表示当前页面开启下拉刷新
-	        "backgroundTextStyle": "dark"  //下拉 loading 的样式，仅支持 dark/light
-	    }
-	},
-	{
 		"path":"pages/news/main",
 		"style":{
 			"navigationBarTitleText":"新闻",
 			"enablePullDownRefresh": true,  //设置为true表示当前页面开启下拉刷新
 			"backgroundTextStyle": "dark"  //下拉 loading 的样式，仅支持 dark/light
 		}
+	},
+	{
+		"path":"pages/index/main",
+		"style": {
+	        "navigationBarTitleText": "天气",
+			"enablePullDownRefresh": true,  //设置为true表示当前页面开启下拉刷新
+	        "backgroundTextStyle": "dark"  //下拉 loading 的样式，仅支持 dark/light
+	    }
 	},
 	{
 			"path":"pages/life/main",
@@ -37,7 +37,8 @@
 	{
 		"path":"pages/newslist/main",
 		"style":{
-			"navigationBarTitleText":""
+			"navigationBarTitleText":"",
+			"enablePullDownRefresh": true
 		}
 	},
 	{

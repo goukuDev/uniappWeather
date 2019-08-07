@@ -186,7 +186,6 @@ export default {
 			  humidity:result.humidity,
 			  img:result.img
 			},
-			console.log(result)
 			this.forecastlist = result.daily;
 			this.hourlist = result.hourly.map(o=>Object.assign({},{'condition': o.weather,'hour':o.time,'temperature':o.temp}))
 			wx.stopPullDownRefresh();

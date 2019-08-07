@@ -1,5 +1,5 @@
 <template>
-  <div class="newslist">
+  <div scroll-y class="newslist">
     <!-- banner图 -->
     <swiper display-multiple-items="1" duration="500" interval='8000' :autoplay='true' :circular='true' class="banner">
       <block v-for="(item,index) in banner" :key="index">
@@ -31,9 +31,15 @@ let pages = 0;
 export default {
   data(){
     return{
-      newslist:null,
-      banner:null
+      newslist:[],
+      banner:[]
     }
+  },
+  onReachBottom(){
+	  wx.showLoading({
+	    title: '加载中',
+	  })
+	  this.addmorelist();
   },
   onLoad(options){
     type = options.type;
@@ -47,13 +53,20 @@ export default {
   },
   methods:{
     getnewslist(listtype,listpages){
-      request('https://3g.163.com/touch/reconstruct/article/list/'+listtype+'/'+pages+'-'+pages*1+10+'.html')
+      request('https://3g.163.com/touch/reconstruct/article/list/'+listtype+'/'+listpages+'-10.html')
       .then(res=>{
         let data  = '{'+res.data.split('artiList({')[1].split('})')[0]+'}';
-        this.newslist = JSON.parse(data)[listtype]
-        this.banner = JSON.parse(data)[listtype].slice(0,3)
+		// setTimeout(()=>{
+			wx.hideLoading();
+			this.newslist.push(...JSON.parse(data)[listtype])
+			this.banner = this.newslist.slice(0,3)
+		// },400)
       })
-    }
+    },
+	addmorelist(){
+		pages += 10;
+		this.getnewslist(type,pages)
+	}
   }
 }
 </script>

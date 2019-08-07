@@ -132,34 +132,47 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _utils = __webpack_require__(/*! utils */ 17); //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var type = null;var pages = 0;var _default = { data: function data() {return { newslist: null, banner: null };}, onLoad: function onLoad(options) {type = options.type;wx.setNavigationBarTitle({ title: options.item });this.getnewslist(type, pages);}, onUnload: function onUnload() {Object.assign(this, this.$options.data());}, methods: { getnewslist: function getnewslist(listtype, listpages) {var _this = this;(0, _utils.request)('https://3g.163.com/touch/reconstruct/article/list/' + listtype + '/' + pages + '-' + pages * 1 + 10 + '.html').then(function (res) {var data = '{' + res.data.split('artiList({')[1].split('})')[0] + '}';_this.newslist = JSON.parse(data)[listtype];_this.banner = JSON.parse(data)[listtype].slice(0, 3);
+var _utils = __webpack_require__(/*! utils */ 17);function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}
+var type = null;
+var pages = 0;var _default =
+{
+  data: function data() {
+    return {
+      newslist: [],
+      banner: [] };
+
+  },
+  onReachBottom: function onReachBottom() {
+    wx.showLoading({
+      title: '加载中' });
+
+    this.addmorelist();
+  },
+  onLoad: function onLoad(options) {
+    type = options.type;
+    wx.setNavigationBarTitle({
+      title: options.item });
+
+    this.getnewslist(type, pages);
+  },
+  onUnload: function onUnload() {
+    Object.assign(this, this.$options.data());
+  },
+  methods: {
+    getnewslist: function getnewslist(listtype, listpages) {var _this = this;
+      (0, _utils.request)('https://3g.163.com/touch/reconstruct/article/list/' + listtype + '/' + listpages + '-10.html').
+      then(function (res) {var _this$newslist;
+        var data = '{' + res.data.split('artiList({')[1].split('})')[0] + '}';
+        // setTimeout(()=>{
+        wx.hideLoading();
+        (_this$newslist = _this.newslist).push.apply(_this$newslist, _toConsumableArray(JSON.parse(data)[listtype]));
+        _this.banner = _this.newslist.slice(0, 3);
+        // },400)
       });
+    },
+    addmorelist: function addmorelist() {
+      pages += 10;
+      this.getnewslist(type, pages);
     } } };exports.default = _default;
 
 /***/ }),
