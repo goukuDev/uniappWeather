@@ -15,12 +15,11 @@
     align-items:center;
 }
 .todydetail .top view:first-child{
-    font-size: 30px;
-	height: 100px;
-	width: 50%;
-	line-height: 100px;
+    font-size: 25px;
+	height: 70px;
+	min-width:50px;
+	line-height: 70px;
 	position: relative;
-	text-indent: 10px;
 }
 .todydetail .top view:last-child{
     font-size:14px;

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/news/main",
     "pages/index/main",
+    "pages/news/main",
     "pages/life/main",
     "pages/todydetail/main",
     "pages/weatherdetail/main",

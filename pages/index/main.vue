@@ -13,7 +13,7 @@
         </div>
         <div class='condition'>{{dateweather.current_condition}}</div>
         <div class="quality" :style="'background:'+dateweather.background">{{dateweather.quality_level}}    {{dateweather.aqi}}</div>
-		<image style='width:80px;height:70px;' :src="'/static/weathercn/'+dateweather.img+'.png'"/>
+		<image style='width:70px;height:70px;' :src="'/static/weathercn/'+dateweather.img+'.png'"/>
       </div>
       <!-- 今明两天天气 -->
       <div class='tomorrow_weather' v-if="twodateweather.length">
