@@ -15,6 +15,7 @@
         <div class="left">
           <div class="title">{{data.title}}</div>
           <span style="color:#b4b4b4;font-size:12px;">{{data.source}}</span>
+		  <span style="color:#b4b4b4;font-size:12px;margin-left:10px;">{{data.ptime.split(' ')[0]}}</span>
         </div>
         <div class="right" v-if="data.imgsrc" :style="'background:url('+data.imgsrc+') no-repeat center center;border-radius:3px;background-size:130px 80px;'">
           

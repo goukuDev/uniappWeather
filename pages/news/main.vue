@@ -16,7 +16,7 @@
             <span style="color:#b4b4b4;font-size:12px;">{{data.source}}</span>
           </div>
           <div class="right" v-if="data.picInfo.length">
-            <img :src="data.picInfo[0].url" alt="" srcset="" style="width:100%;height:80px;border-radius:3px;"/>
+            <image lazy-load='true' :src="data.picInfo[0].url" alt="" srcset="" style="width:100%;height:80px;border-radius:3px;"/>
           </div>
         </div>
       </div>
