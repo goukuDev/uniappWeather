@@ -3,16 +3,17 @@
     <div class="indexbox">
       <div class="localtion">
         <picker class="auth-pick-tip" mode="region" :value="region" @change="regionPick">
-          {{region[2]}}
+          {{region | showcity(region)}}
         </picker>
       </div>
-      <div class='data_weather' @click="totodydetail">
-        <div class='now_weather' v-if="!!Object.values(dateweather).length">
+      <div class='data_weather'  v-if="!!Object.values(dateweather).length" @click="totodydetail">
+        <div class='now_weather'>
           <div class='temperature'>{{dateweather.current_temperature}}℃</div>
           <div class='wind'>{{dateweather.wind_direction}} {{dateweather.wind_level}} 湿度:{{dateweather.humidity}}%</div>
         </div>
-        <div class='condition' v-if="!!Object.values(dateweather).length">{{dateweather.current_condition}}</div>
-        <div class="quality"  v-if="!!Object.values(dateweather).length" :style="'background:'+dateweather.background">{{dateweather.quality_level}}    {{dateweather.aqi}}</div>
+        <div class='condition'>{{dateweather.current_condition}}</div>
+        <div class="quality" :style="'background:'+dateweather.background">{{dateweather.quality_level}}    {{dateweather.aqi}}</div>
+		<image style='width:80px;height:70px;' :src="'/static/weathercn/'+dateweather.img+'.png'"/>
       </div>
       <!-- 今明两天天气 -->
       <div class='tomorrow_weather' v-if="twodateweather.length">
@@ -27,14 +28,14 @@
           </block>
         </swiper>
       </div>
-      <!-- 15天天气 -->
+      <!-- 一周天气 -->
       <div class='halfmonth' v-if="forecastlist.length">
-        <swiper display-multiple-items="4" duration="500">
+        <swiper display-multiple-items="3" duration="500">
           <block v-for="(item,index) in forecastlist" :key="index">
             <swiper-item @click="gotodetail(index)">
                 <div>{{item.week}}</div>
                 <div>{{item.date}}</div>
-                <div>{{item.day.weather==item.night.weather? item.day.weather:item.day.weather+'转'+item.night.weather}}</div>
+                <div style='font-size:13px;'>{{item.day.weather==item.night.weather? item.day.weather:item.day.weather+'转'+item.night.weather}}</div>
                 <div>{{item.night.templow}}</div>
                 <div>{{item.day.temphigh}}</div>
                 <div>{{item.day.winddirect=='持续无风向'? '微风':item.day.winddirect}}</div>
@@ -82,8 +83,19 @@ export default {
       hourlist:[]
     }
   },
+  filters:{
+	  showcity(data){
+		  if(data[0]==data[1])
+			return data[0]+'    '+data[2];
+		  else
+			return data[0]+'    '+data[1]+'    '+data[2];
+	  }
+  },
   onLoad(){
     this.GetLocation();
+	wx.showLoading({
+	  title: '加载中',
+	})
   },
   //转发分享
   onShareAppMessage: function(ops) {
@@ -108,9 +120,6 @@ export default {
   onPullDownRefresh () {
     // this.getUserLocation();
 	this.GetLocation();
-    wx.showLoading({
-      title: '加载中',
-    })
   },
   methods: {
 	GetLocation(){
@@ -146,7 +155,7 @@ export default {
 				  },
 				  success: (res) =>{
 				    this.region = [res.result.address_component.province, res.result.address_component.city, res.result.address_component.district];
-				    this.getweather(this.region);
+				    this.getweather(this.region[2]);
 				  },
 				  fail:  (err) => {
 				    console.log(err);
@@ -156,33 +165,37 @@ export default {
 		});
 	},
     getweather(position){
-      request('https://jisutqybmf.market.alicloudapi.com/weather/query?city='+position[2],{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000' })
+      request('https://jisutqybmf.market.alicloudapi.com/weather/query?city='+position,{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000' })
       .then(res=>{
-        result =  res.data.result;
-        dayaqi = result.aqi;
-        lifeindex = result.index;
-        this.twodateweather= result.daily.slice(0,2)
-        this.dateweather={
-          current_temperature: result.temp,
-          current_condition: result.weather,
-          wind_direction: result.winddirect,
-          wind_level: result.windpower,
-          quality_level: result.aqi.quality,
-          aqi: result.aqi.aqi,
-          background:result.aqi.aqiinfo.color,
-          humidity:result.humidity
-        },
-        this.forecastlist = result.daily;
-        this.hourlist = result.hourly.map(o=>Object.assign({},{'condition': o.weather,'hour':o.time,'temperature':o.temp}))
-        setTimeout(()=>{
-          wx.stopPullDownRefresh();
-          wx.hideLoading();
-        },2000);
+		// if(res=='请求出错'){
+		// 	this.getweather(this.region[1])
+		// }else{
+			wx.hideLoading();
+			result =  res.data.result;
+			dayaqi = result.aqi;
+			lifeindex = result.index;
+			this.twodateweather= result.daily.slice(0,2)
+			this.dateweather={
+			  current_temperature: result.temp,
+			  current_condition: result.weather,
+			  wind_direction: result.winddirect,
+			  wind_level: result.windpower,
+			  quality_level: result.aqi.quality,
+			  aqi: result.aqi.aqi,
+			  background:result.aqi.aqiinfo.color,
+			  humidity:result.humidity,
+			  img:result.img
+			},
+			console.log(result)
+			this.forecastlist = result.daily;
+			this.hourlist = result.hourly.map(o=>Object.assign({},{'condition': o.weather,'hour':o.time,'temperature':o.temp}))
+			wx.stopPullDownRefresh();
+		// }
       })
     },
     regionPick: function (e) {
       this.region = e.mp.detail.value;
-      this.getweather(e.mp.detail.value)
+      this.getweather(e.mp.detail.value[1])
     },
     //去到详情页
     gotodetail(index){
@@ -200,7 +213,8 @@ export default {
         humidity:result.humidity,
         quality:result.aqi.quality,
         ipm2_5:result.aqi.ipm2_5,
-        aqi:result.index[0].detail
+        aqi:result.index[0].detail,
+		img:result.img
       }
       wx.navigateTo({
         url:'../../pages/todydetail/main?data='+JSON.stringify(data)

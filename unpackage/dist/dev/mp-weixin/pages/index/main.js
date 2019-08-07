@@ -82,16 +82,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var f0 = _vm._f("showcity")(_vm.region, _vm.region)
+
   var g0 = Object.values(_vm.dateweather)
-  var g1 = Object.values(_vm.dateweather)
-  var g2 = Object.values(_vm.dateweather)
   _vm.$mp.data = Object.assign(
     {},
     {
       $root: {
-        g0: g0,
-        g1: g1,
-        g2: g2
+        f0: f0,
+        g0: g0
       }
     }
   )
@@ -126,6 +125,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
 
 
 
@@ -253,27 +253,35 @@ var _store = _interopRequireDefault(__webpack_require__(/*! ../../static/js/stor
 //
 //
 //
+//
 var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' //自己的key秘钥 http://lbs.qq.com/console/mykey.html 在这个网址申请
 });var dayaqi;var lifeindex;var result;var _default = { data: function data() {return { region: ['北京市', '北京市', '东城区'], twodateweather: [], // 今天天气信息
       dateweather: {}, // 15天天气
       forecastlist: [], // 24小时天气
-      hourlist: [] };}, onLoad: function onLoad() {this.GetLocation();}, //转发分享
+      hourlist: [] };}, filters: { showcity: function showcity(data) {if (data[0] == data[1]) return data[0] + '    ' + data[2];else return data[0] + '    ' + data[1] + '    ' + data[2];} }, onLoad: function onLoad() {this.GetLocation();wx.showLoading({ title: '加载中' });}, //转发分享
   onShareAppMessage: function onShareAppMessage(ops) {if (ops.from === "button") {// 来自页面内转发按钮
       console.log(ops.target);}return { title: "天气", //这里是定义转发的标题
       path: "pages/index/main", //这里是定义转发的地址
       success: function success(res) {// 转发成功
         console.log("转发成功:" + JSON.stringify(res));var shareTickets = res.shareTickets;}, fail: function fail(res) {// 转发失败
         console.log("转发失败:" + JSON.stringify(res));} };}, onPullDownRefresh: function onPullDownRefresh() {// this.getUserLocation();
-    this.GetLocation();wx.showLoading({ title: '加载中' });}, methods: { GetLocation: function GetLocation() {var _this = this;wx.getSetting({ success: function success(res) {if (!JSON.stringify(res.authSetting).includes('scope.userLocation')) {//3.1 每次进入程序判断当前是否获得授权，如果没有就去获得授权，如果获得授权，就直接获取当前地理位置
+    this.GetLocation();}, methods: { GetLocation: function GetLocation() {var _this = this;wx.getSetting({ success: function success(res) {if (!JSON.stringify(res.authSetting).includes('scope.userLocation')) {//3.1 每次进入程序判断当前是否获得授权，如果没有就去获得授权，如果获得授权，就直接获取当前地理位置
             _this.getAuthorizeInfo();} else {_this.getLocationInfo();}} });}, getAuthorizeInfo: function getAuthorizeInfo() {var _this2 = this; //1. uniapp弹窗弹出获取授权（地理，个人微信信息等授权信息）弹窗
       wx.authorize({ scope: "scope.userLocation", success: function success(res) {//1.1 允许授权
           _this2.getLocationInfo();}, fail: function fail() {//1.2 拒绝授权
-          console.log("你拒绝了授权，无法获得周边信息");} });}, getLocationInfo: function getLocationInfo() {var _this3 = this; //2. 获取地理位置
-      wx.getLocation({ type: 'wgs84', success: function success(data) {qqmapsdk.reverseGeocoder({ location: { latitude: data.latitude, longitude: data.longitude },
+          console.log("你拒绝了授权，无法获得周边信息");} });},
+    getLocationInfo: function getLocationInfo() {var _this3 = this; //2. 获取地理位置
+      wx.getLocation({
+        type: 'wgs84',
+        success: function success(data) {
+          qqmapsdk.reverseGeocoder({
+            location: {
+              latitude: data.latitude,
+              longitude: data.longitude },
 
             success: function success(res) {
               _this3.region = [res.result.address_component.province, res.result.address_component.city, res.result.address_component.district];
-              _this3.getweather(_this3.region);
+              _this3.getweather(_this3.region[2]);
             },
             fail: function fail(err) {
               console.log(err);
@@ -283,8 +291,12 @@ var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-D
 
     },
     getweather: function getweather(position) {var _this4 = this;
-      (0, _utils.request)('https://jisutqybmf.market.alicloudapi.com/weather/query?city=' + position[2], { 'Authorization': 'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000' }).
+      (0, _utils.request)('https://jisutqybmf.market.alicloudapi.com/weather/query?city=' + position, { 'Authorization': 'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000' }).
       then(function (res) {
+        // if(res=='请求出错'){
+        // 	this.getweather(this.region[1])
+        // }else{
+        wx.hideLoading();
         result = res.data.result;
         dayaqi = result.aqi;
         lifeindex = result.index;
@@ -297,19 +309,19 @@ var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-D
           quality_level: result.aqi.quality,
           aqi: result.aqi.aqi,
           background: result.aqi.aqiinfo.color,
-          humidity: result.humidity },
+          humidity: result.humidity,
+          img: result.img },
 
+        console.log(result);
         _this4.forecastlist = result.daily;
         _this4.hourlist = result.hourly.map(function (o) {return Object.assign({}, { 'condition': o.weather, 'hour': o.time, 'temperature': o.temp });});
-        setTimeout(function () {
-          wx.stopPullDownRefresh();
-          wx.hideLoading();
-        }, 2000);
+        wx.stopPullDownRefresh();
+        // }
       });
     },
     regionPick: function regionPick(e) {
       this.region = e.mp.detail.value;
-      this.getweather(e.mp.detail.value);
+      this.getweather(e.mp.detail.value[1]);
     },
     //去到详情页
     gotodetail: function gotodetail(index) {
@@ -327,7 +339,8 @@ var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-D
         humidity: result.humidity,
         quality: result.aqi.quality,
         ipm2_5: result.aqi.ipm2_5,
-        aqi: result.index[0].detail };
+        aqi: result.index[0].detail,
+        img: result.img };
 
       wx.navigateTo({
         url: '../../pages/todydetail/main?data=' + JSON.stringify(data) });

@@ -129,34 +129,59 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-
-var dayindex;var _default =
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default =
 {
   data: function data() {
     return {
+      number: [0, 1, 2, 3, 4, 5, 6],
       sevendayweather: [],
       clickindex: null,
       displaymultipleitems: '4',
       dayaqi: [],
-      lifeindex: '' };
+      lifeindex: '',
+      dayindex: '' };
 
   },
   onLoad: function onLoad(options) {
     this.clickindex = options.index;
     this.sevendayweather = JSON.parse(options.data);
     this.dayaqi = this.sevendayweather[this.clickindex];
-    dayindex = JSON.parse(options.lifeindex);
-    this.lifeindex = dayindex[this.clickindex];
+    this.dayindex = JSON.parse(options.lifeindex);
+    this.lifeindex = this.dayindex[this.clickindex];
   },
   methods: {
     addclickindex: function addclickindex(index) {
+      this.clickindex = '';
       this.clickindex = index;
+    },
+    test: function test(ev) {
+      this.clickindex = ev.target.current;
     } },
 
   watch: {
     clickindex: function clickindex(val, oldval) {
       this.dayaqi = this.sevendayweather[val];
-      this.lifeindex = dayindex[val];
+      this.lifeindex = this.dayindex[val];
     } } };exports.default = _default;
 
 /***/ }),

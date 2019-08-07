@@ -1,7 +1,10 @@
 <template>
     <div class="todydetail">
         <div class="top">
-            <div>{{aqi.temp}}℃{{aqi.weather}}</div>
+            <div>
+				{{aqi.temp}}℃{{aqi.weather}}
+				<image v-if='!!Object.values(aqi).length' style='position: absolute;top: 30rpx;right: 0;width:80px;height:70px;' :src="'/static/weathercn/'+aqi.img+'.png'"/>
+			</div>
             <div>{{aqi.aqi}}</div>
         </div>
         <div class="bottom">

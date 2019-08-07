@@ -1,6 +1,6 @@
 <template>
   <div class="counter">
-    <swiper :display-multiple-items="displaymultipleitems" interval="5000" duration="5000" :current='(clickindex<sevendayweather.length-displaymultipleitems)? clickindex:sevendayweather.length-displaymultipleitems'>
+    <swiper class="topswiper" :display-multiple-items="displaymultipleitems" interval="5000" duration="5000" :current='(clickindex<sevendayweather.length-displaymultipleitems)? clickindex:sevendayweather.length-displaymultipleitems'>
       <block v-for="(item,index) in sevendayweather" :key="index">
         <swiper-item @click="addclickindex(index)" :class="index==clickindex? 'clickindex':''">
             <div>{{item.week}}</div>
@@ -8,48 +8,73 @@
         </swiper-item>
       </block>
     </swiper>
-    <div class="weatherdetail">
-      {{lifeindex.detail}}
-      <div class="weather">
-        <div>{{dayaqi.day.weather==dayaqi.night.weather? dayaqi.day.weather:dayaqi.day.weather+'转'+dayaqi.night.weather}}</div>
-        <div>日出:{{dayaqi.sunrise}}日落:{{dayaqi.sunset}}</div>
-        <div>温度</div>
-        <div>{{dayaqi.day.temphigh}}/{{dayaqi.night.templow}}℃</div>
-        <div>风力</div>
-        <div>{{dayaqi.day.windpower==dayaqi.night.windpower? dayaqi.day.windpower:dayaqi.day.windpower+'转'+dayaqi.night.windpower}}</div>
-      </div>
-    </div>
+	<swiper class="bottomswiper" display-multiple-items="1" interval="500" duration="500" @animationfinish='test($event)' :current='clickindex'>
+	  <block v-for="(item,index) in number" :key="index">
+	    <swiper-item v-if='!!sevendayweather.length'>
+	          <div class='advise'>{{dayindex[clickindex].detail}}</div>
+	          <h1 class='type'>
+	        	  白天
+	        	  <image style='position: absolute;top:5px;left:60px;width:50px;height:50px;' :src="'/static/weathercn/'+sevendayweather[clickindex].day.img+'.png'"/>
+	          </h1>
+	          <div class="weather">
+	            <div>{{sevendayweather[clickindex].day.weather}}</div>
+	            <div>日出:{{sevendayweather[clickindex].sunrise}}</div>
+	            <div>温度</div>
+	            <div>{{sevendayweather[clickindex].day.temphigh}}℃</div>
+	            <div>风力</div>
+	            <div>{{sevendayweather[clickindex].day.windpower}}</div>
+	          </div>
+	          <h1 class='type'>
+	        	  夜晚
+	        	  <image style='position: absolute;top:5px;left:60px;width:50px;height:50px;' :src="'/static/weathercn/'+sevendayweather[clickindex].night.img+'.png'"/>
+	          </h1>
+	          <div class="weather">
+	            <div>{{sevendayweather[clickindex].night.weather}}</div>
+	            <div>日落:{{sevendayweather[clickindex].sunset}}</div>
+	            <div>温度</div>
+	            <div>{{sevendayweather[clickindex].night.templow}}℃</div>
+	            <div>风力</div>
+	            <div>{{sevendayweather[clickindex].night.windpower}}</div>
+	          </div>
+	    </swiper-item>
+	  </block>
+	</swiper>
   </div>
 </template>
 
 <script>
-let dayindex;
 export default {
   data(){
     return{
+	  number:[0,1,2,3,4,5,6],
       sevendayweather:[],
       clickindex:null,
       displaymultipleitems:'4',
       dayaqi:[],
-      lifeindex:''
+      lifeindex:'',
+	  dayindex:'',
     }
   },
   onLoad(options) {
 	this.clickindex  = options.index;
 	this.sevendayweather = JSON.parse(options.data);
 	this.dayaqi = this.sevendayweather[this.clickindex];
-	dayindex = JSON.parse(options.lifeindex);
-	this.lifeindex = dayindex[this.clickindex];
+	this.dayindex = JSON.parse(options.lifeindex);
+	this.lifeindex = this.dayindex[this.clickindex];
   },
   methods:{
 	  addclickindex(index){
+		  this.clickindex = '';
 		  this.clickindex = index;
+	  },
+	  test(ev){
+		  this.clickindex = ev.target.current;
 	  }
   },
   watch:{
     clickindex(val,oldval){
       this.dayaqi = this.sevendayweather[val];
-      this.lifeindex = dayindex[val];
+      this.lifeindex = this.dayindex[val];
     }
   }
 }
