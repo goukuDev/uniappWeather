@@ -43,8 +43,7 @@
 	{
 		"path":"pages/newslist/main",
 		"style":{
-			"navigationBarTitleText":"",
-			"enablePullDownRefresh": true
+			"navigationBarTitleText":""
 		}
 	},
 	{

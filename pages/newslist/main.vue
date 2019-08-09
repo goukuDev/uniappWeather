@@ -1,5 +1,5 @@
 <template>
-  <div scroll-y class="newslist">
+  <scroll-view scroll-y class="newslist">
     <!-- banner图 -->
     <swiper display-multiple-items="1" duration="500" interval='8000' :autoplay='true' :circular='true' class="banner">
       <block v-for="(item,index) in banner" :key="index">
@@ -22,7 +22,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </scroll-view>
 </template>
 
 <script>
