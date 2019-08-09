@@ -145,11 +145,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ../../static/js/qqmap-wx-jssdk.js */ 26));
+var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ../../static/js/qqmap-wx-jssdk.js */ 18));
 
 
 
-var _store = _interopRequireDefault(__webpack_require__(/*! ../../static/js/store.js */ 27));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}var uniSwipeAction = function uniSwipeAction() {return __webpack_require__.e(/*! import() | node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action */ "node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action.vue */ 106));};var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' });
+var _store = _interopRequireDefault(__webpack_require__(/*! ../../static/js/store.js */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}var uniSwipeAction = function uniSwipeAction() {return __webpack_require__.e(/*! import() | node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action */ "node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action.vue */ 106));};var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' });
 var region;
 //初始化数据库
 var listdata;

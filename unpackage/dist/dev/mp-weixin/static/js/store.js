@@ -7,8 +7,8 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    count: 0,
-    choosepoint:{}
+    choosecity:'',//选择城市
+	choosepoint:{}//地图上选择城市
   },
   mutations: {
     increment: (state) => {

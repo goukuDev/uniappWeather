@@ -2,20 +2,23 @@
 	<div class="index">
 		<div class="indexbox">
 			<div class="localtion">
-				<div @click='showdrawer=true' style='height:100%;display: flex;justify-content: center;align-items: center;'><icon type="search" size="18" color='#666' style="height:20px;"></icon>{{region | showcity(region)}}</div>
+				<div v-if='!!region' @click='opendrawer()' style='height:100%;display: flex;justify-content: center;align-items: center;'><icon type="search" size="18" color='#666' style="height:20px;"></icon>{{region}}</div>
 				<uni-drawer :visible='showdrawer' @close='showdrawer=false' class='indexdrawer'>
-					<!-- <view style="padding:30upx;"> -->
 						<div style='height:40px;'>
+							<div style='height: 40px;width: calc(100% - 40px);float: left;text-align: left;color:#fff;font-size:15px;text-indent:10px;'>搜索城市</div>
 							<icon type="search" size="20" color='#fff' style="float: right;width: 40px;height:30px;padding-top: 10px;" @click="tocitys"></icon>
 						</div>
-						<div style='height:calc(100% - 40px);overflow: auto;-webkit-overflow-scrolling :touch;'>
-							<uni-swipe-action style='text-indent:10px;' :options="options">
-								<view class='cont'>
-									<view style="font-size:20px;height:35px;">测试</view>
+						<scroll-view style='height:calc(100% - 40px)' scroll-y> 
+								<view class='cont' v-if="!!cityhistory">
+									<view style="font-size:20px;height:45px;border-bottom:1px solid #999;background:#fff;display:flex;" @click="closedrawer(item.data.city,item._id)" v-for="(item,index) in cityhistory" :key='index'>
+										<div style='flex:70%;text-align:left;text-indent:10px;font-size:15px;'>{{item.data.city.split(',')[item.data.city.split(',').length-1]}}</div>
+										<div style='flex:30%;text-align:left;font-size:15px;'>
+											{{item.data.temp}}℃
+											<image :src="'/static/weathercn/'+item.data.img+'.png'" mode="" style="width: 45px;height: 45px; float: right;"></image>
+										</div>
+									</view>
 								</view>
-							</uni-swipe-action>
-						</div>
-					<!-- </view> -->
+						</scroll-view>
 				</uni-drawer>
 			</div>
 			<div class='showrequest'>
@@ -94,7 +97,7 @@ const citylist = db.collection('citylist');
 export default {
   data () {
     return {
-      region: ['北京市','北京市','东城区'],
+      region:null,
       twodateweather:[],
       // 今天天气信息
       dateweather:{},
@@ -114,18 +117,11 @@ export default {
 	          backgroundColor: '#dd524d'
 	      }
 	  }],
+	  cityhistory:null
     }
   },
   components:{
 	  uniDrawer,uniSwipeAction
-  },
-  filters:{
-	  showcity(data){
-		  if(data[0]==data[1])
-			return data[0]+'    '+data[2];
-		  else
-			return data[0]+'    '+data[1]+'    '+data[2];
-	  }
   },
   onLoad(){
     this.GetLocation();
@@ -154,8 +150,13 @@ export default {
     };
   },
   onPullDownRefresh () {
-    // this.getUserLocation();
 	this.GetLocation();
+  },
+  onShow() {
+  	if(!!vuex.state.choosecity){
+		this.region = vuex.state.choosecity.province;
+		this.getweather(vuex.state.choosecity.province)
+	}
   },
   methods: {
 	GetLocation(){
@@ -190,8 +191,11 @@ export default {
 				    longitude: data.longitude
 				  },
 				  success: (res) =>{
-				    this.region = [res.result.address_component.province, res.result.address_component.city, res.result.address_component.district];
-				    this.getweather(this.region[2]);
+					   if(res.result.address_component.province==res.result.address_component.city)
+					  		this.region = res.result.address_component.province+','+res.result.address_component.district;
+					   else
+					  		this.region = res.result.address_component.province+','+res.result.address_component.city+','+res.result.address_component.district;
+				    this.getweather(this.region);
 				  },
 				  fail:  (err) => {
 				    console.log(err);
@@ -200,8 +204,8 @@ export default {
 			}
 		});
 	},
-    getweather(position){
-		request('https://jisutqybmf.market.alicloudapi.com/weather/query?city='+position,{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000' })
+    getweather(position,id){
+		request('https://jisutqybmf.market.alicloudapi.com/weather/query?city='+position.split(',')[position.split(',').length-1],{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000' })
 		.then(res=>{
 			wx.hideLoading();
 			result =  res.data.result;
@@ -223,26 +227,33 @@ export default {
 			this.hourlist = result.hourly.map(o=>Object.assign({},{'condition': o.weather,'hour':o.time,'temperature':o.temp}))
 			wx.stopPullDownRefresh();
 			//储存城市天气历史记录
-			// listdata = {city:position,temp:result.temp,img:result.img};
-			// citylist.get({
-			//     success:res=>{
-			//         if(!res.data.map(o=>o.data).some(o=>o.city==listdata.city)){
-			//             citylist.add({
-			//                 data:{
-			//                     data:listdata
-			//                 },
-			//                 success: function(res) {
-			//                     console.log(res._id)
-			//                 }
-			//             })
-			//         }
-			//     }
-			// })
+			listdata = {city:position,temp:result.temp,img:result.img};
+			citylist.get({
+			    success:res=>{
+					// 没有历史结果就保存,有历史结果就更新
+			        if(!res.data.map(o=>o.data).some(o=>o.city==listdata.city)){
+			            citylist.add({
+			                data:{
+			                    data:listdata
+			                },
+			                success: function(res) {
+			                    console.log(res._id)
+			                }
+			            })
+			        }
+					if(!!id && !(!res.data.map(o=>o.data).some(o=>o.city==listdata.city))){
+						citylist.doc(id).update({
+							data:{
+							    data:listdata
+							},
+							success:res=>{
+								console.log(res_id)
+							}
+						})
+					}
+			    }
+			})
 		})
-    },
-    regionPick: function (e) {
-      this.region = e.mp.detail.value;
-      this.getweather(e.mp.detail.value[2])
     },
     //去到详情页
     gotodetail(index){
@@ -274,6 +285,19 @@ export default {
 		setTimeout(()=>{
 			this.showdrawer = false;
 		},1000)
+	},
+	closedrawer(data,id){
+		this.getweather(data,id);
+		this.region = data;
+		this.showdrawer = false;
+	},
+	opendrawer(){
+		this.showdrawer = true;
+		citylist.get({
+			success:res=>{
+				this.cityhistory = res.data;
+			}
+		})
 	}
   }
 }
@@ -283,7 +307,7 @@ export default {
 </style>
 <style>
 	.localtion .indexdrawer .uni-drawer .uni-drawer__content{
-		background:#333;
+		background:#666;
 		width: 70%;
 	}
 </style>
