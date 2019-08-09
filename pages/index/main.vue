@@ -21,7 +21,7 @@
 						</scroll-view>
 				</uni-drawer>
 			</div>
-			<div class='showrequest'>
+			<div class='showrequest' v-if='weathermsg'>
 				<div class='data_weather'  v-if="!!Object.values(dateweather).length" @click="totodydetail">
 					<div class='now_weather'>
 						<div class='temperature'>{{dateweather.current_temperature}}℃</div>
@@ -73,6 +73,9 @@
 					</swiper>
 				</div>
 			</div>
+			<div class="noweathermsg" style='height: calc(100% - 40px);text-align: center;line-height: 100px;font-size: 18px;' v-else>
+				当前城市天气查询失败
+			</div>
 		</div>
 	</div>
 </template>
@@ -117,7 +120,8 @@ export default {
 	          backgroundColor: '#dd524d'
 	      }
 	  }],
-	  cityhistory:null
+	  cityhistory:null,
+	  weathermsg:true
     }
   },
   components:{
@@ -207,6 +211,11 @@ export default {
     getweather(position,id){
 		request('https://jisutqybmf.market.alicloudapi.com/weather/query?city='+position.split(',')[position.split(',').length-1],{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000' })
 		.then(res=>{
+			if(res.statusCode!=200){
+				this.weathermsg = false;
+				return
+			}
+			this.weathermsg = true;
 			wx.hideLoading();
 			result =  res.data.result;
 			dayaqi = result.aqi;
@@ -307,7 +316,7 @@ export default {
 </style>
 <style>
 	.localtion .indexdrawer .uni-drawer .uni-drawer__content{
-		background:#666;
+		background:#333;
 		width: 70%;
 	}
 </style>

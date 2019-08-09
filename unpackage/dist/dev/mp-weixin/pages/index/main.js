@@ -221,6 +221,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
 var _utils = __webpack_require__(/*! utils */ 17);
 var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ../../static/js/qqmap-wx-jssdk.js */ 18));
 
@@ -305,12 +308,15 @@ var _store = _interopRequireDefault(__webpack_require__(/*! ../../static/js/stor
 //
 //
 //
+//
+//
+//
 var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' //自己的key秘钥 http://lbs.qq.com/console/mykey.html 在这个网址申请
 });var uniDrawer = function uniDrawer() {return __webpack_require__.e(/*! import() | node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer */ "node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-drawer/uni-drawer.vue */ 99));};var uniSwipeAction = function uniSwipeAction() {return __webpack_require__.e(/*! import() | node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action */ "node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action.vue */ 106));};var dayaqi;var lifeindex;var result; //初始化数据库
 var listdata;wx.cloud.init();var db = wx.cloud.database({});var citylist = db.collection('citylist');var _default = { data: function data() {return { region: null, twodateweather: [], // 今天天气信息
       dateweather: {}, // 15天天气
       forecastlist: [], // 24小时天气
-      hourlist: [], showdrawer: false, options: [{ text: '取消', style: { backgroundColor: '#007aff' } }, { text: '删除', style: { backgroundColor: '#dd524d' } }], cityhistory: null };}, components: { uniDrawer: uniDrawer, uniSwipeAction: uniSwipeAction }, onLoad: function onLoad() {this.GetLocation();wx.showLoading({ title: '加载中' });}, //转发分享
+      hourlist: [], showdrawer: false, options: [{ text: '取消', style: { backgroundColor: '#007aff' } }, { text: '删除', style: { backgroundColor: '#dd524d' } }], cityhistory: null, weathermsg: true };}, components: { uniDrawer: uniDrawer, uniSwipeAction: uniSwipeAction }, onLoad: function onLoad() {this.GetLocation();wx.showLoading({ title: '加载中' });}, //转发分享
   onShareAppMessage: function onShareAppMessage(ops) {if (ops.from === "button") {// 来自页面内转发按钮
       console.log(ops.target);}return { title: "天气", //这里是定义转发的标题
       path: "pages/index/main", //这里是定义转发的地址
@@ -320,9 +326,7 @@ var listdata;wx.cloud.init();var db = wx.cloud.database({});var citylist = db.co
             _this.getAuthorizeInfo();} else {_this.getLocationInfo();}} });}, getAuthorizeInfo: function getAuthorizeInfo() {var _this2 = this; //1. uniapp弹窗弹出获取授权（地理，个人微信信息等授权信息）弹窗
       wx.authorize({ scope: "scope.userLocation", success: function success(res) {//1.1 允许授权
           _this2.getLocationInfo();}, fail: function fail() {//1.2 拒绝授权
-          console.log("你拒绝了授权，无法获得周边信息");
-        } });
-
+          console.log("你拒绝了授权，无法获得周边信息");} });
     },
     getLocationInfo: function getLocationInfo() {var _this3 = this; //2. 获取地理位置
       wx.getLocation({
@@ -350,6 +354,11 @@ var listdata;wx.cloud.init();var db = wx.cloud.database({});var citylist = db.co
     getweather: function getweather(position, id) {var _this4 = this;
       (0, _utils.request)('https://jisutqybmf.market.alicloudapi.com/weather/query?city=' + position.split(',')[position.split(',').length - 1], { 'Authorization': 'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000' }).
       then(function (res) {
+        if (res.statusCode != 200) {
+          _this4.weathermsg = false;
+          return;
+        }
+        _this4.weathermsg = true;
         wx.hideLoading();
         result = res.data.result;
         dayaqi = result.aqi;
