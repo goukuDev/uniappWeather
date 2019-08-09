@@ -3,6 +3,7 @@
     "pages/index/main",
     "pages/news/main",
     "pages/life/main",
+    "pages/selectcitys/main",
     "pages/todydetail/main",
     "pages/weatherdetail/main",
     "pages/newslist/main",

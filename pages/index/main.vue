@@ -1,63 +1,77 @@
 <template>
-  <div class="index">
-    <div class="indexbox">
-      <div class="localtion">
-        <picker class="auth-pick-tip" mode="region" :value="region" @change="regionPick">
-          {{region | showcity(region)}}
-        </picker>
-      </div>
-      <div class='data_weather'  v-if="!!Object.values(dateweather).length" @click="totodydetail">
-        <div class='now_weather'>
-          <div class='temperature'>{{dateweather.current_temperature}}℃</div>
-          <div class='wind'>{{dateweather.wind_direction}} {{dateweather.wind_level}} 湿度:{{dateweather.humidity}}%</div>
-        </div>
-        <div class='condition'>{{dateweather.current_condition}}</div>
-        <div class="quality" :style="'background:'+dateweather.background">{{dateweather.quality_level}}    {{dateweather.aqi}}</div>
-		<image style='width:70px;height:70px;' :src="'/static/weathercn/'+dateweather.img+'.png'"/>
-      </div>
-      <!-- 今明两天天气 -->
-      <div class='tomorrow_weather' v-if="twodateweather.length">
-        <swiper display-multiple-items="1" duration="500" :circular='true'>
-          <block v-for="(item,index) in twodateweather" :key="index">
-            <swiper-item>
-                <div>{{item.week}}</div>
-                <div>{{item.day.weather==item.night.weather? item.day.weather:item.day.weather+'转'+item.night.weather}}</div>
-                <div>{{item.night.templow}}/{{item.day.temphigh}}℃</div>
-                <div>{{item.day.winddirect=='持续无风向'? '微风':item.day.winddirect}}</div>
-            </swiper-item>
-          </block>
-        </swiper>
-      </div>
-      <!-- 一周天气 -->
-      <div class='halfmonth' v-if="forecastlist.length">
-        <swiper display-multiple-items="3" duration="500">
-          <block v-for="(item,index) in forecastlist" :key="index">
-            <swiper-item @click="gotodetail(index)">
-                <div>{{item.week}}</div>
-                <div>{{item.date}}</div>
-                <div style='font-size:13px;'>{{item.day.weather==item.night.weather? item.day.weather:item.day.weather+'转'+item.night.weather}}</div>
-                <div>{{item.night.templow}}</div>
-                <div>{{item.day.temphigh}}</div>
-                <div>{{item.day.winddirect=='持续无风向'? '微风':item.day.winddirect}}</div>
-                <div>{{item.day.windpower==item.night.windpower? item.day.windpower:item.day.windpower+'转'+item.night.windpower}}</div>
-            </swiper-item>
-          </block>
-        </swiper>
-      </div>
-      <!-- 24小时天气 -->
-      <div class="hour" v-if="hourlist.length">
-        <swiper display-multiple-items="6" interval="500" duration="500">
-          <block v-for="(item,index) in hourlist" :key="index">
-            <swiper-item>
-              <div>{{item.condition}}</div>
-              <div>{{item.temperature}}</div>
-              <div>{{item.hour}}</div>
-            </swiper-item>
-          </block>
-        </swiper>
-      </div>
-    </div>
-  </div>
+	<div class="index">
+		<div class="indexbox">
+			<div class="localtion">
+				<div @click='showdrawer=true' style='height:100%;display: flex;justify-content: center;align-items: center;'><icon type="search" size="18" color='#666' style="height:20px;"></icon>{{region | showcity(region)}}</div>
+				<uni-drawer :visible='showdrawer' @close='showdrawer=false' class='indexdrawer'>
+					<!-- <view style="padding:30upx;"> -->
+						<div style='height:40px;'>
+							<icon type="search" size="20" color='#fff' style="float: right;width: 40px;height:30px;padding-top: 10px;" @click="tocitys"></icon>
+						</div>
+						<div style='height:calc(100% - 40px);overflow: auto;-webkit-overflow-scrolling :touch;'>
+							<uni-swipe-action style='text-indent:10px;' :options="options">
+								<view class='cont'>
+									<view style="font-size:20px;height:35px;">测试</view>
+								</view>
+							</uni-swipe-action>
+						</div>
+					<!-- </view> -->
+				</uni-drawer>
+			</div>
+			<div class='showrequest'>
+				<div class='data_weather'  v-if="!!Object.values(dateweather).length" @click="totodydetail">
+					<div class='now_weather'>
+						<div class='temperature'>{{dateweather.current_temperature}}℃</div>
+						<div class='wind'>{{dateweather.wind_direction}} {{dateweather.wind_level}} 湿度:{{dateweather.humidity}}%</div>
+					</div>
+					<div class='condition'>{{dateweather.current_condition}}</div>
+					<div class="quality" :style="'background:'+dateweather.background">{{dateweather.quality_level}}    {{dateweather.aqi}}</div>
+					<image style='width:70px;height:70px;' :src="'/static/weathercn/'+dateweather.img+'.png'"/>
+				</div>
+				<!-- 今明两天天气 -->
+				<div class='tomorrow_weather' v-if="twodateweather.length">
+					<swiper display-multiple-items="1" duration="500" :circular='true'>
+					  <block v-for="(item,index) in twodateweather" :key="index">
+						<swiper-item>
+							<div>{{item.week}}</div>
+							<div>{{item.day.weather==item.night.weather? item.day.weather:item.day.weather+'转'+item.night.weather}}</div>
+							<div>{{item.night.templow}}/{{item.day.temphigh}}℃</div>
+							<div>{{item.day.winddirect=='持续无风向'? '微风':item.day.winddirect}}</div>
+						</swiper-item>
+					  </block>
+					</swiper>
+				</div>
+				<!-- 一周天气 -->
+				<div class='halfmonth' v-if="forecastlist.length">
+					<swiper display-multiple-items="3" duration="500">
+					  <block v-for="(item,index) in forecastlist" :key="index">
+						<swiper-item @click="gotodetail(index)">
+							<div>{{item.week}}</div>
+							<div>{{item.date}}</div>
+							<div style='font-size:13px;'>{{item.day.weather==item.night.weather? item.day.weather:item.day.weather+'转'+item.night.weather}}</div>
+							<div>{{item.night.templow}}</div>
+							<div>{{item.day.temphigh}}</div>
+							<div>{{item.day.winddirect=='持续无风向'? '微风':item.day.winddirect}}</div>
+							<div>{{item.day.windpower==item.night.windpower? item.day.windpower:item.day.windpower+'转'+item.night.windpower}}</div>
+						</swiper-item>
+					  </block>
+					</swiper>
+				</div>
+				<!-- 24小时天气 -->
+				<div class="hour" v-if="hourlist.length">
+					<swiper display-multiple-items="6" interval="500" duration="500">
+					  <block v-for="(item,index) in hourlist" :key="index">
+						<swiper-item>
+							<div>{{item.condition}}</div>
+							<div>{{item.temperature}}</div>
+							<div>{{item.hour}}</div>
+						</swiper-item>
+					  </block>
+					</swiper>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -67,9 +81,16 @@ const qqmapsdk = new qqMap({
         key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' //自己的key秘钥 http://lbs.qq.com/console/mykey.html 在这个网址申请
       });
 import vuex from '../../static/js/store.js';
+import uniDrawer from "@dcloudio/uni-ui/lib/uni-drawer/uni-drawer.vue";
+import {uniSwipeAction} from "@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action.vue";
 let dayaqi;
 let lifeindex;
 let result;
+//初始化数据库
+let listdata;
+wx.cloud.init();
+const db = wx.cloud.database({});
+const citylist = db.collection('citylist');
 export default {
   data () {
     return {
@@ -80,8 +101,23 @@ export default {
       // 15天天气
       forecastlist:[],
       // 24小时天气
-      hourlist:[]
+      hourlist:[],
+	  showdrawer:false,
+	  options: [{
+	      text: '取消',
+	      style: {
+	          backgroundColor: '#007aff'
+	      }
+	  }, {
+	      text: '删除',
+	      style: {
+	          backgroundColor: '#dd524d'
+	      }
+	  }],
     }
+  },
+  components:{
+	  uniDrawer,uniSwipeAction
   },
   filters:{
 	  showcity(data){
@@ -165,11 +201,8 @@ export default {
 		});
 	},
     getweather(position){
-      request('https://jisutqybmf.market.alicloudapi.com/weather/query?city='+position,{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000' })
-      .then(res=>{
-		// if(res=='请求出错'){
-		// 	this.getweather(this.region[1])
-		// }else{
+		request('https://jisutqybmf.market.alicloudapi.com/weather/query?city='+position,{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000' })
+		.then(res=>{
 			wx.hideLoading();
 			result =  res.data.result;
 			dayaqi = result.aqi;
@@ -189,39 +222,68 @@ export default {
 			this.forecastlist = result.daily;
 			this.hourlist = result.hourly.map(o=>Object.assign({},{'condition': o.weather,'hour':o.time,'temperature':o.temp}))
 			wx.stopPullDownRefresh();
-		// }
-      })
+			//储存城市天气历史记录
+			// listdata = {city:position,temp:result.temp,img:result.img};
+			// citylist.get({
+			//     success:res=>{
+			//         if(!res.data.map(o=>o.data).some(o=>o.city==listdata.city)){
+			//             citylist.add({
+			//                 data:{
+			//                     data:listdata
+			//                 },
+			//                 success: function(res) {
+			//                     console.log(res._id)
+			//                 }
+			//             })
+			//         }
+			//     }
+			// })
+		})
     },
     regionPick: function (e) {
       this.region = e.mp.detail.value;
-      this.getweather(e.mp.detail.value[1])
+      this.getweather(e.mp.detail.value[2])
     },
     //去到详情页
     gotodetail(index){
-      wx.navigateTo({
-        url:'../../pages/weatherdetail/main?data='+JSON.stringify(this.forecastlist)+'&lifeindex='+JSON.stringify(lifeindex)+'&index='+index
-      })
+		wx.navigateTo({
+			url:'../../pages/weatherdetail/main?data='+JSON.stringify(this.forecastlist)+'&lifeindex='+JSON.stringify(lifeindex)+'&index='+index
+		})
     },
     totodydetail(){
-      let data = {
-        weather:result.weather,
-        winddirect:result.winddirect,
-        windpower:result.windpower,
-        temp:result.temp,
-        pressure:result.pressure,
-        humidity:result.humidity,
-        quality:result.aqi.quality,
-        ipm2_5:result.aqi.ipm2_5,
-        aqi:result.index[0].detail,
-		img:result.img
-      }
-      wx.navigateTo({
-        url:'../../pages/todydetail/main?data='+JSON.stringify(data)
-      })
-    }
+		let data = {
+			weather:result.weather,
+			winddirect:result.winddirect,
+			windpower:result.windpower,
+			temp:result.temp,
+			pressure:result.pressure,
+			humidity:result.humidity,
+			quality:result.aqi.quality,
+			ipm2_5:result.aqi.ipm2_5,
+			aqi:result.index[0].detail,
+			img:result.img
+		}
+		wx.navigateTo({
+			url:'../../pages/todydetail/main?data='+JSON.stringify(data)
+		})
+    },
+	tocitys(){
+		wx.navigateTo({
+			url:'../../pages/selectcitys/main'
+		})
+		setTimeout(()=>{
+			this.showdrawer = false;
+		},1000)
+	}
   }
 }
 </script>
 <style scoped>
   @import 'index.css';
+</style>
+<style>
+	.localtion .indexdrawer .uni-drawer .uni-drawer__content{
+		background:#333;
+		width: 70%;
+	}
 </style>

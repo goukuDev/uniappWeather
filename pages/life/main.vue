@@ -62,6 +62,9 @@ export default {
   },
   onLoad(){
     this.getLocation();
+	wx.showLoading({
+		title:"加载中"
+	})
   },
   methods:{
     //获得微信经纬度
@@ -81,6 +84,7 @@ export default {
     getLocal: function (latitude, longitude) {
       qqmapsdk.reverseGeocoder({
         success: (res) =>{
+		  wx.hideLoading();
 		  address = res.result.address;
           nowpoint = {
             latitude:latitude,

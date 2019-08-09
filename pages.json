@@ -23,6 +23,12 @@
 			}
 	},
 	{
+		"path":"pages/selectcitys/main",
+		"style":{
+			"navigationBarTitleText":"选择城市"
+		}
+	},
+	{
 		"path":"pages/todydetail/main",
 		"style":{
 			"navigationBarTitleText":"实时天气"

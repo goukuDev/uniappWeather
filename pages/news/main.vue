@@ -89,12 +89,12 @@ export default {
   },
   onLoad(){
     this.getallTopicList();
+	wx.showLoading({
+	  title: '加载中',
+	})
   },
   onPullDownRefresh () {
     this.getallTopicList();
-    wx.showLoading({
-      title: '加载中',
-    })
   },
   methods:{
     tonewslist(item,type){
@@ -107,10 +107,8 @@ export default {
       .then(res=>{
         let data = '{'+res.data.split('allTopicList({')[1].split('})')[0]+'}';
         this.allTopicList = JSON.parse(data).data;
-        setTimeout(()=>{
-          wx.stopPullDownRefresh();
-          wx.hideLoading();
-        },2000);
+		wx.stopPullDownRefresh();
+		wx.hideLoading();
       })
     },
     intolist(index){
