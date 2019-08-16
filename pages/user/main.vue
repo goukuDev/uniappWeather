@@ -81,7 +81,7 @@
 				  success: (res)=>{
 					if (res.authSetting['scope.userInfo']) {
 						wx.navigateTo({
-							url:'../loding/main'
+							url:'../../user/loding/main'
 						})
 					}
 				  }

@@ -1,12 +1,6 @@
 {
   "pages": [
 	{
-			"path":"pages/user/main",
-			"style":{
-				"navigationBarTitleText":"用户中心"
-			}
-	},
-	{
 		"path":"pages/index/main",
 		"style": {
 	        "navigationBarTitleText": "天气",
@@ -20,66 +14,83 @@
 				"navigationBarTitleText":"地图"
 			}
 	},
-	// {
-	// 		"path":"pages/user/main",
-	// 		"style":{
-	// 			"navigationBarTitleText":"用户中心"
-	// 		}
-	// },
 	{
-			"path":"pages/loding/main",
+			"path":"pages/user/main",
 			"style":{
-				"navigationBarTitleText":"登录"
+				"navigationBarTitleText":"用户中心"
 			}
-	},
-	{
-			"path":"pages/register/main",
-			"style":{
-				"navigationBarTitleText":"注册"
-			}
-	},
-	{
-			"path":"pages/changepassword/main",
-			"style":{
-				"navigationBarTitleText":"重置密码"
-			}
-	},
-	{
-		"path":"pages/selectcitys/main",
-		"style":{
-			"navigationBarTitleText":"选择城市"
-		}
-	},
-	{
-		"path":"pages/todydetail/main",
-		"style":{
-			"navigationBarTitleText":"实时天气"
-		}
-	},
-	{
-		"path":"pages/weatherdetail/main",
-		"style":{
-			"navigationBarTitleText":"天气详情"
-		}
-	},
-	{
-		"path":"pages/searchline/main",
-		"style":{
-			"navigationBarTitleText":"搜索"
-		}
-	},
-	{
-		"path":"pages/linedetail/main",
-		"style":{
-			"navigationBarTitleText":"线路详情"
-		}
-	},
-	{
-		"path":"pages/line/main",
-		"style":{
-			"navigationBarTitleText":"线路"
-		}
 	}
+  ],
+  "subPackages":[
+	  {
+		"root": "index",
+        "pages": [
+			{
+				"path":"selectcitys/main",
+				"style":{
+					"navigationBarTitleText":"选择城市"
+				}
+			},
+			{
+				"path":"todydetail/main",
+				"style":{
+					"navigationBarTitleText":"实时天气"
+				}
+			},
+			{
+				"path":"weatherdetail/main",
+				"style":{
+					"navigationBarTitleText":"天气详情"
+				}
+			}
+		]
+	  },
+	  {
+	  	"root": "life",
+	    "pages": [
+	  			{
+	  				"path":"linedetail/main",
+	  				"style":{
+	  					"navigationBarTitleText":"线路详情"
+	  				}
+	  			},
+	  			{
+	  				"path":"searchline/main",
+	  				"style":{
+	  					"navigationBarTitleText":"搜索"
+	  				}
+	  			},
+	  			{
+	  				"path":"line/main",
+	  				"style":{
+	  					"navigationBarTitleText":"线路"
+	  				}
+	  			}
+	  		]
+	  },
+	  {
+	  	"root": "user",
+	    "pages": [
+	  			{
+	  					"path":"loding/main",
+	  					"style":{
+	  						"navigationBarTitleText":"登录"
+	  					}
+	  			},
+	  			{
+	  					"path":"register/main",
+	  					"style":{
+	  						"navigationBarTitleText":"注册"
+	  					}
+	  			},
+	  			{
+	  					"path":"changepassword/main",
+	  					"style":{
+	  						"navigationBarTitleText":"重置密码"
+	  					}
+	  			}
+	  		]
+	  }
   ],
   "globalStyle": {
     "backgroundTextStyle": "dark",

@@ -87,7 +87,7 @@
 									success: (res)=> {
 										if (!res.cancel) {
 											wx.navigateTo({
-												url:'../register/main?phone='+this.phone
+												url:'../../user/register/main?phone='+this.phone
 											});
 										}
 									}

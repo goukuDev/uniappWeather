@@ -49,7 +49,7 @@
 		methods:{
 			findpassword(){
 				wx.navigateTo({
-					url:'../changepassword/main'
+					url:'../../user/changepassword/main'
 				})
 			},
 			loding(){
@@ -135,7 +135,7 @@
 			},
 			register(data){
 				wx.navigateTo({
-					url:'../register/main?phone='+data
+					url:'../../user/register/main?phone='+data
 				});
 			}
 		}

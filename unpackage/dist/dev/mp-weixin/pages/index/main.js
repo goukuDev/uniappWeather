@@ -307,7 +307,7 @@ var _store = _interopRequireDefault(__webpack_require__(/*! ../../static/js/stor
 //
 //
 var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' //自己的key秘钥 http://lbs.qq.com/console/mykey.html 在这个网址申请
-});var uniDrawer = function uniDrawer() {return __webpack_require__.e(/*! import() | node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer */ "node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-drawer/uni-drawer.vue */ 117));};var uniSwipeAction = function uniSwipeAction() {return __webpack_require__.e(/*! import() | node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action */ "node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action.vue */ 124));};var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-popup/uni-popup */ "node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-popup/uni-popup.vue */ 131));};var dayaqi;var lifeindex;var result; //初始化数据库
+});var uniDrawer = function uniDrawer() {return __webpack_require__.e(/*! import() | node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer */ "node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-drawer/uni-drawer.vue */ 43));};var uniSwipeAction = function uniSwipeAction() {return __webpack_require__.e(/*! import() | node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action */ "node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action.vue */ 50));};var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-popup/uni-popup */ "node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-popup/uni-popup.vue */ 57));};var dayaqi;var lifeindex;var result; //初始化数据库
 var listdata;wx.cloud.init();var db = wx.cloud.database({});var citylist = db.collection('citylist');var _default = { data: function data() {return { region: null, twodateweather: [], // 今天天气信息
       dateweather: {}, // 15天天气
       forecastlist: [], // 24小时天气
@@ -416,7 +416,7 @@ var listdata;wx.cloud.init();var db = wx.cloud.database({});var citylist = db.co
     //去到详情页
     gotodetail: function gotodetail(index) {
       wx.navigateTo({
-        url: '../weatherdetail/main?data=' + JSON.stringify(this.forecastlist) + '&lifeindex=' + JSON.stringify(lifeindex) + '&index=' + index });
+        url: '../../index/weatherdetail/main?data=' + JSON.stringify(this.forecastlist) + '&lifeindex=' + JSON.stringify(lifeindex) + '&index=' + index });
 
     },
     totodydetail: function totodydetail() {
@@ -433,12 +433,12 @@ var listdata;wx.cloud.init();var db = wx.cloud.database({});var citylist = db.co
         img: result.img };
 
       wx.navigateTo({
-        url: '../todydetail/main?data=' + JSON.stringify(data) });
+        url: '../../index/todydetail/main?data=' + JSON.stringify(data) });
 
     },
     tocitys: function tocitys() {var _this6 = this;
       wx.navigateTo({
-        url: '../selectcitys/main' });
+        url: '../../index/selectcitys/main' });
 
       setTimeout(function () {
         _this6.showdrawer = false;

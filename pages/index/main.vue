@@ -280,7 +280,7 @@ export default {
     //去到详情页
     gotodetail(index){
 		wx.navigateTo({
-			url:'../weatherdetail/main?data='+JSON.stringify(this.forecastlist)+'&lifeindex='+JSON.stringify(lifeindex)+'&index='+index
+			url:'../../index/weatherdetail/main?data='+JSON.stringify(this.forecastlist)+'&lifeindex='+JSON.stringify(lifeindex)+'&index='+index
 		})
     },
     totodydetail(){
@@ -297,12 +297,12 @@ export default {
 			img:result.img
 		}
 		wx.navigateTo({
-			url:'../todydetail/main?data='+JSON.stringify(data)
+			url:'../../index/todydetail/main?data='+JSON.stringify(data)
 		})
     },
 	tocitys(){
 		wx.navigateTo({
-			url:'../selectcitys/main'
+			url:'../../index/selectcitys/main'
 		})
 		setTimeout(()=>{
 			this.showdrawer = false;

@@ -114,14 +114,14 @@ export default {
     },
     tolifedetail(){
       wx.navigateTo({
-        url:'../searchline/main?city='+region+'&value='+this.coverview,
+        url:'../../life/searchline/main?city='+region+'&value='+this.coverview,
       })
     },
     //显示不同类型的路线图
     showlinedetail(to){
 		if(!!this.checkSession && !!wx.getStorageSync('logingmsg')){
 			wx.navigateTo({
-			  url:'../line/main?localtion='+JSON.stringify(nowpoint)+'&to='+JSON.stringify(to)+'&mypoint='+address+'&topoint='+this.coverview,
+			  url:'../../life/line/main?localtion='+JSON.stringify(nowpoint)+'&to='+JSON.stringify(to)+'&mypoint='+address+'&topoint='+this.coverview,
 			})
 		}else{
 			this.$refs.popup.open();

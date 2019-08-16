@@ -302,7 +302,7 @@ export default {
         },
         tolinedetail(data){
             wx.navigateTo({
-                url:'../../pages/linedetail/main?data='+JSON.stringify(data),
+                url:'../../life/linedetail/main?data='+JSON.stringify(data),
             })
         },
     }

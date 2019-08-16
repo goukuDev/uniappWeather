@@ -163,7 +163,7 @@ var _store = _interopRequireDefault(__webpack_require__(/*! ../../static/js/stor
 //
 //
 var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' //自己的key秘钥 http://lbs.qq.com/console/mykey.html 在这个网址申请
-});var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-popup/uni-popup */ "node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-popup/uni-popup.vue */ 131));};var region;var nowpoint;var address;var _default = { data: function data() {return { coverview: '', markers: [{ iconPath: "/static/images/location.png", id: 0, width: 50, height: 50 }], localtion: {}, showbottom: false, chooseitem: null, polyline: [{ points: [{ longitude: '', latitude: '' }, { longitude: '', latitude: '' }],
+});var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-popup/uni-popup */ "node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-popup/uni-popup.vue */ 57));};var region;var nowpoint;var address;var _default = { data: function data() {return { coverview: '', markers: [{ iconPath: "/static/images/location.png", id: 0, width: 50, height: 50 }], localtion: {}, showbottom: false, chooseitem: null, polyline: [{ points: [{ longitude: '', latitude: '' }, { longitude: '', latitude: '' }],
 
 
         color: '#3CB371',
@@ -223,14 +223,14 @@ var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-D
     },
     tolifedetail: function tolifedetail() {
       wx.navigateTo({
-        url: '../searchline/main?city=' + region + '&value=' + this.coverview });
+        url: '../../life/searchline/main?city=' + region + '&value=' + this.coverview });
 
     },
     //显示不同类型的路线图
     showlinedetail: function showlinedetail(to) {var _this3 = this;
       if (!!this.checkSession && !!wx.getStorageSync('logingmsg')) {
         wx.navigateTo({
-          url: '../line/main?localtion=' + JSON.stringify(nowpoint) + '&to=' + JSON.stringify(to) + '&mypoint=' + address + '&topoint=' + this.coverview });
+          url: '../../life/line/main?localtion=' + JSON.stringify(nowpoint) + '&to=' + JSON.stringify(to) + '&mypoint=' + address + '&topoint=' + this.coverview });
 
       } else {
         this.$refs.popup.open();
