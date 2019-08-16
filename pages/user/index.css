@@ -1,0 +1,67 @@
+.user{
+	height: 100%;
+	width:100%;
+	overflow: hidden;
+}
+.top{
+	height: 180px;
+	overflow: hidden;
+}
+.top button{
+	padding:0;
+	width:160px;
+	height:40px;
+	line-height:40px;
+	border-radius:20px;
+	margin-top:70px;
+	border: 1px solid #999;
+}
+.top .button-hover{
+	background: #fff;
+}
+.top .usermsg{
+	height: 100%;
+	overflow: hidden;
+	background: #22a0e4;
+}
+.usermsg .userimg{
+	width: 90%;
+	height: 120px;
+	margin:30px 5%;
+	display: flex;
+	align-items: center;
+}
+.userimg img{
+	width:80px;
+	height:80px;
+	border-radius:40px;
+}
+.userimg .phone{
+	flex: 1;
+	height:80px;
+	text-align: left;
+	line-height: 80px;
+	text-indent: 20px;
+}
+.userimg .phone view{
+	height:40px;
+	line-height: 40px;
+	font-size: 18px;
+}
+.bottom{
+	height: calc(100% - 170px);
+	width:90%;
+	margin: 10px 5% 0;
+	display: flex;
+	box-sizing: border-box;
+}
+.bottom view{
+	width:70px;
+	height: 70px;
+	font-size: 15px;
+	border: 1px solid #999;
+	box-sizing: border-box;
+	text-align: center;
+	line-height: 70px;
+	margin-right:5px;
+}

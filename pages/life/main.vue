@@ -19,6 +19,7 @@
       <cover-view class="address">{{chooseitem.address}}</cover-view>
       <cover-view @click="showlinedetail(chooseitem.location)" class="line">路线</cover-view>
     </cover-view>
+	<uni-popup ref="popup" type="center">登录后才能使用</uni-popup>
   </div>
 </template>
 
@@ -28,6 +29,7 @@ const qqmapsdk = new qqMap({
         key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' //自己的key秘钥 http://lbs.qq.com/console/mykey.html 在这个网址申请
       });
 import vuex from '../../static/js/store.js';
+import {uniPopup} from "@dcloudio/uni-ui/lib/uni-popup/uni-popup.vue"
 let region;
 let nowpoint;
 let address;
@@ -58,7 +60,11 @@ export default {
         color: '#3CB371',
         width: 6
       }],
+	  checkSession:false,
     }
+  },
+  components:{
+	  uniPopup
   },
   onLoad(){
     this.getLocation();
@@ -108,14 +114,21 @@ export default {
     },
     tolifedetail(){
       wx.navigateTo({
-        url:'../../pages/searchline/main?city='+region+'&value='+this.coverview,
+        url:'../searchline/main?city='+region+'&value='+this.coverview,
       })
     },
     //显示不同类型的路线图
     showlinedetail(to){
-      wx.navigateTo({
-        url:'../../pages/line/main?localtion='+JSON.stringify(nowpoint)+'&to='+JSON.stringify(to)+'&mypoint='+address+'&topoint='+this.coverview,
-      })
+		if(!!this.checkSession && !!wx.getStorageSync('logingmsg')){
+			wx.navigateTo({
+			  url:'../line/main?localtion='+JSON.stringify(nowpoint)+'&to='+JSON.stringify(to)+'&mypoint='+address+'&topoint='+this.coverview,
+			})
+		}else{
+			this.$refs.popup.open();
+			setTimeout(()=>{
+				this.$refs.popup.close();
+			},1000);
+		}
     },
     deletebox(){
       this.showbottom = false;
@@ -152,6 +165,15 @@ export default {
       this.chooseitem = vuex.state.choosepoint;
       this.showbottom = !vuex.state.choosepoint.category.includes('公交线路');
     }
+	wx.getSetting({
+	  success: (res)=>{
+		if (res.authSetting['scope.userInfo']) {
+			this.checkSession = true;
+		}else{
+			this.checkSession = false;
+		}
+	  }
+	})
   },
   onHide(){
     //切换到别的tab页面时候，当前页面的信息要清空，地址要默认显示设备所在地址
@@ -164,4 +186,17 @@ export default {
 
 <style scoped>
   @import './index.css';
+</style>
+<style>
+	.uni-popup .uni-popup__wrapper.uni-custom.center .uni-popup__wrapper-box{
+		width:150px;
+		height:30px;
+		font-size:15px;
+		border-radius:3px;
+		line-height:30px;
+		text-align:center;
+		color:#fff;
+		background:#333;
+		padding: 0;
+	}
 </style>

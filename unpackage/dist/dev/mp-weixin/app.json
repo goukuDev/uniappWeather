@@ -1,12 +1,14 @@
 {
   "pages": [
+    "pages/user/main",
     "pages/index/main",
-    "pages/news/main",
     "pages/life/main",
+    "pages/loding/main",
+    "pages/register/main",
+    "pages/changepassword/main",
     "pages/selectcitys/main",
     "pages/todydetail/main",
     "pages/weatherdetail/main",
-    "pages/newslist/main",
     "pages/searchline/main",
     "pages/linedetail/main",
     "pages/line/main"
@@ -31,14 +33,14 @@
         "selectedIconPath": "static/tabs/homes.png"
       },
       {
-        "text": "新闻",
-        "pagePath": "pages/news/main",
+        "text": "地图",
+        "pagePath": "pages/life/main",
         "iconPath": "static/tabs/kind.png",
         "selectedIconPath": "static/tabs/kinds.png"
       },
       {
-        "text": "生活",
-        "pagePath": "pages/life/main",
+        "text": "用户",
+        "pagePath": "pages/user/main",
         "iconPath": "static/tabs/user.png",
         "selectedIconPath": "static/tabs/users.png"
       }
@@ -50,5 +52,6 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

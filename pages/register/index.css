@@ -1,0 +1,76 @@
+.register{
+	height: 100%;
+}
+.box{
+	width:96%;
+	margin:0 auto;
+	height:100%;
+	display:flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+}
+.box input{
+	width:80%;
+	height:45px;
+	margin-bottom:10px;
+	border:1px solid #999;
+	border-radius:23px;
+	padding:0 15px;
+	box-sizing:border-box;
+	font-size:15px;
+	color:#666;
+}
+.box .checkmsg{
+	width:80%;
+	height:45px;
+	margin-bottom:10px;
+	border:1px solid #999;
+	border-radius:23px;
+	box-sizing:border-box;
+	font-size:15px;
+	color:#666;
+}
+.checkmsg input{
+	width:75%;
+	height:45px;
+	font-size:15px;
+	color:#666;
+	padding-left: 15px;
+	border: none;
+	float: left;
+}
+.checkmsg view{
+	width:25%;
+	float:right;
+	padding:0;
+	border:#fff;
+	background:none;
+	font-size:14px;
+	height:100%;
+	line-height:45px;
+}
+.box .registerbutton{
+	width:80%;
+	margin-top:30px;
+	height:45px;
+	padding:0;
+	line-height:45px;
+	border-radius:23px;
+	color:#666;
+	background:#333;
+	color:#fff;
+	font-size:15px;
+	letter-spacing:5px;
+}
+.uni-popup .uni-popup__wrapper.uni-custom.center .uni-popup__wrapper-box{
+	height:30px;
+	font-size:15px;
+	border-radius:3px;
+	line-height:30px;
+	text-align:center;
+	color:#fff;
+	background:#333;
+	padding: 0;
+	padding:0 5px;
+}

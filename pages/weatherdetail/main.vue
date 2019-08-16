@@ -1,6 +1,6 @@
 <template>
   <div class="counter">
-    <swiper class="topswiper" :display-multiple-items="displaymultipleitems" interval="5000" duration="5000" :current='(clickindex<sevendayweather.length-displaymultipleitems)? clickindex:sevendayweather.length-displaymultipleitems'>
+    <swiper class="topswiper" :display-multiple-items="displaymultipleitems" interval="500" duration="500" :current='(clickindex<sevendayweather.length-displaymultipleitems)? clickindex:sevendayweather.length-displaymultipleitems'>
       <block v-for="(item,index) in sevendayweather" :key="index">
         <swiper-item @click="addclickindex(index)" :class="index==clickindex? 'clickindex':''">
             <div>{{item.week}}</div>
@@ -8,7 +8,7 @@
         </swiper-item>
       </block>
     </swiper>
-	<swiper class="bottomswiper" display-multiple-items="1" interval="500" duration="500" @animationfinish='test($event)' :current='clickindex'>
+	<swiper class="bottomswiper" display-multiple-items="1" interval="500" duration="500" @change='test($event)' :current='clickindex'>
 	  <block v-for="(item,index) in number" :key="index">
 	    <swiper-item v-if='!!sevendayweather.length'>
 	          <div class='advise'>{{dayindex[clickindex].detail}}</div>

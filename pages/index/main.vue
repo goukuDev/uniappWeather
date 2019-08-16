@@ -77,6 +77,7 @@
 				当前城市天气查询失败
 			</div>
 		</div>
+		<uni-popup ref="popup" type="center">登录后才能使用</uni-popup>
 	</div>
 </template>
 
@@ -89,6 +90,7 @@ const qqmapsdk = new qqMap({
 import vuex from '../../static/js/store.js';
 import uniDrawer from "@dcloudio/uni-ui/lib/uni-drawer/uni-drawer.vue";
 import {uniSwipeAction} from "@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action.vue";
+import {uniPopup} from "@dcloudio/uni-ui/lib/uni-popup/uni-popup.vue"
 let dayaqi;
 let lifeindex;
 let result;
@@ -121,11 +123,12 @@ export default {
 	      }
 	  }],
 	  cityhistory:null,
-	  weathermsg:true
+	  weathermsg:true,
+	  checkSession:false,
     }
   },
   components:{
-	  uniDrawer,uniSwipeAction
+	  uniDrawer,uniSwipeAction,uniPopup
   },
   onLoad(){
     this.GetLocation();
@@ -159,8 +162,18 @@ export default {
   onShow() {
   	if(!!vuex.state.choosecity){
 		this.region = vuex.state.choosecity.province;
-		this.getweather(vuex.state.choosecity.province)
+		this.getweather(vuex.state.choosecity.province);
+		vuex.state.choosecity = '';
 	}
+	wx.getSetting({
+	  success: (res)=>{
+		if (res.authSetting['scope.userInfo']) {
+			this.checkSession = true;
+		}else{
+			this.checkSession = false;
+		}
+	  }
+	})
   },
   methods: {
 	GetLocation(){
@@ -267,7 +280,7 @@ export default {
     //去到详情页
     gotodetail(index){
 		wx.navigateTo({
-			url:'../../pages/weatherdetail/main?data='+JSON.stringify(this.forecastlist)+'&lifeindex='+JSON.stringify(lifeindex)+'&index='+index
+			url:'../weatherdetail/main?data='+JSON.stringify(this.forecastlist)+'&lifeindex='+JSON.stringify(lifeindex)+'&index='+index
 		})
     },
     totodydetail(){
@@ -284,12 +297,12 @@ export default {
 			img:result.img
 		}
 		wx.navigateTo({
-			url:'../../pages/todydetail/main?data='+JSON.stringify(data)
+			url:'../todydetail/main?data='+JSON.stringify(data)
 		})
     },
 	tocitys(){
 		wx.navigateTo({
-			url:'../../pages/selectcitys/main'
+			url:'../selectcitys/main'
 		})
 		setTimeout(()=>{
 			this.showdrawer = false;
@@ -301,12 +314,20 @@ export default {
 		this.showdrawer = false;
 	},
 	opendrawer(){
-		this.showdrawer = true;
-		citylist.get({
-			success:res=>{
-				this.cityhistory = res.data;
-			}
-		})
+		if(!!this.checkSession && !!wx.getStorageSync('logingmsg')){
+			this.showdrawer = true;
+			citylist.get({
+				success:res=>{
+					this.cityhistory = res.data;
+				}
+			})
+		}else{
+			this.$refs.popup.open();
+			setTimeout(()=>{
+				this.$refs.popup.close();
+			},1000);
+		}
+		
 	}
   }
 }
@@ -318,5 +339,16 @@ export default {
 	.localtion .indexdrawer .uni-drawer .uni-drawer__content{
 		background:#333;
 		width: 70%;
+	}
+	.uni-popup .uni-popup__wrapper.uni-custom.center .uni-popup__wrapper-box{
+		width:150px;
+		height:30px;
+		font-size:15px;
+		border-radius:3px;
+		line-height:30px;
+		text-align:center;
+		color:#fff;
+		background:#333;
+		padding: 0;
 	}
 </style>

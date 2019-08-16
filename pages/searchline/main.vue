@@ -122,23 +122,23 @@ export default {
             })
         },
         getsuggest(index){
-            if(this.value==''){
-                this.suggestion = [];
-                return;
-            }
-            //调用关键词提示接口
-            qqmapsdk.getSuggestion({
-                keyword:this.value, //用户输入的关键词，可设置固定值,如keyword:'KFC'
-                region:region, //设置城市名，限制关键词所示的地域范围，非必填参数
-                page_index:index,
-                page_size:10,
-                success: res => {//搜索成功后的回调
-                    this.suggestion.push(...res.data)
-                },
-                fail: function(error) {
-                    console.error(error);
-                }
-            });
+			if(this.value==''){
+				this.suggestion = [];
+				return;
+			}
+			//调用关键词提示接口
+			qqmapsdk.getSuggestion({
+				keyword:this.value, //用户输入的关键词，可设置固定值,如keyword:'KFC'
+				region:region, //设置城市名，限制关键词所示的地域范围，非必填参数
+				page_index:index,
+				page_size:10,
+				success: res => {//搜索成功后的回调
+					this.suggestion.push(...res.data)
+				},
+				fail: function(error) {
+					console.error(error);
+				}
+			});
         },
         //数据回填方法
         backfill(item) {

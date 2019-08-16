@@ -99,3 +99,16 @@
 	font-size:18px;
 }
 
+
+.uni-popup .uni-popup__wrapper.uni-custom.center .uni-popup__wrapper-box{
+	width:150px;
+	height:30px;
+	font-size:15px;
+	border-radius:3px;
+	line-height:30px;
+	text-align:center;
+	color:#fff;
+	background:#333;
+	padding: 0;
+}
+

@@ -1,6 +1,12 @@
 {
   "pages": [
 	{
+			"path":"pages/user/main",
+			"style":{
+				"navigationBarTitleText":"用户中心"
+			}
+	},
+	{
 		"path":"pages/index/main",
 		"style": {
 	        "navigationBarTitleText": "天气",
@@ -9,17 +15,33 @@
 	    }
 	},
 	{
-		"path":"pages/news/main",
-		"style":{
-			"navigationBarTitleText":"新闻",
-			"enablePullDownRefresh": true,  //设置为true表示当前页面开启下拉刷新
-			"backgroundTextStyle": "dark"  //下拉 loading 的样式，仅支持 dark/light
-		}
-	},
-	{
 			"path":"pages/life/main",
 			"style":{
-				"navigationBarTitleText":"生活"
+				"navigationBarTitleText":"地图"
+			}
+	},
+	// {
+	// 		"path":"pages/user/main",
+	// 		"style":{
+	// 			"navigationBarTitleText":"用户中心"
+	// 		}
+	// },
+	{
+			"path":"pages/loding/main",
+			"style":{
+				"navigationBarTitleText":"登录"
+			}
+	},
+	{
+			"path":"pages/register/main",
+			"style":{
+				"navigationBarTitleText":"注册"
+			}
+	},
+	{
+			"path":"pages/changepassword/main",
+			"style":{
+				"navigationBarTitleText":"重置密码"
 			}
 	},
 	{
@@ -38,12 +60,6 @@
 		"path":"pages/weatherdetail/main",
 		"style":{
 			"navigationBarTitleText":"天气详情"
-		}
-	},
-	{
-		"path":"pages/newslist/main",
-		"style":{
-			"navigationBarTitleText":""
 		}
 	},
 	{
@@ -77,22 +93,26 @@
     "selectedColor": "#22a0e4",
     "borderStyle": "white",
 
-    "list": [{
-      "text": "天气",
-      "pagePath": "pages/index/main",
-      "iconPath": "static/tabs/home.png",
-      "selectedIconPath": "static/tabs/homes.png"
-    },{
-      "text": "新闻",
-      "pagePath": "pages/news/main",
-      "iconPath": "static/tabs/kind.png",
-      "selectedIconPath": "static/tabs/kinds.png"
-    }, {
-      "text": "生活",
-      "pagePath": "pages/life/main",
-      "iconPath": "static/tabs/user.png",
-      "selectedIconPath": "static/tabs/users.png"
-    }],
+    "list": [
+		{
+		  "text": "天气",
+		  "pagePath": "pages/index/main",
+		  "iconPath": "static/tabs/home.png",
+		  "selectedIconPath": "static/tabs/homes.png"
+		},
+		{
+		  "text": "地图",
+		  "pagePath": "pages/life/main",
+		  "iconPath": "static/tabs/kind.png",
+		  "selectedIconPath": "static/tabs/kinds.png"
+		},
+		{
+		  "text": "用户",
+		  "pagePath": "pages/user/main",
+		  "iconPath": "static/tabs/user.png",
+		  "selectedIconPath": "static/tabs/users.png"
+		}
+	],
     "position": "bottom"
   },
   "permission":{
