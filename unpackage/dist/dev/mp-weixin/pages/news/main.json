@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "新闻",
-  "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark",
-  "usingComponents": {
-    "uni-collapse": "/node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-collapse/uni-collapse",
-    "uni-collapse-item": "/node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-collapse-item/uni-collapse-item"
-  }
-}

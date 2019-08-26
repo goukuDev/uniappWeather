@@ -8,7 +8,7 @@
         </swiper-item>
       </block>
     </swiper>
-	<swiper class="bottomswiper" display-multiple-items="1" interval="500" duration="500" @animationfinish='test($event)' :current='clickindex'>
+	<swiper class="bottomswiper" display-multiple-items="1" interval="500" duration="500" @change='test($event)' :current='clickindex'>
 	  <block v-for="(item,index) in number" :key="index">
 	    <swiper-item v-if='!!sevendayweather.length'>
 	          <div class='advise'>{{dayindex[clickindex].detail}}</div>
