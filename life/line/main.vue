@@ -207,6 +207,7 @@ export default {
                 from: { latitude: from.latitude,longitude: from.longitude},
                 to:{ latitude: to.lat,longitude: to.lng},
                 success: res => {
+				console.log(res)
                 //路径规划完成后显示时长、距离等
                 this.scale = 12;
                 if(type == 'transit'){
@@ -281,7 +282,7 @@ export default {
                 }else{
                     this.polyline = [{
                         points: pl,
-                        color: '#3CB371',
+                        color: '#396de5',
                         width: 6
                     }]
                     this.noway = true;

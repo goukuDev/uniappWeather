@@ -1491,10 +1491,10 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 100:
-/*!**************************************************************************!*\
-  !*** E:/小程序学习/uniappWeather/main.js?{"page":"life%2Flinedetail%2Fmain"} ***!
-  \**************************************************************************/
+/***/ 101:
+/*!************************************************************************!*\
+  !*** E:/小程序学习/uniappWeather/main.js?{"page":"user%2Fregister%2Fmain"} ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1502,16 +1502,16 @@ uni$1;exports.default = _default;
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _main = _interopRequireDefault(__webpack_require__(/*! ./life/linedetail/main.vue */ 101));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _main = _interopRequireDefault(__webpack_require__(/*! ./user/register/main.vue */ 102));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_main.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 
-/***/ 108:
-/*!**************************************************************************!*\
-  !*** E:/小程序学习/uniappWeather/main.js?{"page":"life%2Fsearchline%2Fmain"} ***!
-  \**************************************************************************/
+/***/ 109:
+/*!******************************************************************************!*\
+  !*** E:/小程序学习/uniappWeather/main.js?{"page":"user%2Fchangepassword%2Fmain"} ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1519,24 +1519,7 @@ createPage(_main.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _main = _interopRequireDefault(__webpack_require__(/*! ./life/searchline/main.vue */ 109));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_main.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
-
-/***/ }),
-
-/***/ 118:
-/*!********************************************************************!*\
-  !*** E:/小程序学习/uniappWeather/main.js?{"page":"life%2Fline%2Fmain"} ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
-
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _main = _interopRequireDefault(__webpack_require__(/*! ./life/line/main.vue */ 119));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _main = _interopRequireDefault(__webpack_require__(/*! ./user/changepassword/main.vue */ 110));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_main.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
@@ -1650,25 +1633,8 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 13:
-/*!*********************************************************************!*\
-  !*** E:/小程序学习/uniappWeather/main.js?{"page":"pages%2Fuser%2Fmain"} ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
-
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _main = _interopRequireDefault(__webpack_require__(/*! ./pages/user/main.vue */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_main.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
-
-/***/ }),
-
-/***/ 130:
 /*!**********************************************************************!*\
-  !*** E:/小程序学习/uniappWeather/main.js?{"page":"user%2Floding%2Fmain"} ***!
+  !*** E:/小程序学习/uniappWeather/main.js?{"page":"pages%2Findex%2Fmain"} ***!
   \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1677,43 +1643,74 @@ createPage(_main.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _main = _interopRequireDefault(__webpack_require__(/*! ./user/loding/main.vue */ 131));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _main = _interopRequireDefault(__webpack_require__(/*! ./pages/index/main.vue */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_main.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 
-/***/ 138:
-/*!************************************************************************!*\
-  !*** E:/小程序学习/uniappWeather/main.js?{"page":"user%2Fregister%2Fmain"} ***!
-  \************************************************************************/
+/***/ 19:
+/*!*********************************************!*\
+  !*** E:/小程序学习/uniappWeather/utils/index.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+Object.defineProperty(exports, "__esModule", { value: true });exports.formatTime = formatTime;exports.request = request;exports.default = void 0;function formatNumber(n) {
+  var str = n.toString();
+  return str[1] ? str : "0".concat(str);
+}
 
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _main = _interopRequireDefault(__webpack_require__(/*! ./user/register/main.vue */ 139));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_main.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+function formatTime(date) {
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
 
-/***/ }),
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
 
-/***/ 146:
-/*!******************************************************************************!*\
-  !*** E:/小程序学习/uniappWeather/main.js?{"page":"user%2Fchangepassword%2Fmain"} ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+  var t1 = [year, month, day].map(formatNumber).join('/');
+  var t2 = [hour, minute, second].map(formatNumber).join(':');
 
-"use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+  return "".concat(t1, " ").concat(t2);
+}
 
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _main = _interopRequireDefault(__webpack_require__(/*! ./user/changepassword/main.vue */ 147));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_main.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+function request(url, header, data, method) {var _this = this;
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      url: url,
+      data: data,
+      header: header,
+      method: method,
+      success: function success(res) {
+        // if (res.statusCode === 200) {
+        //200: 服务端业务处理正常结束
+        resolve(res);
+        // } else {
+        //其它错误，提示用户错误信息
+        // if (this._errorHandler != null) {
+        //如果有统一的异常处理，就先调用统一异常处理函数对异常进行处理
+        //     this._errorHandler(res)
+        //   }
+        //   reject(res)
+        // }
+      },
+      fail: function fail(res) {
+        if (_this._errorHandler != null) {
+          _this._errorHandler(res);
+        }
+        reject(res);
+      } });
+
+  });
+}var _default =
+
+{
+  formatNumber: formatNumber,
+  formatTime: formatTime,
+  request: request };exports.default = _default;
 
 /***/ }),
 
@@ -7666,89 +7663,7 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 21:
-/*!**********************************************************************!*\
-  !*** E:/小程序学习/uniappWeather/main.js?{"page":"pages%2Findex%2Fmain"} ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
-
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _main = _interopRequireDefault(__webpack_require__(/*! ./pages/index/main.vue */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_main.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
-
-/***/ }),
-
-/***/ 27:
-/*!*********************************************!*\
-  !*** E:/小程序学习/uniappWeather/utils/index.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.formatTime = formatTime;exports.request = request;exports.default = void 0;function formatNumber(n) {
-  var str = n.toString();
-  return str[1] ? str : "0".concat(str);
-}
-
-function formatTime(date) {
-  var year = date.getFullYear();
-  var month = date.getMonth() + 1;
-  var day = date.getDate();
-
-  var hour = date.getHours();
-  var minute = date.getMinutes();
-  var second = date.getSeconds();
-
-  var t1 = [year, month, day].map(formatNumber).join('/');
-  var t2 = [hour, minute, second].map(formatNumber).join(':');
-
-  return "".concat(t1, " ").concat(t2);
-}
-
-function request(url, header, data, method) {var _this = this;
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      url: url,
-      data: data,
-      header: header,
-      method: method,
-      success: function success(res) {
-        // if (res.statusCode === 200) {
-        //200: 服务端业务处理正常结束
-        resolve(res);
-        // } else {
-        //其它错误，提示用户错误信息
-        // if (this._errorHandler != null) {
-        //如果有统一的异常处理，就先调用统一异常处理函数对异常进行处理
-        //     this._errorHandler(res)
-        //   }
-        //   reject(res)
-        // }
-      },
-      fail: function fail(res) {
-        if (_this._errorHandler != null) {
-          _this._errorHandler(res);
-        }
-        reject(res);
-      } });
-
-  });
-}var _default =
-
-{
-  formatNumber: formatNumber,
-  formatTime: formatTime,
-  request: request };exports.default = _default;
-
-/***/ }),
-
-/***/ 28:
+/***/ 20:
 /*!**********************************************************!*\
   !*** E:/小程序学习/uniappWeather/static/js/qqmap-wx-jssdk.js ***!
   \**********************************************************/
@@ -8882,6 +8797,23 @@ QQMapWX;exports.default = _default;
 
 /***/ }),
 
+/***/ 25:
+/*!*********************************************************************!*\
+  !*** E:/小程序学习/uniappWeather/main.js?{"page":"pages%2Flife%2Fmain"} ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _main = _interopRequireDefault(__webpack_require__(/*! ./pages/life/main.vue */ 26));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_main.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+
+/***/ }),
+
 /***/ 3:
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -8913,9 +8845,9 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 33:
+/***/ 35:
 /*!*********************************************************************!*\
-  !*** E:/小程序学习/uniappWeather/main.js?{"page":"pages%2Flife%2Fmain"} ***!
+  !*** E:/小程序学习/uniappWeather/main.js?{"page":"pages%2Fuser%2Fmain"} ***!
   \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -8924,7 +8856,7 @@ module.exports = g;
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _main = _interopRequireDefault(__webpack_require__(/*! ./pages/life/main.vue */ 34));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _main = _interopRequireDefault(__webpack_require__(/*! ./pages/user/main.vue */ 36));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_main.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
@@ -8942,7 +8874,7 @@ createPage(_main.default);
 
 /***/ }),
 
-/***/ 73:
+/***/ 43:
 /*!****************************************************************************!*\
   !*** E:/小程序学习/uniappWeather/main.js?{"page":"index%2Fselectcitys%2Fmain"} ***!
   \****************************************************************************/
@@ -8953,7 +8885,75 @@ createPage(_main.default);
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _main = _interopRequireDefault(__webpack_require__(/*! ./index/selectcitys/main.vue */ 74));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _main = _interopRequireDefault(__webpack_require__(/*! ./index/selectcitys/main.vue */ 44));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_main.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+
+/***/ }),
+
+/***/ 51:
+/*!***************************************************************************!*\
+  !*** E:/小程序学习/uniappWeather/main.js?{"page":"index%2Ftodydetail%2Fmain"} ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _main = _interopRequireDefault(__webpack_require__(/*! ./index/todydetail/main.vue */ 52));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_main.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+
+/***/ }),
+
+/***/ 59:
+/*!******************************************************************************!*\
+  !*** E:/小程序学习/uniappWeather/main.js?{"page":"index%2Fweatherdetail%2Fmain"} ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _main = _interopRequireDefault(__webpack_require__(/*! ./index/weatherdetail/main.vue */ 60));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_main.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+
+/***/ }),
+
+/***/ 67:
+/*!**************************************************************************!*\
+  !*** E:/小程序学习/uniappWeather/main.js?{"page":"life%2Flinedetail%2Fmain"} ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _main = _interopRequireDefault(__webpack_require__(/*! ./life/linedetail/main.vue */ 68));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_main.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+
+/***/ }),
+
+/***/ 75:
+/*!**************************************************************************!*\
+  !*** E:/小程序学习/uniappWeather/main.js?{"page":"life%2Fsearchline%2Fmain"} ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _main = _interopRequireDefault(__webpack_require__(/*! ./life/searchline/main.vue */ 76));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_main.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
@@ -8997,10 +8997,10 @@ store;exports.default = _default;
 
 /***/ }),
 
-/***/ 81:
-/*!***************************************************************************!*\
-  !*** E:/小程序学习/uniappWeather/main.js?{"page":"index%2Ftodydetail%2Fmain"} ***!
-  \***************************************************************************/
+/***/ 85:
+/*!********************************************************************!*\
+  !*** E:/小程序学习/uniappWeather/main.js?{"page":"life%2Fline%2Fmain"} ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9008,24 +9008,7 @@ store;exports.default = _default;
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _main = _interopRequireDefault(__webpack_require__(/*! ./index/todydetail/main.vue */ 82));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_main.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
-
-/***/ }),
-
-/***/ 89:
-/*!******************************************************************************!*\
-  !*** E:/小程序学习/uniappWeather/main.js?{"page":"index%2Fweatherdetail%2Fmain"} ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
-
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _main = _interopRequireDefault(__webpack_require__(/*! ./index/weatherdetail/main.vue */ 90));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _main = _interopRequireDefault(__webpack_require__(/*! ./life/line/main.vue */ 86));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_main.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
@@ -9979,6 +9962,23 @@ var index_esm = {
 
 /* harmony default export */ __webpack_exports__["default"] = (index_esm);
 
+
+/***/ }),
+
+/***/ 93:
+/*!**********************************************************************!*\
+  !*** E:/小程序学习/uniappWeather/main.js?{"page":"user%2Floding%2Fmain"} ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _main = _interopRequireDefault(__webpack_require__(/*! ./user/loding/main.vue */ 94));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_main.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ })
 
