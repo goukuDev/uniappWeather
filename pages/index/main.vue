@@ -2,8 +2,8 @@
 	<div class="index">
 		<div class="indexbox">
 			<div class="localtion">
-				<div v-if='!!region' @click='opendrawer()' style='height:100%;display: flex;justify-content: center;align-items: center;'><icon type="search" size="18" color='#666' style="height:20px;"></icon>{{region}}</div>
-				<uni-drawer :visible='showdrawer' @close='showdrawer=false' class='indexdrawer'>
+				<div v-if='!!region' @click='opendrawer' style='height:100%;display: flex;justify-content: center;align-items: center;'><icon type="search" size="18" color='#666' style="height:20px;"></icon>{{region}}</div>
+				<uni-drawer ref="unidrawer" class='indexdrawer'>
 						<div style='height:40px;'>
 							<div style='height: 40px;width: calc(100% - 40px);float: left;text-align: left;color:#fff;font-size:15px;text-indent:10px;'>搜索城市</div>
 							<icon type="search" size="20" color='#fff' style="float: right;width: 40px;height:30px;padding-top: 10px;" @click="tocitys"></icon>
@@ -14,7 +14,7 @@
 										<div style='flex:70%;text-align:left;text-indent:10px;font-size:15px;'>{{item.data.city.split(',')[item.data.city.split(',').length-1]}}</div>
 										<div style='flex:30%;text-align:left;font-size:15px;'>
 											{{item.data.temp}}℃
-											<image :src="'/static/weathercn/'+item.data.img+'.png'" mode="" style="width: 45px;height: 45px; float: right;"></image>
+											<image :src="'/static/weathercn/'+item.data.img+'.png'" mode="" style="width: 25px;height: 25px;margin-top: 10px; float: right;"></image>
 										</div>
 									</view>
 								</view>
@@ -108,7 +108,6 @@ export default {
       forecastlist:[],
       // 24小时天气
       hourlist:[],
-	  showdrawer:false,
 	  options: [{
 	      text: '取消',
 	      style: {
@@ -292,16 +291,16 @@ export default {
 			url:'../../pages/selectcitys/main'
 		})
 		setTimeout(()=>{
-			this.showdrawer = false;
+			this.$refs.unidrawer.close();
 		},1000)
 	},
 	closedrawer(data,id){
 		this.getweather(data,id);
 		this.region = data;
-		this.showdrawer = false;
+		this.$refs.unidrawer.close();
 	},
 	opendrawer(){
-		this.showdrawer = true;
+		this.$refs.unidrawer.open();
 		citylist.get({
 			success:res=>{
 				this.cityhistory = res.data;

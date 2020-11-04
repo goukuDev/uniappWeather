@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "搜索",
   "usingComponents": {
-    "uni-swipe-action": "/node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action"
+    "uni-swipe-action": "/node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action"
   }
 }

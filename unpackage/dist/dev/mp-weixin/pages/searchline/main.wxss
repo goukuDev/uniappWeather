@@ -4,33 +4,33 @@ i-swipeout .swipeout .i-swipeout-item{
     padding: 0;
 }
 
-.searchline.data-v-a768b4b2{
+.searchline.data-v-dea5ce3a{
     height: 100%;
 }
 /* 搜索框 */
-.searchline .autofocus.data-v-a768b4b2{
+.searchline .autofocus.data-v-dea5ce3a{
     height: 40px;
     position: relative;
 }
-.autofocus icon.data-v-a768b4b2{
+.autofocus icon.data-v-dea5ce3a{
     position: absolute;
     top: 8px;
     right: 10px;
 }
-.autofocus input.data-v-a768b4b2{
+.autofocus input.data-v-dea5ce3a{
     float:left;
-    width:100%;
+    width:94%;
     height:100%;
     line-height:40px;
-    -webkit-box-sizing:border-box;
-            box-sizing:border-box;
+    box-sizing:border-box;
     color:#666;
     border:1px solid #ccc;
     border-radius:20px;
     font-size:15px;
     padding:0 20px;
+	margin: 10px 3%;
 }
-.autofocus .search.data-v-a768b4b2{
+.autofocus .search.data-v-dea5ce3a{
     float:left;
     width:10%;
     height:100%;
@@ -41,12 +41,12 @@ i-swipeout .swipeout .i-swipeout-item{
     font-size:15px;
 }
 /* 历史搜索记录 */
-.searchline .pointhistory.data-v-a768b4b2{
+.searchline .pointhistory.data-v-dea5ce3a{
     height: calc(100% - 70px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
-.pointhistory label.data-v-a768b4b2{
+.pointhistory label.data-v-dea5ce3a{
     display:block;
     margin:0 10px;
     height:50px;
@@ -91,12 +91,12 @@ i-swipeout .swipeout .i-swipeout-item{
     width:100%;
 } */
 /* 当前搜索列表 */
-.searchline .lifelist.data-v-a768b4b2{
+.searchline .lifelist.data-v-dea5ce3a{
     height: calc(100% - 40px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
-.lifelist label.data-v-a768b4b2{
+.lifelist label.data-v-dea5ce3a{
     display:block;
     margin:0 10px;
     height:50px;
@@ -104,36 +104,33 @@ i-swipeout .swipeout .i-swipeout-item{
     text-align:center;
     font-size:15px;
 }
-.lifelist .lists.data-v-a768b4b2{
+.lifelist .lists.data-v-dea5ce3a{
     height: 58px;
     text-align:left;
     padding: 4px 0;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     border-bottom: 1px solid #999;
     margin: 0 10px;
 }
-.lifelist .lists.data-v-a768b4b2:last-child{
+.lifelist .lists.data-v-dea5ce3a:last-child{
     border: none;
 }
-.lifelist .lists view.data-v-a768b4b2:first-child{
+.lifelist .lists view.data-v-dea5ce3a:first-child{
     height: 35px;
     line-height: 35px;
     font-size:18px;
     color: #444;
     overflow: hidden;
-    -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
-.lifelist .lists view.data-v-a768b4b2:last-child{
+.lifelist .lists view.data-v-dea5ce3a:last-child{
     height: 15px;
     line-height:15px;
     font-size:13px;
     color: #666;
     overflow: hidden;
-    -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 

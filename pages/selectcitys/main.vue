@@ -1,7 +1,15 @@
 <template>
 	<div class="hotcities">
 		<div class="top">
-			<input class="input_bottom" type="text" name="" placeholder="输入城市名称" v-model="city" @focus="showcitylist=false" @blur="showcitylist=true;checkcitylist=[]" @change="checkcity">
+			<input 
+			class="input_bottom" 
+			type="text"  
+			placeholder="输入城市名称" 
+			v-model="city"
+			@focus="showcitylist=false" 
+			@blur="showcitylist=true" 
+			@input="checkcity"
+			/>
 		</div>
 		<div class="bottom" v-if='showcitylist && !city'>
 			<div class='hottitle'>热门城市</div>
@@ -108,22 +116,37 @@
 					},
 				],
 				checkcitylist:[],
+				timeout:null,
 			}
 		},
 		methods:{
+			/**
+			 * debounce: 防抖处理函数
+			 * func: 函数
+			 * wait: 延迟时间
+			 */
+			debounce (func, wait) {
+			  if (this.timeout) clearTimeout(this.timeout)
+			  this.timeout = setTimeout(() => {
+				func()
+			  }, wait)
+			},
 			checkcity(){
 				if(this.city==''){
-					return;
-				}else{
-					request('https://ali-city.showapi.com/areaName?&areaName='+this.city+'&&maxSize=20',{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000'})
-					.then(res=>{
-						if(res.statusCode == 200){
-							this.checkcitylist = res.data.showapi_res_body.data.filter(o=>!(o.areaName.endsWith('乡') || o.areaName.endsWith('镇') || o.areaName.endsWith('街道'))).map(o=>Object.assign({},{province:o.wholeName? o.wholeName.split('中国,')[1]:o.areaName,city:o.areaName}));
-						}else{
-							this.checkcitylist =[];
-						}
-					})
+					if (this.timeout) clearTimeout(this.timeout)
+					return this.checkcitylist = [];	
 				}
+				this.debounce(this.search, 1000);
+			},
+			search(){
+				request('https://ali-city.showapi.com/areaName?&areaName='+this.city+'&&maxSize=20',{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000'})
+				.then(res=>{
+					if(res.statusCode == 200){
+						this.checkcitylist = res.data.showapi_res_body.data.filter(o=>!(o.areaName.endsWith('乡') || o.areaName.endsWith('镇') || o.areaName.endsWith('街道'))).map(o=>Object.assign({},{province:o.wholeName? o.wholeName.split('中国,')[1]:o.areaName,city:o.areaName}));
+					}else{
+						this.checkcitylist =[];
+					}
+				})
 			},
 			toindex(point){
 				wx.navigateBack({

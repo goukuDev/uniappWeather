@@ -15,7 +15,7 @@
 }
 .line .play .fromto{
 	height: 75px;
-	margin-bottom: 5px;
+	margin: 5px auto;
 }
 .play .fromto cover-view:last-child{
 	margin-top:5px;

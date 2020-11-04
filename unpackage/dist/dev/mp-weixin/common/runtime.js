@@ -1,4 +1,6 @@
-/******/ (function(modules) { // webpackBootstrap
+
+  !function(){try{var a=Function("return this")();a&&!a.Math&&(Object.assign(a,{isFinite:isFinite,Array:Array,Date:Date,Error:Error,Function:Function,Math:Math,Object:Object,RegExp:RegExp,String:String,TypeError:TypeError,setTimeout:setTimeout,clearTimeout:clearTimeout,setInterval:setInterval,clearInterval:clearInterval}),"undefined"!=typeof Reflect&&(a.Reflect=Reflect))}catch(a){}}();
+  /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
@@ -10,7 +12,7 @@
 /******/ 		var moduleId, chunkId, i = 0, resolves = [];
 /******/ 		for(;i < chunkIds.length; i++) {
 /******/ 			chunkId = chunkIds[i];
-/******/ 			if(installedChunks[chunkId]) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(installedChunks, chunkId) && installedChunks[chunkId]) {
 /******/ 				resolves.push(installedChunks[chunkId][0]);
 /******/ 			}
 /******/ 			installedChunks[chunkId] = 0;
@@ -46,6 +48,7 @@
 /******/ 				result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
 /******/ 			}
 /******/ 		}
+/******/
 /******/ 		return result;
 /******/ 	}
 /******/
@@ -102,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer":1,"node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action":1};
+/******/ 		var cssChunks = {"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer":"node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer","node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action":"node-modules/_@dcloudio_uni-ui@1.0.0@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer":"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer","node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action":"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
@@ -127,6 +130,7 @@
 /******/ 				linkTag.onerror = function(event) {
 /******/ 					var request = event && event.target && event.target.src || fullhref;
 /******/ 					var err = new Error("Loading CSS chunk " + chunkId + " failed.\n(" + request + ")");
+/******/ 					err.code = "CSS_CHUNK_LOAD_FAILED";
 /******/ 					err.request = request;
 /******/ 					delete installedCssChunks[chunkId]
 /******/ 					linkTag.parentNode.removeChild(linkTag)
@@ -167,6 +171,8 @@
 /******/ 				}
 /******/ 				script.src = jsonpScriptSrc(chunkId);
 /******/
+/******/ 				// create error before stack unwound to get useful stacktrace later
+/******/ 				var error = new Error();
 /******/ 				onScriptComplete = function (event) {
 /******/ 					// avoid mem leaks in IE.
 /******/ 					script.onerror = script.onload = null;
@@ -176,7 +182,8 @@
 /******/ 						if(chunk) {
 /******/ 							var errorType = event && (event.type === 'load' ? 'missing' : event.type);
 /******/ 							var realSrc = event && event.target && event.target.src;
-/******/ 							var error = new Error('Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')');
+/******/ 							error.message = 'Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')';
+/******/ 							error.name = 'ChunkLoadError';
 /******/ 							error.type = errorType;
 /******/ 							error.request = realSrc;
 /******/ 							chunk[1](error);
@@ -263,3 +270,4 @@
 /************************************************************************/
 /******/ ([]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/runtime.js.map
+  
