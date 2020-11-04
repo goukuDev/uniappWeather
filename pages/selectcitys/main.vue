@@ -4,7 +4,7 @@
 			<input 
 			class="input_bottom" 
 			type="text"  
-			placeholder="输入城市名称" 
+			placeholder="输入城市全名,如:杭州市" 
 			v-model="city"
 			@focus="showcitylist=false" 
 			@blur="showcitylist=true" 
@@ -136,13 +136,26 @@
 					if (this.timeout) clearTimeout(this.timeout)
 					return this.checkcitylist = [];	
 				}
-				this.debounce(this.search, 1000);
+				this.debounce(this.search, 600);
 			},
 			search(){
-				request('https://ali-city.showapi.com/areaName?&areaName='+this.city+'&&maxSize=20',{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000'})
+				request(`https://ali-city.showapi.com/areaName?&areaName=${this.city}`,{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000'})
 				.then(res=>{
 					if(res.statusCode == 200){
-						this.checkcitylist = res.data.showapi_res_body.data.filter(o=>!(o.areaName.endsWith('乡') || o.areaName.endsWith('镇') || o.areaName.endsWith('街道'))).map(o=>Object.assign({},{province:o.wholeName? o.wholeName.split('中国,')[1]:o.areaName,city:o.areaName}));
+						this.checkcitylist = res.data.showapi_res_body.data
+						.filter(o=>
+						!(o.areaName.endsWith('乡') || 
+						o.areaName.endsWith('镇') || 
+						o.areaName.endsWith('街道') || 
+						o.areaName.includes('村') ||
+						o.areaName.includes('村民') ||
+						o.areaName.includes('委会') || 
+						o.areaName.includes('社区') ||
+						o.areaName.includes('居委会') ||
+						o.areaName.includes('居民') ||
+						o.areaName.includes('场')
+						))
+						.map(o=>Object.assign({},{province:o.wholeName? o.wholeName.split('中国,')[1]:o.areaName,city:o.areaName}));
 					}else{
 						this.checkcitylist =[];
 					}
