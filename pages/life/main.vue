@@ -23,11 +23,6 @@
 </template>
 
 <script>
-import qqMap from '../../static/js/qqmap-wx-jssdk.js';
-const qqmapsdk = new qqMap({
-        key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' //自己的key秘钥 http://lbs.qq.com/console/mykey.html 在这个网址申请
-      });
-import vuex from '../../static/js/store.js';
 let region;
 let nowpoint;
 let address;
@@ -82,7 +77,7 @@ export default {
     },
     //获得地址
     getLocal: function (latitude, longitude) {
-      qqmapsdk.reverseGeocoder({
+      this.qqmapsdk.reverseGeocoder({
         success: (res) =>{
 		  wx.hideLoading();
 		  address = res.result.address;
@@ -123,7 +118,7 @@ export default {
       this.markers = [{
         iconPath:''
       }];
-      vuex.state.choosepoint = {};
+      this.vuex.state.choosepoint = {};
     },
     //回到原点
     goback(){
@@ -139,25 +134,23 @@ export default {
   },
   onShow(){
     //每次显示当前页面时候判断是否有选择的地址要显示，有就显示其所在位置
-    if(!!Object.values(vuex.state.choosepoint).length){
-      this.coverview = vuex.state.choosepoint.title;
+    if(!!Object.values(this.vuex.state.choosepoint).length){
+      this.coverview = this.vuex.state.choosepoint.title;
       this.localtion = {
-        latitude:vuex.state.choosepoint.location.lat,
-        longitude:vuex.state.choosepoint.location.lng
+        latitude:this.vuex.state.choosepoint.location.lat,
+        longitude:this.vuex.state.choosepoint.location.lng
       };
       this.markers = [{
-        latitude: vuex.state.choosepoint.location.lat,
-        longitude: vuex.state.choosepoint.location.lng
+        latitude: this.vuex.state.choosepoint.location.lat,
+        longitude: this.vuex.state.choosepoint.location.lng
       }];
-      this.chooseitem = vuex.state.choosepoint;
-      this.showbottom = !vuex.state.choosepoint.category.includes('公交线路');
+      this.chooseitem = this.vuex.state.choosepoint;
+      this.showbottom = !this.vuex.state.choosepoint.category.includes('公交线路');
     }
   },
   onHide(){
     //切换到别的tab页面时候，当前页面的信息要清空，地址要默认显示设备所在地址
     Object.assign(this, this.$options.data());
-    // this.getLocation();
-    // vuex.state.choosepoint = {};
   }
 }
 </script>

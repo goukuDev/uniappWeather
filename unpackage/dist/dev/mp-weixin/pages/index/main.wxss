@@ -190,9 +190,3 @@
   padding:5px 0 0;
 }
 
-
-.localtion .indexdrawer .uni-drawer .uni-drawer__content{
-	background:#333;
-	width: 70%;
-}
-

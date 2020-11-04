@@ -105,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer":1,"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item":1};
+/******/ 		var cssChunks = {"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item":1,"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer":"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer","node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action":"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action","node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item":"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item":"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item","node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer":"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer","node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action":"node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

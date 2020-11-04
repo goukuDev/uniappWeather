@@ -45,10 +45,6 @@
     </div>
 </template>
 <script>
-import qqMap from '../../static/js/qqmap-wx-jssdk.js';
-const qqmapsdk = new qqMap({
-        key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL'
-      });
 let from;
 let to;
 export default {
@@ -202,7 +198,7 @@ export default {
             }]
         },
         getline(from,to,type){
-            qqmapsdk.direction({
+            this.qqmapsdk.direction({
                 mode: type,
                 from: { latitude: from.latitude,longitude: from.longitude},
                 to:{ latitude: to.lat,longitude: to.lng},

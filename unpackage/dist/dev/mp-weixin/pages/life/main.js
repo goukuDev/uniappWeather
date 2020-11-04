@@ -130,36 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ../../static/js/qqmap-wx-jssdk.js */ 18));
-
-
-
-var _store = _interopRequireDefault(__webpack_require__(/*! ../../static/js/store.js */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -183,8 +154,32 @@ var _store = _interopRequireDefault(__webpack_require__(/*! ../../static/js/stor
 //
 //
 //
-var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' //自己的key秘钥 http://lbs.qq.com/console/mykey.html 在这个网址申请
-});var region;var nowpoint;var address;var _default = { data: function data() {return { coverview: '', markers: [{ iconPath: "/static/images/location.png", id: 0, width: 50, height: 50 }], localtion: {}, showbottom: false, chooseitem: null, polyline: [{ points: [{ longitude: '', latitude: '' }, { longitude: '', latitude: '' }],
+
+var region;
+var nowpoint;
+var address;var _default =
+{
+  data: function data() {
+    return {
+      coverview: '',
+      markers: [{
+        iconPath: "/static/images/location.png",
+        id: 0,
+        width: 50,
+        height: 50 }],
+
+      localtion: {},
+      showbottom: false,
+      chooseitem: null,
+      polyline: [{
+        points: [
+        {
+          longitude: '',
+          latitude: '' },
+
+        {
+          longitude: '',
+          latitude: '' }],
 
 
         color: '#3CB371',
@@ -214,7 +209,7 @@ var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-D
     },
     //获得地址
     getLocal: function getLocal(latitude, longitude) {var _this2 = this;
-      qqmapsdk.reverseGeocoder({
+      this.qqmapsdk.reverseGeocoder({
         success: function success(res) {
           wx.hideLoading();
           address = res.result.address;
@@ -255,7 +250,7 @@ var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-D
       this.markers = [{
         iconPath: '' }];
 
-      _store.default.state.choosepoint = {};
+      this.vuex.state.choosepoint = {};
     },
     //回到原点
     goback: function goback() {
@@ -271,25 +266,23 @@ var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-D
 
   onShow: function onShow() {
     //每次显示当前页面时候判断是否有选择的地址要显示，有就显示其所在位置
-    if (!!Object.values(_store.default.state.choosepoint).length) {
-      this.coverview = _store.default.state.choosepoint.title;
+    if (!!Object.values(this.vuex.state.choosepoint).length) {
+      this.coverview = this.vuex.state.choosepoint.title;
       this.localtion = {
-        latitude: _store.default.state.choosepoint.location.lat,
-        longitude: _store.default.state.choosepoint.location.lng };
+        latitude: this.vuex.state.choosepoint.location.lat,
+        longitude: this.vuex.state.choosepoint.location.lng };
 
       this.markers = [{
-        latitude: _store.default.state.choosepoint.location.lat,
-        longitude: _store.default.state.choosepoint.location.lng }];
+        latitude: this.vuex.state.choosepoint.location.lat,
+        longitude: this.vuex.state.choosepoint.location.lng }];
 
-      this.chooseitem = _store.default.state.choosepoint;
-      this.showbottom = !_store.default.state.choosepoint.category.includes('公交线路');
+      this.chooseitem = this.vuex.state.choosepoint;
+      this.showbottom = !this.vuex.state.choosepoint.category.includes('公交线路');
     }
   },
   onHide: function onHide() {
     //切换到别的tab页面时候，当前页面的信息要清空，地址要默认显示设备所在地址
     Object.assign(this, this.$options.data());
-    // this.getLocation();
-    // vuex.state.choosepoint = {};
   } };exports.default = _default;
 
 /***/ }),

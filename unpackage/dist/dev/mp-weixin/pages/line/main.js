@@ -130,54 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ../../static/js/qqmap-wx-jssdk.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -223,7 +176,50 @@ var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ../../static/
 //
 //
 //
-var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' });var from;var to;var _default = { data: function data() {return { lineType: [{ type: 'driving', name: '驾车' }, { type: 'transit', name: '公交' }, { type: 'bicycling', name: '骑行' }, { type: 'walking', name: '步行' }], chooseLineType: 'driving', markers: [{ iconPath: "/static/images/location.png", id: 0, width: 50, height: 50 }], localtion: {}, polyline: [{ points: [{ longitude: '', latitude: '' }, { longitude: '', latitude: '' }], color: '#3CB371',
+
+var from;
+var to;var _default =
+{
+  data: function data() {
+    return {
+      lineType: [
+      {
+        type: 'driving',
+        name: '驾车' },
+
+      {
+        type: 'transit',
+        name: '公交' },
+
+      {
+        type: 'bicycling',
+        name: '骑行' },
+
+      {
+        type: 'walking',
+        name: '步行' }],
+
+
+      chooseLineType: 'driving',
+      markers: [{
+        iconPath: "/static/images/location.png",
+        id: 0,
+        width: 50,
+        height: 50 }],
+
+      localtion: {},
+      polyline: [{
+        points: [
+        {
+          longitude: '',
+          latitude: '' },
+
+        {
+          longitude: '',
+          latitude: '' }],
+
+
+        color: '#3CB371',
         width: 6 }],
 
       showbottom: null,
@@ -334,7 +330,7 @@ var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-D
 
     },
     getline: function getline(from, to, type) {var _this3 = this;
-      qqmapsdk.direction({
+      this.qqmapsdk.direction({
         mode: type,
         from: { latitude: from.latitude, longitude: from.longitude },
         to: { latitude: to.lat, longitude: to.lng },

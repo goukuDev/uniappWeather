@@ -8,8 +8,17 @@
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(createApp) {__webpack_require__(/*! uni-pages */ 4);var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 5));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 5));
 
+
+var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ./static/js/qqmap-wx-jssdk.js */ 18));
+
+
+
+var _store = _interopRequireDefault(__webpack_require__(/*! ./static/js/store.js */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' //自己的key秘钥 http://lbs.qq.com/console/mykey.html 在这个网址申请
+});
+_vue.default.prototype.qqmapsdk = qqmapsdk;
+_vue.default.prototype.vuex = _store.default;
 _vue.default.config.productionTip = false;
 _App.default.mpType = 'app';
 

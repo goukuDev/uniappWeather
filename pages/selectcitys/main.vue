@@ -35,7 +35,6 @@
 
 <script>
 	import {request} from 'utils';
-	import vuex from '../../static/js/store.js';
 	export default{
 		data(){
 			return{
@@ -165,7 +164,7 @@
 				wx.navigateBack({
 					delta:1
 				});
-				vuex.state.choosecity = point;
+				this.vuex.state.choosecity = point;
 			}
 		}
 	}

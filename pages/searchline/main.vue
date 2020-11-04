@@ -32,11 +32,6 @@
 </template>
 <script>
 import {uniSwipeAction,uniSwipeActionItem} from "@dcloudio/uni-ui";
-import qqMap from '../../static/js/qqmap-wx-jssdk.js';
-const qqmapsdk = new qqMap({
-        key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL'
-      });
-import vuex from '../../static/js/store.js';
 let region;
 //初始化数据库
 let listdata;
@@ -90,8 +85,16 @@ export default {
         this.getlinelist();
     },
     methods:{
+		//初始化时加载查询过的历史数据
+		getlinelist(){
+		    linelist.get({
+		        success:res=>{
+		            this.checkpoint = res.data;
+		        }
+		    })
+		},
 		/**
-		 * debounce: 防抖处理函数
+		 * debounce: 防抖，防止频繁触发函数
 		 * func: 函数
 		 * wait: 延迟时间
 		 */
@@ -108,7 +111,7 @@ export default {
 		},
 		search(){
 			//调用关键词提示接口
-			qqmapsdk.getSuggestion({
+			this.qqmapsdk.getSuggestion({
 			    keyword:this.value, //用户输入的关键词，可设置固定值,如keyword:'KFC'
 			    region:region, //设置城市名，限制关键词所示的地域范围，非必填参数
 			    page_index:this.pages,
@@ -142,19 +145,16 @@ export default {
 		      }
 		   });
 		},
+		//点击历史数据右边滑出来的按钮
 		bindClick({content},id){
 			this.checkpoint.filter(o=>o._id!=id);
 			if(content.text != '删除') return;
-			this.deletedone(id);
+			linelist.doc(id).remove({
+			    success: (res) => {
+			        this.getlinelist();
+			    }
+			})
 		},
-        getlinelist(){
-            linelist.get({
-                success:res=>{
-                    this.checkpoint = res.data;
-					console.log(res.data)
-                }
-            })
-        },
         //数据回填方法
         backfill(item) {
             this.value = item.title;
@@ -175,19 +175,11 @@ export default {
                 }
             })
             if(!item.category.includes('公交线路')){
-                vuex.state.choosepoint = item;
+                this.vuex.state.choosepoint = item;
                 wx.navigateBack({
                     delta:1,
                 })
             }
-        },
-        // 删除某一个历史数据
-        deletedone(id){
-            linelist.doc(id).remove({
-                success: (res) => {
-                    this.getlinelist();
-                }
-            })
         }
     }
 }

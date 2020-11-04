@@ -2,23 +2,36 @@
 	<div class="index">
 		<div class="indexbox">
 			<div class="localtion">
-				<div v-if='!!region' @click='opendrawer' style='height:100%;display: flex;justify-content: center;align-items: center;'><icon type="search" size="18" color='#666' style="height:20px;"></icon>{{region}}</div>
-				<uni-drawer ref="unidrawer" class='indexdrawer'>
-						<div style='height:40px;'>
-							<div style='height: 40px;width: calc(100% - 40px);float: left;text-align: left;color:#fff;font-size:15px;text-indent:10px;'>搜索城市</div>
-							<icon type="search" size="20" color='#fff' style="float: right;width: 40px;height:30px;padding-top: 10px;" @click="tocitys"></icon>
-						</div>
-						<scroll-view style='height:calc(100% - 40px)' scroll-y> 
-								<view class='cont' v-if="!!cityhistory">
-									<view style="font-size:20px;height:45px;border-bottom:1px solid #999;background:#fff;display:flex;" @click="closedrawer(item.data.city,item._id)" v-for="(item,index) in cityhistory" :key='index'>
+				<div 
+				v-if='!!region'
+				@click='opendrawer' 
+				style='height:100%;display: flex;justify-content: center;align-items: center;'>
+					<icon type="search" size="18" color='#666' style="height:20px;"></icon>
+					{{region}}
+				</div>
+				<uni-drawer ref="unidrawer">
+					<div style='height:40px;background:#333;'>
+						<div  style='height: 40px;width: calc(100% - 40px);float: left;text-align: left;color:#fff;font-size:15px;text-indent:10px;'>搜索城市</div>
+						<icon type="search" size="20" color='#fff' style="float: right;width: 40px;height:30px;padding-top: 10px;" @click="tocitys"></icon>
+					</div>
+					<scroll-view style='height:calc(100% - 40px)' scroll-y> 
+							<uni-swipe-action>
+								<uni-swipe-action-item 
+								:right-options="options" 
+								v-for="(item,index) in cityhistory" 
+								:key='index'
+								@click='bindClick($event,item)'
+								>
+									<view style="display: flex;width: 100%;" @click.stop="closedrawer(item.data.city,item._id)">
 										<div style='flex:70%;text-align:left;text-indent:10px;font-size:15px;'>{{item.data.city.split(',')[item.data.city.split(',').length-1]}}</div>
 										<div style='flex:30%;text-align:left;font-size:15px;'>
 											{{item.data.temp}}℃
 											<image :src="'/static/weathercn/'+item.data.img+'.png'" mode="" style="width: 25px;height: 25px;margin-top: 10px; float: right;"></image>
 										</div>
 									</view>
-								</view>
-						</scroll-view>
+								</uni-swipe-action-item>
+							</uni-swipe-action>
+					</scroll-view>
 				</uni-drawer>
 			</div>
 			<div class='showrequest' v-if='weathermsg'>
@@ -82,49 +95,45 @@
 
 <script>
 import {request} from 'utils';
-import qqMap from '../../static/js/qqmap-wx-jssdk.js';
-const qqmapsdk = new qqMap({
-        key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' //自己的key秘钥 http://lbs.qq.com/console/mykey.html 在这个网址申请
-      });
-import vuex from '../../static/js/store.js';
-import uniDrawer from "@dcloudio/uni-ui/lib/uni-drawer/uni-drawer.vue";
-import {uniSwipeAction} from "@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action.vue";
-let dayaqi;
-let lifeindex;
-let result;
+import {uniDrawer,uniSwipeAction,uniSwipeActionItem} from "@dcloudio/uni-ui";
 //初始化数据库
-let listdata;
 wx.cloud.init();
 const db = wx.cloud.database({});
 const citylist = db.collection('citylist');
 export default {
   data () {
     return {
-      region:null,
-      twodateweather:[],
-      // 今天天气信息
-      dateweather:{},
-      // 15天天气
-      forecastlist:[],
-      // 24小时天气
-      hourlist:[],
-	  options: [{
-	      text: '取消',
-	      style: {
-	          backgroundColor: '#007aff'
-	      }
-	  }, {
-	      text: '删除',
-	      style: {
-	          backgroundColor: '#dd524d'
-	      }
-	  }],
-	  cityhistory:null,
-	  weathermsg:true
+		lifeindex:null,
+		result:null,
+		listdata:null,
+		region:null,
+		twodateweather:[],
+		// 今天天气信息
+		dateweather:{},
+		// 15天天气
+		forecastlist:[],
+		// 24小时天气
+		hourlist:[],
+		options: [
+			{
+				text: '取消',
+				style: {
+					backgroundColor: '#007aff'
+				}
+			}, 
+			{
+				text: '删除',
+				style: {
+					backgroundColor: '#dd524d'
+				}
+			},
+		],
+		cityhistory:null,
+		weathermsg:true
     }
   },
   components:{
-	  uniDrawer,uniSwipeAction
+	  uniDrawer,uniSwipeAction,uniSwipeActionItem
   },
   onLoad(){
     this.GetLocation();
@@ -156,12 +165,20 @@ export default {
 	this.GetLocation();
   },
   onShow() {
-  	if(!!vuex.state.choosecity){
-		this.region = vuex.state.choosecity.province;
-		this.getweather(vuex.state.choosecity.province)
+  	if(!!this.vuex.state.choosecity){
+		this.region = this.vuex.state.choosecity.province;
+		this.getweather(this.vuex.state.choosecity.province)
 	}
   },
   methods: {
+	//初始化时加载查询过的历史数据
+	getlinelist(){
+	    linelist.get({
+	        success:res=>{
+	            this.checkpoint = res.data;
+	        }
+	    })
+	},  
 	GetLocation(){
 		wx.getSetting({
 			success:res=>{			
@@ -188,7 +205,7 @@ export default {
 		wx.getLocation({
 			type: 'wgs84',
 			success:data=> {
-				qqmapsdk.reverseGeocoder({
+				this.qqmapsdk.reverseGeocoder({
 				  location: {
 				    latitude: data.latitude,
 				    longitude: data.longitude
@@ -216,43 +233,42 @@ export default {
 			}
 			this.weathermsg = true;
 			wx.hideLoading();
-			result =  res.data.result;
-			dayaqi = result.aqi;
-			lifeindex = result.index;
-			this.twodateweather= result.daily.slice(0,2)
+			this.result =  res.data.result;
+			this.lifeindex = this.result.index;
+			this.twodateweather= this.result.daily.slice(0,2)
 			this.dateweather={
-			  current_temperature: result.temp,
-			  current_condition: result.weather,
-			  wind_direction: result.winddirect,
-			  wind_level: result.windpower,
-			  quality_level: result.aqi.quality,
-			  aqi: result.aqi.aqi,
-			  background:result.aqi.aqiinfo.color,
-			  humidity:result.humidity,
-			  img:result.img
+			  current_temperature: this.result.temp,
+			  current_condition: this.result.weather,
+			  wind_direction: this.result.winddirect,
+			  wind_level: this.result.windpower,
+			  quality_level: this.result.aqi.quality,
+			  aqi: this.result.aqi.aqi,
+			  background:this.result.aqi.aqiinfo.color,
+			  humidity:this.result.humidity,
+			  img:this.result.img
 			},
-			this.forecastlist = result.daily;
-			this.hourlist = result.hourly.map(o=>Object.assign({},{'condition': o.weather,'hour':o.time,'temperature':o.temp}))
+			this.forecastlist = this.result.daily;
+			this.hourlist = this.result.hourly.map(o=>Object.assign({},{'condition': o.weather,'hour':o.time,'temperature':o.temp}))
 			wx.stopPullDownRefresh();
 			//储存城市天气历史记录
-			listdata = {city:position,temp:result.temp,img:result.img};
+			this.listdata = {city:position,temp:this.result.temp,img:this.result.img};
 			citylist.get({
 			    success:res=>{
 					// 没有历史结果就保存,有历史结果就更新
-			        if(!res.data.map(o=>o.data).some(o=>o.city==listdata.city)){
+			        if(!res.data.map(o=>o.data).some(o=>o.city==this.listdata.city)){
 			            citylist.add({
 			                data:{
-			                    data:listdata
+			                    data:this.listdata
 			                },
 			                success: function(res) {
 			                    console.log(res._id)
 			                }
 			            })
 			        }
-					if(!!id && !(!res.data.map(o=>o.data).some(o=>o.city==listdata.city))){
+					if(!!id && !(!res.data.map(o=>o.data).some(o=>o.city==this.listdata.city))){
 						citylist.doc(id).update({
 							data:{
-							    data:listdata
+							    data:this.listdata
 							},
 							success:res=>{
 								console.log(res_id)
@@ -266,24 +282,24 @@ export default {
     //去到详情页
     gotodetail(index){
 		wx.navigateTo({
-			url:'../../pages/weatherdetail/main?data='+JSON.stringify(this.forecastlist)+'&lifeindex='+JSON.stringify(lifeindex)+'&index='+index
+			url:`../../pages/weatherdetail/main?data=${JSON.stringify(this.forecastlist)}&lifeindex=${JSON.stringify(this.lifeindex)}&index=${index}`
 		})
     },
     totodydetail(){
 		let data = {
-			weather:result.weather,
-			winddirect:result.winddirect,
-			windpower:result.windpower,
-			temp:result.temp,
-			pressure:result.pressure,
-			humidity:result.humidity,
-			quality:result.aqi.quality,
-			ipm2_5:result.aqi.ipm2_5,
-			aqi:result.index[0].detail,
-			img:result.img
+			weather:this.result.weather,
+			winddirect:this.result.winddirect,
+			windpower:this.result.windpower,
+			temp:this.result.temp,
+			pressure:this.result.pressure,
+			humidity:this.result.humidity,
+			quality:this.result.aqi.quality,
+			ipm2_5:this.result.aqi.ipm2_5,
+			aqi:this.result.index[0].detail,
+			img:this.result.img
 		}
 		wx.navigateTo({
-			url:'../../pages/todydetail/main?data='+JSON.stringify(data)
+			url:`../../pages/todydetail/main?data=${JSON.stringify(data)}`
 		})
     },
 	tocitys(){
@@ -293,6 +309,18 @@ export default {
 		setTimeout(()=>{
 			this.$refs.unidrawer.close();
 		},1000)
+	},
+	bindClick({content},{_id}){
+		if(content.text != '删除') return;
+		citylist.doc(_id).remove({
+		    success: (res) => {
+				citylist.get({
+					success:res=>{
+						this.cityhistory = res.data;
+					}
+				})
+		    }
+		})
 	},
 	closedrawer(data,id){
 		this.getweather(data,id);
@@ -311,11 +339,5 @@ export default {
 }
 </script>
 <style scoped>
-  @import 'index.css';
-</style>
-<style>
-	.localtion .indexdrawer .uni-drawer .uni-drawer__content{
-		background:#333;
-		width: 70%;
-	}
+	@import 'index.css';
 </style>
