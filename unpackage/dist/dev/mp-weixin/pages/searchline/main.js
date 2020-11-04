@@ -170,11 +170,12 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
 var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ../../static/js/qqmap-wx-jssdk.js */ 18));
 
 
 
-var _store = _interopRequireDefault(__webpack_require__(/*! ../../static/js/store.js */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var uniSwipeAction = function uniSwipeAction() {__webpack_require__.e(/*! require.ensure | node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action */ "node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action").then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action.vue */ 90));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' });
+var _store = _interopRequireDefault(__webpack_require__(/*! ../../static/js/store.js */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var _uniSwipeActionItem = function _uniSwipeActionItem() {Promise.all(/*! require.ensure | node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item")]).then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item */ 107));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _uniSwipeAction = function _uniSwipeAction() {__webpack_require__.e(/*! require.ensure | node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action */ "node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action").then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action */ 90));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' });
 var region;
 //初始化数据库
 var listdata;
@@ -183,7 +184,8 @@ var db = wx.cloud.database({});
 var linelist = db.collection('linelist');var _default =
 {
   components: {
-    uniSwipeAction: uniSwipeAction },
+    uniSwipeAction: _uniSwipeAction,
+    uniSwipeActionItem: _uniSwipeActionItem },
 
   data: function data() {
     return {
@@ -191,7 +193,8 @@ var linelist = db.collection('linelist');var _default =
       value: '',
       pages: 1,
       checkpoint: [],
-      options: [{
+      options: [
+      {
         text: '取消',
         style: {
           backgroundColor: '#007aff' } },
@@ -202,15 +205,17 @@ var linelist = db.collection('linelist');var _default =
           backgroundColor: '#dd524d' } }],
 
 
+
       mobileLocation: { //移动选择位置数据
         title: '',
         address: '',
         category: '地名地址:行政地名',
         location: {
           lat: '',
-          lng: '' } } };
+          lng: '' } },
 
 
+      timeout: null };
 
   },
   onLoad: function onLoad(options) {
@@ -224,8 +229,39 @@ var linelist = db.collection('linelist');var _default =
     this.getlinelist();
   },
   methods: {
+    /**
+              * debounce: 防抖处理函数
+              * func: 函数
+              * wait: 延迟时间
+              */
+    debounce: function debounce(func, wait) {
+      if (this.timeout) clearTimeout(this.timeout);
+      this.timeout = setTimeout(function () {
+        func();
+      }, wait);
+    },
+    getsuggest: function getsuggest(index) {
+      if (!this.value) return this.suggestion = [];
+      this.pages = index;
+      this.debounce(this.search, 600);
+    },
+    search: function search() {var _this = this;
+      //调用关键词提示接口
+      qqmapsdk.getSuggestion({
+        keyword: this.value, //用户输入的关键词，可设置固定值,如keyword:'KFC'
+        region: region, //设置城市名，限制关键词所示的地域范围，非必填参数
+        page_index: this.pages,
+        page_size: 10,
+        success: function success(res) {var _this$suggestion; //搜索成功后的回调
+          (_this$suggestion = _this.suggestion).push.apply(_this$suggestion, _toConsumableArray(res.data));
+        },
+        fail: function fail(error) {
+          console.error(error);
+        } });
+
+    },
     //移动选点
-    moveToLocation: function moveToLocation() {var _this = this;
+    moveToLocation: function moveToLocation() {var _this2 = this;
       wx.chooseLocation({
         success: function success(res) {
           var mobileLocation = { //移动选择位置数据
@@ -237,45 +273,24 @@ var linelist = db.collection('linelist');var _default =
               lng: res.longitude } };
 
 
-          _this.mobileLocation = mobileLocation;
-          _this.backfill(mobileLocation);
+          _this2.mobileLocation = mobileLocation;
+          _this2.backfill(mobileLocation);
         },
         fail: function fail(err) {
           console.log(err);
         } });
 
     },
-    bindClick: function bindClick(ev, id) {
+    bindClick: function bindClick(_ref, id) {var content = _ref.content;
       this.checkpoint.filter(function (o) {return o._id != id;});
-      // return
-      if (ev.text == '删除') {
-        this.deletedone(id);
-      } else
-      return;
+      if (content.text != '删除') return;
+      this.deletedone(id);
     },
-    getlinelist: function getlinelist() {var _this2 = this;
+    getlinelist: function getlinelist() {var _this3 = this;
       linelist.get({
         success: function success(res) {
-          _this2.checkpoint = res.data;
-        } });
-
-    },
-    getsuggest: function getsuggest(index) {var _this3 = this;
-      if (this.value == '') {
-        this.suggestion = [];
-        return;
-      }
-      //调用关键词提示接口
-      qqmapsdk.getSuggestion({
-        keyword: this.value, //用户输入的关键词，可设置固定值,如keyword:'KFC'
-        region: region, //设置城市名，限制关键词所示的地域范围，非必填参数
-        page_index: index,
-        page_size: 10,
-        success: function success(res) {var _this3$suggestion; //搜索成功后的回调
-          (_this3$suggestion = _this3.suggestion).push.apply(_this3$suggestion, _toConsumableArray(res.data));
-        },
-        fail: function fail(error) {
-          console.error(error);
+          _this3.checkpoint = res.data;
+          console.log(res.data);
         } });
 
     },

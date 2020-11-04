@@ -1,23 +1,24 @@
 <template>
     <div class="searchline">
         <div class="autofocus">
-            <input placeholder="地址、公交查询" auto-focus v-model="value" @change="getsuggest(pages)"/>
+            <input placeholder="地址、公交查询" auto-focus v-model="value" @input="getsuggest(pages)"/>
             <icon type="clear" size="24" color="#ccc" v-if="value" @click="value=''"/>
-            <!-- <span class="search" @click="search">搜索</span> -->
         </div>
 		<div style='height:30px;display:flex;width:90%;margin:0 auto;'>
-			<!-- <div style='flex: 1;text-align: center;font-size: 16px;line-height: 30px;color: #396DE5;'>我的位置</div> -->
 			<div style='flex: 1;text-align: center;font-size: 16px;line-height: 30px;color: #396DE5;' @click='moveToLocation'><icon type="search" size="15" style="height:30px;" color="#396DE5"></icon>地图选点</div>
 		</div>
+		<!-- 显示历史结果列表 -->
         <div class="pointhistory" v-if="!!checkpoint && !value">
-				<uni-swipe-action style='text-indent:10px;' :options="options" v-for="(item,index) in checkpoint" :key="index" @click="bindClick($event,item._id)" >
-					<view class='cont' @click.stop="backfill(item.data)">
-						<view style="font-size:20px;height:35px;">{{item.data.title}}</view>
-						<view style="height:25px;font-size:15px;color:#999;">{{item.data.address}}</view>
-					</view>
+				<uni-swipe-action style='text-indent:10px;'>
+					<uni-swipe-action-item :right-options="options" v-for="(item,index) in checkpoint" :key="item._id" @click="bindClick($event,item._id)">
+						<view class='cont' @click.stop="backfill(item.data)">
+							<view style="font-size:20px;height:35px;">{{item.data.title}}</view>
+							<view style="height:25px;font-size:15px;color:#999;">{{item.data.address}}</view>
+						</view>
+					</uni-swipe-action-item>
 				</uni-swipe-action>
-            <!-- </ul> -->
         </div>
+		<!-- 显示搜索结果例表 -->
         <div class="lifelist" v-if="!!suggestion.length && value">
             <ul>
                 <li v-for="item in suggestion" :key="item.id" @click="backfill(item)" class="lists">
@@ -30,7 +31,7 @@
     </div>
 </template>
 <script>
-import {uniSwipeAction} from "@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action.vue";
+import {uniSwipeAction,uniSwipeActionItem} from "@dcloudio/uni-ui";
 import qqMap from '../../static/js/qqmap-wx-jssdk.js';
 const qqmapsdk = new qqMap({
         key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL'
@@ -44,7 +45,8 @@ const db = wx.cloud.database({});
 const linelist = db.collection('linelist');
 export default {
 	components:{
-		uniSwipeAction
+		uniSwipeAction,
+		uniSwipeActionItem
 	},
     data(){
         return{
@@ -52,17 +54,19 @@ export default {
             value:'',
             pages:1,
             checkpoint:[],
-			options: [{
-                text: '取消',
-                style: {
-                    backgroundColor: '#007aff'
-                }
-            }, {
-                text: '删除',
-                style: {
-                    backgroundColor: '#dd524d'
-                }
-            }],
+			options: [
+				{
+					text: '取消',
+					style: {
+						backgroundColor: '#007aff'
+					}
+				}, {
+					text: '删除',
+					style: {
+						backgroundColor: '#dd524d'
+					}
+				}
+			],
 			mobileLocation : {//移动选择位置数据
 			   title: '',
 			   address:'',
@@ -71,7 +75,8 @@ export default {
 				   lat:'',
 				   lng:''
 			   }
-			}
+			},
+			timeout:null
         }
     },
     onLoad(options){
@@ -85,6 +90,37 @@ export default {
         this.getlinelist();
     },
     methods:{
+		/**
+		 * debounce: 防抖处理函数
+		 * func: 函数
+		 * wait: 延迟时间
+		 */
+		debounce (func, wait) {
+		  if (this.timeout) clearTimeout(this.timeout)
+		  this.timeout = setTimeout(() => {
+			func()
+		  }, wait)
+		},
+		getsuggest(index){
+		    if(!this.value) return this.suggestion = [];
+			this.pages = index;
+			this.debounce(this.search, 600);
+		},
+		search(){
+			//调用关键词提示接口
+			qqmapsdk.getSuggestion({
+			    keyword:this.value, //用户输入的关键词，可设置固定值,如keyword:'KFC'
+			    region:region, //设置城市名，限制关键词所示的地域范围，非必填参数
+			    page_index:this.pages,
+			    page_size:10,
+			    success: res => {//搜索成功后的回调
+			        this.suggestion.push(...res.data)
+			    },
+			    fail: function(error) {
+			        console.error(error);
+			    }
+			});
+		},
 		//移动选点
 		moveToLocation: function () {
 		   wx.chooseLocation({
@@ -106,39 +142,18 @@ export default {
 		      }
 		   });
 		},
-		bindClick(ev,id){
-			this.checkpoint.filter(o=>o._id!=id)
-			// return
-			if(ev.text == '删除'){
-				this.deletedone(id)
-			}
-			else return;
+		bindClick({content},id){
+			this.checkpoint.filter(o=>o._id!=id);
+			if(content.text != '删除') return;
+			this.deletedone(id);
 		},
         getlinelist(){
             linelist.get({
                 success:res=>{
                     this.checkpoint = res.data;
+					console.log(res.data)
                 }
             })
-        },
-        getsuggest(index){
-            if(this.value==''){
-                this.suggestion = [];
-                return;
-            }
-            //调用关键词提示接口
-            qqmapsdk.getSuggestion({
-                keyword:this.value, //用户输入的关键词，可设置固定值,如keyword:'KFC'
-                region:region, //设置城市名，限制关键词所示的地域范围，非必填参数
-                page_index:index,
-                page_size:10,
-                success: res => {//搜索成功后的回调
-                    this.suggestion.push(...res.data)
-                },
-                fail: function(error) {
-                    console.error(error);
-                }
-            });
         },
         //数据回填方法
         backfill(item) {
