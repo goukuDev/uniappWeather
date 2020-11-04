@@ -29,11 +29,11 @@
 	height: 35px;
 	padding-left: 10px;
 	line-height: 35px;
-	width:70%;
+	width:calc(100% - 20px);
 	border: 1px solid #ccc;
 	box-sizing: border-box;
 	border-radius: 18px;
-	margin-left: 10px;
+	margin:0 10px;
 }
 .line .play .linetype.data-v-18398e6a{
 	height: 40px;

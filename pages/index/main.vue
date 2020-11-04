@@ -22,7 +22,7 @@
 								:key='index'
 								@click='bindClick($event,item)'
 								>
-									<view style="display: flex;width: 100%;" @click.stop="closedrawer(item.data.city,item._id)">
+									<view style="display: flex;width: 100%;height: 50px;line-height: 50px;border-bottom: 1px solid #ccc;" @click.stop="closedrawer(item.data.city,item._id)">
 										<div style='flex:70%;text-align:left;text-indent:10px;font-size:15px;'>{{item.data.city.split(',')[item.data.city.split(',').length-1]}}</div>
 										<div style='flex:30%;text-align:left;font-size:15px;'>
 											{{item.data.temp}}℃

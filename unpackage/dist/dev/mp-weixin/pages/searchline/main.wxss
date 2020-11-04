@@ -6,11 +6,13 @@ i-swipeout .swipeout .i-swipeout-item{
 
 .searchline.data-v-dea5ce3a{
     height: 100%;
+	overflow: hidden;
 }
 /* 搜索框 */
 .searchline .autofocus.data-v-dea5ce3a{
     height: 40px;
     position: relative;
+	margin: 10px 3%;
 }
 .autofocus icon.data-v-dea5ce3a{
     position: absolute;
@@ -19,7 +21,7 @@ i-swipeout .swipeout .i-swipeout-item{
 }
 .autofocus input.data-v-dea5ce3a{
     float:left;
-    width:94%;
+	width: 100%;
     height:100%;
     line-height:40px;
     box-sizing:border-box;
@@ -27,8 +29,7 @@ i-swipeout .swipeout .i-swipeout-item{
     border:1px solid #ccc;
     border-radius:20px;
     font-size:15px;
-    padding:0 20px;
-	margin: 10px 3%;
+	padding:0 20px;
 }
 .autofocus .search.data-v-dea5ce3a{
     float:left;
