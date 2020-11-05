@@ -7,7 +7,9 @@
     "pages/weatherdetail/main",
     "pages/searchline/main",
     "pages/linedetail/main",
-    "pages/line/main"
+    "pages/line/main",
+    "pages/music/main",
+    "pages/music/components/musicdetail/main"
   ],
   "subPackages": [],
   "window": {
@@ -27,6 +29,12 @@
         "pagePath": "pages/index/main",
         "iconPath": "static/tabs/tianqi.png",
         "selectedIconPath": "static/tabs/tianqis.png"
+      },
+      {
+        "text": "音乐",
+        "pagePath": "pages/music/main",
+        "iconPath": "static/tabs/yinle.png",
+        "selectedIconPath": "static/tabs/yinles.png"
       },
       {
         "text": "导航",

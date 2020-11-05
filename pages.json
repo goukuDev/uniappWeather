@@ -1,56 +1,69 @@
 {
   "pages": [
-	{
-		"path":"pages/index/main",
-		"style": {
-	        "navigationBarTitleText": "天气",
-			"enablePullDownRefresh": true,  //设置为true表示当前页面开启下拉刷新
-	        "backgroundTextStyle": "dark"  //下拉 loading 的样式，仅支持 dark/light
-	    }
-	},
-	{
-			"path":"pages/life/main",
-			"style":{
-				"navigationBarTitleText":"导航"
+		{
+			"path":"pages/index/main",
+			"style": {
+				"navigationBarTitleText": "天气",
+				"enablePullDownRefresh": true,  //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark"  //下拉 loading 的样式，仅支持 dark/light
 			}
-	},
-	{
-		"path":"pages/selectcitys/main",
-		"style":{
-			"navigationBarTitleText":"选择城市"
+		},
+		{
+				"path":"pages/life/main",
+				"style":{
+					"navigationBarTitleText":"导航"
+				}
+		},
+		{
+			"path":"pages/selectcitys/main",
+			"style":{
+				"navigationBarTitleText":"选择城市"
+			}
+		},
+		{
+			"path":"pages/todydetail/main",
+			"style":{
+				"navigationBarTitleText":"实时天气"
+			}
+		},
+		{
+			"path":"pages/weatherdetail/main",
+			"style":{
+				"navigationBarTitleText":"天气详情"
+			}
+		},
+		{
+			"path":"pages/searchline/main",
+			"style":{
+				"navigationBarTitleText":"搜索"
+			}
+		},
+		{
+			"path":"pages/linedetail/main",
+			"style":{
+				"navigationBarTitleText":"线路详情"
+			}
+		},
+		{
+			"path":"pages/line/main",
+			"style":{
+				"navigationBarTitleText":"线路"
+			}
+		},
+		{
+			"path":"pages/music/main",
+			"style":{
+				"navigationBarTitleText":"音乐"
+			}
+		},
+		{
+			"path" : "pages/music/components/musicdetail/main",
+			"style": {
+				"navigationBarTitleText": "音乐详情",
+				"enablePullDownRefresh": false
+			}
 		}
-	},
-	{
-		"path":"pages/todydetail/main",
-		"style":{
-			"navigationBarTitleText":"实时天气"
-		}
-	},
-	{
-		"path":"pages/weatherdetail/main",
-		"style":{
-			"navigationBarTitleText":"天气详情"
-		}
-	},
-	{
-		"path":"pages/searchline/main",
-		"style":{
-			"navigationBarTitleText":"搜索"
-		}
-	},
-	{
-		"path":"pages/linedetail/main",
-		"style":{
-			"navigationBarTitleText":"线路详情"
-		}
-	},
-	{
-		"path":"pages/line/main",
-		"style":{
-			"navigationBarTitleText":"线路"
-		}
-	}
-  ],
+    ],
   "globalStyle": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#22a0e4",
@@ -69,6 +82,12 @@
 		  "pagePath": "pages/index/main",
 		  "iconPath": "static/tabs/tianqi.png",
 		  "selectedIconPath": "static/tabs/tianqis.png"
+		},
+		{
+		  "text": "音乐",
+		  "pagePath": "pages/music/main",
+		  "iconPath": "static/tabs/yinle.png",
+		  "selectedIconPath": "static/tabs/yinles.png"
 		},
 		{
 		  "text": "导航",
