@@ -67,8 +67,8 @@
 		{
 		  "text": "天气",
 		  "pagePath": "pages/index/main",
-		  "iconPath": "static/tabs/Weather.png",
-		  "selectedIconPath": "static/tabs/Weathers.png"
+		  "iconPath": "static/tabs/tianqi.png",
+		  "selectedIconPath": "static/tabs/tianqis.png"
 		},
 		{
 		  "text": "导航",
