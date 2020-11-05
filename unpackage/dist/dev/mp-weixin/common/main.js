@@ -11,11 +11,11 @@
 var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 5));
 
 
-var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ./static/js/qqmap-wx-jssdk.js */ 18));
+var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ./static/js/qqmap-wx-jssdk.js */ 11));
 
 
 
-var _store = _interopRequireDefault(__webpack_require__(/*! ./static/js/store.js */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' //自己的key秘钥 http://lbs.qq.com/console/mykey.html 在这个网址申请
+var _store = _interopRequireDefault(__webpack_require__(/*! ./static/js/store.js */ 12));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var qqmapsdk = new _qqmapWxJssdk.default({ key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' //自己的key秘钥 http://lbs.qq.com/console/mykey.html 在这个网址申请
 });
 _vue.default.prototype.qqmapsdk = qqmapsdk;
 _vue.default.prototype.vuex = _store.default;

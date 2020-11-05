@@ -25,14 +25,14 @@
       {
         "text": "天气",
         "pagePath": "pages/index/main",
-        "iconPath": "static/tabs/home.png",
-        "selectedIconPath": "static/tabs/homes.png"
+        "iconPath": "static/tabs/Weather.png",
+        "selectedIconPath": "static/tabs/Weathers.png"
       },
       {
         "text": "导航",
         "pagePath": "pages/life/main",
-        "iconPath": "static/tabs/user.png",
-        "selectedIconPath": "static/tabs/users.png"
+        "iconPath": "static/tabs/daohang.png",
+        "selectedIconPath": "static/tabs/daohangs.png"
       }
     ],
     "position": "bottom"
@@ -42,6 +42,5 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap32.json"
+  "usingComponents": {}
 }

@@ -1,15 +1,17 @@
 <template>
 	<div class="hotcities">
 		<div class="top">
-			<input 
-			class="input_bottom" 
-			type="text"  
-			placeholder="输入城市全名,如:杭州市" 
-			v-model="city"
-			@focus="showcitylist=false" 
-			@blur="showcitylist=true" 
-			@input="checkcity"
-			/>
+			<div class='search'>
+				<input
+				class="input_bottom" 
+				type="text"  
+				placeholder="输入城市全名,如:杭州市" 
+				v-model="city"
+				@focus="showcitylist=false" 
+				@blur="showcitylist=true" 
+				@input="checkcity"
+				/>
+			</div>
 		</div>
 		<div class="bottom" v-if='showcitylist && !city'>
 			<div class='hottitle'>热门城市</div>
@@ -20,13 +22,13 @@
 			</div>
 		</div>
 		<div class="citys" v-else>
-			<div class="citylist" v-if='checkcitylist.length'>
+			<div class="citylist" v-if='!!checkcitylist'>
 				<li v-for='(item,index) in checkcitylist' :key='index' @click='toindex(item)'>{{item.province}}</li>
 			</div>
-			<div class='nonecity' v-if='!checkcitylist.length && city!=""'>
+			<div class='nonecity' v-if='!checkcitylist && city!=""'>
 				没有发现该城市
 			</div>
-			<div class='normal' v-if='!checkcitylist.length && city==""'>
+			<div class='normal' v-if='!checkcitylist && city==""'>
 				搜索想查看的城市
 			</div>
 		</div>
@@ -114,7 +116,7 @@
 						city:'拉萨市'
 					},
 				],
-				checkcitylist:[],
+				checkcitylist:null,
 				timeout:null,
 			}
 		},
@@ -133,13 +135,14 @@
 			checkcity(){
 				if(this.city==''){
 					if (this.timeout) clearTimeout(this.timeout)
-					return this.checkcitylist = [];	
+					return this.checkcitylist = null;	
 				}
-				this.debounce(this.search, 600);
+				this.debounce(this.search, 400);
 			},
 			search(){
 				request(`https://ali-city.showapi.com/areaName?&areaName=${this.city}`,{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000'})
 				.then(res=>{
+					console.log(res)
 					if(res.statusCode == 200){
 						this.checkcitylist = res.data.showapi_res_body.data
 						.filter(o=>
@@ -152,11 +155,13 @@
 						o.areaName.includes('社区') ||
 						o.areaName.includes('居委会') ||
 						o.areaName.includes('居民') ||
-						o.areaName.includes('场')
+						o.areaName.includes('场') ||
+						o.areaName.includes('开发') ||
+						o.areaName.includes('工业')
 						))
 						.map(o=>Object.assign({},{province:o.wholeName? o.wholeName.split('中国,')[1]:o.areaName,city:o.areaName}));
 					}else{
-						this.checkcitylist =[];
+						this.checkcitylist =null;
 					}
 				})
 			},
