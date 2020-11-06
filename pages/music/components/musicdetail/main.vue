@@ -20,21 +20,25 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex';
+	
 	export default {
 		data() {
 			return {
-				detail:null,
 				audioCtx:null
 			}
 		},
+		computed:{
+			...mapState({
+				detail:state=>state.music.musicdetail
+			})
+		},
 		onLoad(){
-			this.detail = this.vuex.state.musicdetail;
 			this.audioCtx = uni.createInnerAudioContext('audio');
 			this.audioCtx.autoplay = true;
 		},
 		onUnload(){
 		    Object.assign(this, this.$options.data())
-			this.vuex.state.musicdetail = {};
 		}
 	}
 </script>

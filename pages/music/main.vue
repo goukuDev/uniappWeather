@@ -19,6 +19,7 @@
 <script>
 	import musicList from '../../static/js/music.js';
 	import {uniList,uniListItem} from '@dcloudio/uni-ui'
+	import {mapMutations} from 'vuex';
 
 	export default{
 		components:{
@@ -29,10 +30,8 @@
 				musicList,
 			}
 		},
-		mounted(){
-			
-		},
 		methods:{
+			...mapMutations(['SETMUSICDETAIL']),
 			onPlay(data){
 				let params = {
 					src:data.id,
@@ -40,7 +39,7 @@
 					poster:data.al.picUrl,
 					author:data.ar.map(o=>o.name).join(',')
 				}
-				this.vuex.state.musicdetail = params;
+				this.SETMUSICDETAIL(params);
 				wx.navigateTo({
 					url:`../../pages/music/components/musicdetail/main`
 				})

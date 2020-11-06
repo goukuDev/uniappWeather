@@ -95,6 +95,7 @@
 
 <script>
 import {request} from 'utils';
+import {mapState} from 'vuex';
 import {uniDrawer,uniSwipeAction,uniSwipeActionItem} from "@dcloudio/uni-ui";
 //初始化数据库
 wx.cloud.init();
@@ -135,6 +136,11 @@ export default {
   components:{
 	  uniDrawer,uniSwipeAction,uniSwipeActionItem
   },
+  computed:{
+	  ...mapState({
+		  choosecity:state=>state.index.choosecity
+	  })
+  },
   onLoad(){
     this.GetLocation();
 	wx.showLoading({
@@ -165,9 +171,9 @@ export default {
 	this.GetLocation();
   },
   onShow() {
-  	if(!!this.vuex.state.choosecity){
-		this.region = this.vuex.state.choosecity.province;
-		this.getweather(this.vuex.state.choosecity.province)
+  	if(!!this.choosecity){
+		this.region = this.choosecity.province;
+		this.getweather(this.choosecity.province)
 	}
   },
   methods: {
@@ -282,7 +288,7 @@ export default {
     //去到详情页
     gotodetail(index){
 		wx.navigateTo({
-			url:`../../pages/weatherdetail/main?data=${JSON.stringify(this.forecastlist)}&lifeindex=${JSON.stringify(this.lifeindex)}&index=${index}`
+			url:`../../pages/index/components/weatherdetail/main?data=${JSON.stringify(this.forecastlist)}&lifeindex=${JSON.stringify(this.lifeindex)}&index=${index}`
 		})
     },
     totodydetail(){
@@ -299,12 +305,12 @@ export default {
 			img:this.result.img
 		}
 		wx.navigateTo({
-			url:`../../pages/todydetail/main?data=${JSON.stringify(data)}`
+			url:`../../pages/index/components/todydetail/main?data=${JSON.stringify(data)}`
 		})
     },
 	tocitys(){
 		wx.navigateTo({
-			url:'../../pages/selectcitys/main'
+			url:'../../pages/index/components/selectcitys/main'
 		})
 		setTimeout(()=>{
 			this.$refs.unidrawer.close();

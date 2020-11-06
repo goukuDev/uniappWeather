@@ -298,7 +298,7 @@ export default {
         },
         tolinedetail(data){
             wx.navigateTo({
-                url:'../../pages/linedetail/main?data='+JSON.stringify(data),
+                url:'../../components/linedetail/main?data='+JSON.stringify(data),
             })
         },
     }

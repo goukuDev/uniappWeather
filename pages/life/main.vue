@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import {mapState,mapMutations} from 'vuex';
 let region;
 let nowpoint;
 let address;
@@ -55,6 +56,11 @@ export default {
       }],
     }
   },
+  computed:{
+	  ...mapState({
+		  choosepoint:state=>state.map.choosepoint
+	  })
+  },
   onLoad(){
     this.getLocation();
 	wx.showLoading({
@@ -62,6 +68,7 @@ export default {
 	})
   },
   methods:{
+	  ...mapMutations(['SETCHOOSEPOINT']),
     //获得微信经纬度
     getLocation: function () {
       wx.getLocation({
@@ -103,13 +110,13 @@ export default {
     },
     tolifedetail(){
       wx.navigateTo({
-        url:'../../pages/searchline/main?city='+region+'&value='+this.coverview,
+        url:'../../pages/life/components/searchline/main?city='+region+'&value='+this.coverview,
       })
     },
     //显示不同类型的路线图
     showlinedetail(to){
       wx.navigateTo({
-        url:'../../pages/line/main?localtion='+JSON.stringify(nowpoint)+'&to='+JSON.stringify(to)+'&mypoint='+address+'&topoint='+this.coverview,
+        url:'../../pages/life/components/line/main?localtion='+JSON.stringify(nowpoint)+'&to='+JSON.stringify(to)+'&mypoint='+address+'&topoint='+this.coverview,
       })
     },
     deletebox(){
@@ -118,7 +125,7 @@ export default {
       this.markers = [{
         iconPath:''
       }];
-      this.vuex.state.choosepoint = {};
+	  this.SETCHOOSEPOINT({});
     },
     //回到原点
     goback(){
@@ -134,18 +141,18 @@ export default {
   },
   onShow(){
     //每次显示当前页面时候判断是否有选择的地址要显示，有就显示其所在位置
-    if(!!Object.values(this.vuex.state.choosepoint).length){
-      this.coverview = this.vuex.state.choosepoint.title;
+    if(!!Object.values(this.choosepoint).length){
+      this.coverview = this.choosepoint.title;
       this.localtion = {
-        latitude:this.vuex.state.choosepoint.location.lat,
-        longitude:this.vuex.state.choosepoint.location.lng
+        latitude:this.choosepoint.location.lat,
+        longitude:this.choosepoint.location.lng
       };
       this.markers = [{
-        latitude: this.vuex.state.choosepoint.location.lat,
-        longitude: this.vuex.state.choosepoint.location.lng
+        latitude: this.choosepoint.location.lat,
+        longitude: this.choosepoint.location.lng
       }];
-      this.chooseitem = this.vuex.state.choosepoint;
-      this.showbottom = !this.vuex.state.choosepoint.category.includes('公交线路');
+      this.chooseitem = this.choosepoint;
+      this.showbottom = !this.choosepoint.category.includes('公交线路');
     }
   },
   onHide(){

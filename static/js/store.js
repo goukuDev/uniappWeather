@@ -12,14 +12,15 @@ const store = new Vuex.Store({
 	musicdetail:{},//音乐详情数据
   },
   mutations: {
-    increment: (state) => {
-      const obj = state
-      obj.count += 1
-    },
-    decrement: (state) => {
-      const obj = state
-      obj.count -= 1
-    }
+    SETCHOOSECITY:(state,value)=>{
+		state.choosecity = value;
+	},
+	SETCHOOSEPOINT:(state,value)=>{
+		state.choosepoint = value;
+	},
+	SETMUSICDETAIL:(state,value)=>{
+		state.musicdetail = value;
+	}
   }
 })
 

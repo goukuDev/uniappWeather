@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/index/main",
+    "pages/index/components/selectcitys/main",
+    "pages/index/components/todydetail/main",
+    "pages/index/components/weatherdetail/main",
     "pages/life/main",
-    "pages/selectcitys/main",
-    "pages/todydetail/main",
-    "pages/weatherdetail/main",
-    "pages/searchline/main",
-    "pages/linedetail/main",
-    "pages/line/main",
+    "pages/life/components/searchline/main",
+    "pages/life/components/linedetail/main",
+    "pages/life/components/line/main",
     "pages/music/main",
     "pages/music/components/musicdetail/main"
   ],

@@ -32,6 +32,7 @@
 </template>
 <script>
 import {uniSwipeAction,uniSwipeActionItem} from "@dcloudio/uni-ui";
+import {mapMutations} from 'vuex';
 let region;
 //初始化数据库
 let listdata;
@@ -85,6 +86,7 @@ export default {
         this.getlinelist();
     },
     methods:{
+		...mapMutations(['SETCHOOSEPOINT']),
 		//初始化时加载查询过的历史数据
 		getlinelist(){
 		    linelist.get({
@@ -175,7 +177,7 @@ export default {
                 }
             })
             if(!item.category.includes('公交线路')){
-                this.vuex.state.choosepoint = item;
+				this.SETCHOOSEPOINT(item);
                 wx.navigateBack({
                     delta:1,
                 })
