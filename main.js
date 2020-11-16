@@ -9,8 +9,10 @@ const qqmapsdk = new qqMap({
       });
 Vue.prototype.qqmapsdk = qqmapsdk;
 
+
 Vue.config.productionTip = false
 App.mpType = 'app'
+
 
 const app = new Vue({
   store,

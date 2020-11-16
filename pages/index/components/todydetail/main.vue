@@ -24,6 +24,12 @@ export default {
             aqi:{},
         }
     },
+	onShow() {
+		wx.showShareMenu({
+			withShareTicket:true,
+			menus:['shareAppMessage','shareTimeline']
+		})
+	},
     onLoad(options){
         this.aqi  = JSON.parse(options.data);
     }

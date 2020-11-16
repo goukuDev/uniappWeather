@@ -55,6 +55,12 @@ export default {
 	  dayindex:'',
     }
   },
+  onShow() {
+  	wx.showShareMenu({
+  		withShareTicket:true,
+  		menus:['shareAppMessage','shareTimeline']
+  	})
+  },
   onLoad(options) {
 	this.clickindex  = options.index;
 	this.sevendayweather = JSON.parse(options.data);

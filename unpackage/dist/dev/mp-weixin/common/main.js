@@ -18,8 +18,10 @@ var qqmapsdk = new _qqmapWxJssdk.default({
 });
 _vue.default.prototype.qqmapsdk = qqmapsdk;
 
+
 _vue.default.config.productionTip = false;
 _App.default.mpType = 'app';
+
 
 var app = new _vue.default({
   store: _index.default,

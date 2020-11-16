@@ -307,41 +307,34 @@ var citylist = db.collection('citylist');var _default =
 
 
   onLoad: function onLoad() {
-    this.GetLocation();
     wx.showLoading({
       title: '加载中' });
 
-  },
-  //转发分享
-  onShareAppMessage: function onShareAppMessage(ops) {
-    if (ops.from === "button") {
-      // 来自页面内转发按钮
-      console.log(ops.target);
-    }
-    return {
-      title: "天气", //这里是定义转发的标题
-      path: "pages/index/main", //这里是定义转发的地址
-      success: function success(res) {
-        // 转发成功
-        console.log("转发成功:" + JSON.stringify(res));
-        var shareTickets = res.shareTickets;
-      },
-      fail: function fail(res) {
-        // 转发失败
-        console.log("转发失败:" + JSON.stringify(res));
-      } };
-
-  },
-  onPullDownRefresh: function onPullDownRefresh() {
-    this.GetLocation();
   },
   onShow: function onShow() {
     if (!!this.choosecity) {
       this.region = this.choosecity.province;
       this.getweather(this.choosecity.province);
+    } else {
+      this.GetLocation();
     }
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline'] });
+
   },
-  methods: {
+  onPullDownRefresh: function onPullDownRefresh() {
+    this.GetLocation();
+  },
+  onHide: function onHide() {
+    //切换到别的tab页面时候，地址要默认显示设备所在地址
+    this.clearChooseCity();
+  },
+  methods: _objectSpread(_objectSpread({},
+  (0, _vuex.mapMutations)(['SETCHOOSECITY'])), {}, {
+    clearChooseCity: function clearChooseCity() {
+      this.SETCHOOSECITY('');
+    },
     //初始化时加载查询过的历史数据
     getlinelist: function getlinelist() {var _this = this;
       linelist.get({
@@ -505,7 +498,7 @@ var citylist = db.collection('citylist');var _default =
           _this8.cityhistory = res.data;
         } });
 
-    } } };exports.default = _default;
+    } }) };exports.default = _default;
 
 /***/ }),
 /* 23 */,

@@ -8,7 +8,7 @@
 				placeholder="输入城市全名,如:杭州市" 
 				v-model="city"
 				@focus="showcitylist=false" 
-				@blur="showcitylist=true;checkcitylist=null"
+				@blur="showcitylist=true"
 				@input="checkcity"
 				/>
 			</div>
@@ -120,6 +120,12 @@
 				checkcitylist:null,
 				timeout:null
 			}
+		},
+		onShow() {
+			wx.showShareMenu({
+				withShareTicket:true,
+				menus:['shareAppMessage','shareTimeline']
+			})
 		},
 		methods:{
 			...mapMutations(['SETCHOOSECITY']),

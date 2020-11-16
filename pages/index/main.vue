@@ -95,253 +95,246 @@
 
 <script>
 import {request} from 'utils';
-import {mapState} from 'vuex';
+import {mapState,mapMutations} from 'vuex';
 import {uniDrawer,uniSwipeAction,uniSwipeActionItem} from "@dcloudio/uni-ui";
 //初始化数据库
 wx.cloud.init();
 const db = wx.cloud.database({});
 const citylist = db.collection('citylist');
 export default {
-  data () {
-    return {
-		lifeindex:null,
-		result:null,
-		listdata:null,
-		region:null,
-		twodateweather:[],
-		// 今天天气信息
-		dateweather:{},
-		// 15天天气
-		forecastlist:[],
-		// 24小时天气
-		hourlist:[],
-		options: [
-			{
-				text: '取消',
-				style: {
-					backgroundColor: '#007aff'
-				}
-			}, 
-			{
-				text: '删除',
-				style: {
-					backgroundColor: '#dd524d'
-				}
-			},
-		],
-		cityhistory:null,
-		weathermsg:true
-    }
-  },
-  components:{
+	data () {
+		return {
+			lifeindex:null,
+			result:null,
+			listdata:null,
+			region:null,
+			twodateweather:[],
+			// 今天天气信息
+			dateweather:{},
+			// 15天天气
+			forecastlist:[],
+			// 24小时天气
+			hourlist:[],
+			options: [
+				{
+					text: '取消',
+					style: {
+						backgroundColor: '#007aff'
+					}
+				}, 
+				{
+					text: '删除',
+					style: {
+						backgroundColor: '#dd524d'
+					}
+				},
+			],
+			cityhistory:null,
+			weathermsg:true
+		}
+	},
+	components:{
 	  uniDrawer,uniSwipeAction,uniSwipeActionItem
-  },
-  computed:{
+	},
+	computed:{
 	  ...mapState({
 		  choosecity:state=>state.index.choosecity
 	  })
-  },
-  onLoad(){
-    this.GetLocation();
-	wx.showLoading({
-	  title: '加载中',
-	})
-  },
-  //转发分享
-  onShareAppMessage: function(ops) {
-    if (ops.from === "button") {
-      // 来自页面内转发按钮
-      console.log(ops.target);
-    }
-    return {
-      title: "天气",//这里是定义转发的标题
-      path: `pages/index/main`,//这里是定义转发的地址
-      success: function(res) {
-        // 转发成功
-        console.log("转发成功:" + JSON.stringify(res));
-        var shareTickets = res.shareTickets;
-      },
-      fail: function(res) {
-        // 转发失败
-        console.log("转发失败:" + JSON.stringify(res));
-      }
-    };
-  },
-  onPullDownRefresh () {
-	this.GetLocation();
-  },
-  onShow() {
-  	if(!!this.choosecity){
-		this.region = this.choosecity.province;
-		this.getweather(this.choosecity.province)
-	}
-  },
-  methods: {
-	//初始化时加载查询过的历史数据
-	getlinelist(){
-	    linelist.get({
-	        success:res=>{
-	            this.checkpoint = res.data;
-	        }
-	    })
-	},  
-	GetLocation(){
-		wx.getSetting({
-			success:res=>{			
-				if (!JSON.stringify(res.authSetting).includes('scope.userLocation')) {  //3.1 每次进入程序判断当前是否获得授权，如果没有就去获得授权，如果获得授权，就直接获取当前地理位置
-					this.getAuthorizeInfo()
-				}else{
-					this.getLocationInfo()
-				}
-			}
-		});
 	},
-	getAuthorizeInfo(){  //1. uniapp弹窗弹出获取授权（地理，个人微信信息等授权信息）弹窗
-		wx.authorize({
-			scope: "scope.userLocation",
-			success:res=>{ //1.1 允许授权
-				this.getLocationInfo();
-			},
-			fail(){    //1.2 拒绝授权
-				console.log("你拒绝了授权，无法获得周边信息")
-			}
+	onLoad(){
+		wx.showLoading({
+		  title: '加载中',
 		})
 	},
-	getLocationInfo(){  //2. 获取地理位置
-		wx.getLocation({
-			type: 'wgs84',
-			success:data=> {
-				this.qqmapsdk.reverseGeocoder({
-				  location: {
-				    latitude: data.latitude,
-				    longitude: data.longitude
-				  },
-				  success: (res) =>{
-					   if(res.result.address_component.province==res.result.address_component.city)
-					  		this.region = res.result.address_component.province+','+res.result.address_component.district;
-					   else
-					  		this.region = res.result.address_component.province+','+res.result.address_component.city+','+res.result.address_component.district;
-				    this.getweather(this.region);
-				  },
-				  fail:  (err) => {
-				    console.log(err);
-				  }
-				});
-			}
-		});
-	},
-    getweather(position,id){
-		request('https://jisutqybmf.market.alicloudapi.com/weather/query?city='+position.split(',')[position.split(',').length-1],{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000' })
-		.then(res=>{
-			if(res.statusCode!=200){
-				this.weathermsg = false;
-				return
-			}
-			this.weathermsg = true;
-			wx.hideLoading();
-			this.result =  res.data.result;
-			this.lifeindex = this.result.index;
-			this.twodateweather= this.result.daily.slice(0,2)
-			this.dateweather={
-			  current_temperature: this.result.temp,
-			  current_condition: this.result.weather,
-			  wind_direction: this.result.winddirect,
-			  wind_level: this.result.windpower,
-			  quality_level: this.result.aqi.quality,
-			  aqi: this.result.aqi.aqi,
-			  background:this.result.aqi.aqiinfo.color,
-			  humidity:this.result.humidity,
-			  img:this.result.img
-			},
-			this.forecastlist = this.result.daily;
-			this.hourlist = this.result.hourly.map(o=>Object.assign({},{'condition': o.weather,'hour':o.time,'temperature':o.temp}))
-			wx.stopPullDownRefresh();
-			//储存城市天气历史记录
-			this.listdata = {city:position,temp:this.result.temp,img:this.result.img};
-			citylist.get({
-			    success:res=>{
-					// 没有历史结果就保存,有历史结果就更新
-			        if(!res.data.map(o=>o.data).some(o=>o.city==this.listdata.city)){
-			            citylist.add({
-			                data:{
-			                    data:this.listdata
-			                },
-			                success: function(res) {
-			                    console.log(res._id)
-			                }
-			            })
-			        }
-					if(!!id && !(!res.data.map(o=>o.data).some(o=>o.city==this.listdata.city))){
-						citylist.doc(id).update({
-							data:{
-							    data:this.listdata
-							},
-							success:res=>{
-								console.log(res_id)
-							}
-						})
-					}
-			    }
-			})
-		})
-    },
-    //去到详情页
-    gotodetail(index){
-		wx.navigateTo({
-			url:`../../pages/index/components/weatherdetail/main?data=${JSON.stringify(this.forecastlist)}&lifeindex=${JSON.stringify(this.lifeindex)}&index=${index}`
-		})
-    },
-    totodydetail(){
-		let data = {
-			weather:this.result.weather,
-			winddirect:this.result.winddirect,
-			windpower:this.result.windpower,
-			temp:this.result.temp,
-			pressure:this.result.pressure,
-			humidity:this.result.humidity,
-			quality:this.result.aqi.quality,
-			ipm2_5:this.result.aqi.ipm2_5,
-			aqi:this.result.index[0].detail,
-			img:this.result.img
+	onShow() {
+		if(!!this.choosecity){
+			this.region = this.choosecity.province;
+			this.getweather(this.choosecity.province)
+		}else{
+			this.GetLocation();
 		}
-		wx.navigateTo({
-			url:`../../pages/index/components/todydetail/main?data=${JSON.stringify(data)}`
+		wx.showShareMenu({
+			withShareTicket:true,
+			menus:['shareAppMessage','shareTimeline']
 		})
-    },
-	tocitys(){
-		wx.navigateTo({
-			url:'../../pages/index/components/selectcitys/main'
-		})
-		setTimeout(()=>{
-			this.$refs.unidrawer.close();
-		},1000)
 	},
-	bindClick({content},{_id}){
-		if(content.text != '删除') return;
-		citylist.doc(_id).remove({
-		    success: (res) => {
+	onPullDownRefresh () {
+		this.GetLocation();
+	},
+	onHide(){
+		//切换到别的tab页面时候，地址要默认显示设备所在地址
+		this.clearChooseCity();
+	},
+	methods: {
+		...mapMutations(['SETCHOOSECITY']),
+		clearChooseCity(){
+			this.SETCHOOSECITY('')
+		},
+		//初始化时加载查询过的历史数据
+		getlinelist(){
+			linelist.get({
+				success:res=>{
+					this.checkpoint = res.data;
+				}
+			})
+		},  
+		GetLocation(){
+			wx.getSetting({
+				success:res=>{			
+					if (!JSON.stringify(res.authSetting).includes('scope.userLocation')) {  //3.1 每次进入程序判断当前是否获得授权，如果没有就去获得授权，如果获得授权，就直接获取当前地理位置
+						this.getAuthorizeInfo()
+					}else{
+						this.getLocationInfo()
+					}
+				}
+			});
+		},
+		getAuthorizeInfo(){  //1. uniapp弹窗弹出获取授权（地理，个人微信信息等授权信息）弹窗
+			wx.authorize({
+				scope: "scope.userLocation",
+				success:res=>{ //1.1 允许授权
+					this.getLocationInfo();
+				},
+				fail(){    //1.2 拒绝授权
+					console.log("你拒绝了授权，无法获得周边信息")
+				}
+			})
+		},
+		getLocationInfo(){  //2. 获取地理位置
+			wx.getLocation({
+				type: 'wgs84',
+				success:data=> {
+					this.qqmapsdk.reverseGeocoder({
+					  location: {
+						latitude: data.latitude,
+						longitude: data.longitude
+					  },
+					  success: (res) =>{
+						   if(res.result.address_component.province==res.result.address_component.city)
+								this.region = res.result.address_component.province+','+res.result.address_component.district;
+						   else
+								this.region = res.result.address_component.province+','+res.result.address_component.city+','+res.result.address_component.district;
+						this.getweather(this.region);
+					  },
+					  fail:  (err) => {
+						console.log(err);
+					  }
+					});
+				}
+			});
+		},
+		getweather(position,id){
+			request('https://jisutqybmf.market.alicloudapi.com/weather/query?city='+position.split(',')[position.split(',').length-1],{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000' })
+			.then(res=>{
+				if(res.statusCode!=200){
+					this.weathermsg = false;
+					return
+				}
+				this.weathermsg = true;
+				wx.hideLoading();
+				this.result =  res.data.result;
+				this.lifeindex = this.result.index;
+				this.twodateweather= this.result.daily.slice(0,2)
+				this.dateweather={
+				  current_temperature: this.result.temp,
+				  current_condition: this.result.weather,
+				  wind_direction: this.result.winddirect,
+				  wind_level: this.result.windpower,
+				  quality_level: this.result.aqi.quality,
+				  aqi: this.result.aqi.aqi,
+				  background:this.result.aqi.aqiinfo.color,
+				  humidity:this.result.humidity,
+				  img:this.result.img
+				},
+				this.forecastlist = this.result.daily;
+				this.hourlist = this.result.hourly.map(o=>Object.assign({},{'condition': o.weather,'hour':o.time,'temperature':o.temp}))
+				wx.stopPullDownRefresh();
+				//储存城市天气历史记录
+				this.listdata = {city:position,temp:this.result.temp,img:this.result.img};
 				citylist.get({
 					success:res=>{
-						this.cityhistory = res.data;
+						// 没有历史结果就保存,有历史结果就更新
+						if(!res.data.map(o=>o.data).some(o=>o.city==this.listdata.city)){
+							citylist.add({
+								data:{
+									data:this.listdata
+								},
+								success: function(res) {
+									console.log(res._id)
+								}
+							})
+						}
+						if(!!id && !(!res.data.map(o=>o.data).some(o=>o.city==this.listdata.city))){
+							citylist.doc(id).update({
+								data:{
+									data:this.listdata
+								},
+								success:res=>{
+									console.log(res_id)
+								}
+							})
+						}
 					}
 				})
-		    }
-		})
-	},
-	closedrawer(data,id){
-		this.getweather(data,id);
-		this.region = data;
-		this.$refs.unidrawer.close();
-	},
-	opendrawer(){
-		this.$refs.unidrawer.open();
-		citylist.get({
-			success:res=>{
-				this.cityhistory = res.data;
+			})
+		},
+		//去到详情页
+		gotodetail(index){
+			wx.navigateTo({
+				url:`../../pages/index/components/weatherdetail/main?data=${JSON.stringify(this.forecastlist)}&lifeindex=${JSON.stringify(this.lifeindex)}&index=${index}`
+			})
+		},
+		totodydetail(){
+			let data = {
+				weather:this.result.weather,
+				winddirect:this.result.winddirect,
+				windpower:this.result.windpower,
+				temp:this.result.temp,
+				pressure:this.result.pressure,
+				humidity:this.result.humidity,
+				quality:this.result.aqi.quality,
+				ipm2_5:this.result.aqi.ipm2_5,
+				aqi:this.result.index[0].detail,
+				img:this.result.img
 			}
-		})
+			wx.navigateTo({
+				url:`../../pages/index/components/todydetail/main?data=${JSON.stringify(data)}`
+			})
+		},
+		tocitys(){
+			wx.navigateTo({
+				url:'../../pages/index/components/selectcitys/main'
+			})
+			setTimeout(()=>{
+				this.$refs.unidrawer.close();
+			},1000)
+		},
+		bindClick({content},{_id}){
+			if(content.text != '删除') return;
+			citylist.doc(_id).remove({
+				success: (res) => {
+					citylist.get({
+						success:res=>{
+							this.cityhistory = res.data;
+						}
+					})
+				}
+			})
+		},
+		closedrawer(data,id){
+			this.getweather(data,id);
+			this.region = data;
+			this.$refs.unidrawer.close();
+		},
+		opendrawer(){
+			this.$refs.unidrawer.open();
+			citylist.get({
+				success:res=>{
+					this.cityhistory = res.data;
+				}
+			})
+		}
 	}
-  }
 }
 </script>
 <style scoped>

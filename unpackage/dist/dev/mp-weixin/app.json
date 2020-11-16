@@ -4,10 +4,10 @@
     "pages/index/components/selectcitys/main",
     "pages/index/components/todydetail/main",
     "pages/index/components/weatherdetail/main",
-    "pages/life/main",
-    "pages/life/components/searchline/main",
-    "pages/life/components/linedetail/main",
-    "pages/life/components/line/main",
+    "pages/navigation/main",
+    "pages/navigation/components/searchline/main",
+    "pages/navigation/components/linedetail/main",
+    "pages/navigation/components/line/main",
     "pages/music/main",
     "pages/music/components/musicdetail/main"
   ],
@@ -31,14 +31,8 @@
         "selectedIconPath": "static/tabs/tianqis.png"
       },
       {
-        "text": "音乐",
-        "pagePath": "pages/music/main",
-        "iconPath": "static/tabs/yinle.png",
-        "selectedIconPath": "static/tabs/yinles.png"
-      },
-      {
         "text": "导航",
-        "pagePath": "pages/life/main",
+        "pagePath": "pages/navigation/main",
         "iconPath": "static/tabs/daohang.png",
         "selectedIconPath": "static/tabs/daohangs.png"
       }
@@ -50,5 +44,6 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap95.json"
 }

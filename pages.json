@@ -27,25 +27,25 @@
 			}
 		},
 		{
-				"path":"pages/life/main",
+				"path":"pages/navigation/main",
 				"style":{
 					"navigationBarTitleText":"导航"
 				}
 		},
 		{
-			"path":"pages/life/components/searchline/main",
+			"path":"pages/navigation/components/searchline/main",
 			"style":{
 				"navigationBarTitleText":"搜索"
 			}
 		},
 		{
-			"path":"pages/life/components/linedetail/main",
+			"path":"pages/navigation/components/linedetail/main",
 			"style":{
 				"navigationBarTitleText":"线路详情"
 			}
 		},
 		{
-			"path":"pages/life/components/line/main",
+			"path":"pages/navigation/components/line/main",
 			"style":{
 				"navigationBarTitleText":"线路"
 			}
@@ -84,14 +84,8 @@
 		  "selectedIconPath": "static/tabs/tianqis.png"
 		},
 		{
-		  "text": "音乐",
-		  "pagePath": "pages/music/main",
-		  "iconPath": "static/tabs/yinle.png",
-		  "selectedIconPath": "static/tabs/yinles.png"
-		},
-		{
 		  "text": "导航",
-		  "pagePath": "pages/life/main",
+		  "pagePath": "pages/navigation/main",
 		  "iconPath": "static/tabs/daohang.png",
 		  "selectedIconPath": "static/tabs/daohangs.png"
 		}

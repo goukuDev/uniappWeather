@@ -75,16 +75,20 @@ export default {
 			timeout:null
         }
     },
-    onLoad(options){
-        region = options.city;
-        this.value = options.value;
-    },
-    onUnload(){
-        Object.assign(this, this.$options.data())
-    },
-    onShow(){
-        this.getlinelist();
-    },
+	onShow() {
+		wx.showShareMenu({
+			withShareTicket:true,
+			menus:['shareAppMessage','shareTimeline']
+		})
+		this.getlinelist();
+	},
+	onLoad(options){
+	    region = options.city;
+	    this.value = options.value;
+	},
+	onUnload(){
+	    Object.assign(this, this.$options.data())
+	},
     methods:{
 		...mapMutations(['SETCHOOSEPOINT']),
 		//初始化时加载查询过的历史数据
