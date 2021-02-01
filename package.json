@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/syhITMAN/uniappWeather/issues"
   },
-  "homepage": "https://github.com/syhITMAN/uniappWeather#readme"
+  "homepage": "https://github.com/syhITMAN/uniappWeather#readme",
+  "dependencies": {
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.1"
+  }
 }

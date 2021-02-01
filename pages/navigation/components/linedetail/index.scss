@@ -1,0 +1,38 @@
+.linedetail{
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+	/* 非公交路线详情 */
+	.linelist view{
+	    min-height: 35px;
+	    line-height: 35px;
+	    text-indent: 10px;
+		font-size: 15px;
+	}
+	/* 公交路线详情 */
+	.transit {
+		.walking view{
+			height: 30px;
+			line-height: 30px;
+			text-indent: 10px;
+			font-size: 15px;
+		}
+		.transit{
+			view{
+			    height: 30px;
+			    line-height: 30px;
+			    text-indent: 10px;
+			    font-size: 15px;
+			}
+			swiper{
+			    border-bottom: 1px solid rgba(0,0,0,0.1)
+			}
+		}
+	}
+	.walktrans{
+	    height: 30px;
+	    line-height: 30px;
+	    text-indent: 10px;
+	    font-size: 15px;
+	}
+}

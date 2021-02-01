@@ -1,0 +1,71 @@
+.line{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+	.play{
+	    position:fixed;
+	    z-index:1;
+	    width:100%;
+	    background:#fff;
+	    line-height:50px;
+	    font-size:15px;
+	    border-bottom: 1px solid rgba(0,0,0,0.1);
+	    box-sizing: border-box;
+		.fromto{
+			height: 75px;
+			margin: 5px auto;
+			cover-view{
+				height: 35px;
+				padding-left: 10px;
+				line-height: 35px;
+				width:calc(100% - 20px);
+				border: 1px solid #ccc;
+				box-sizing: border-box;
+				border-radius: 18px;
+				margin:0 10px;
+				&:last-child{
+					margin-top:5px;
+				}
+			}
+		}
+		.linetype{
+			height: 40px;
+			display:flex;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+			cover-view{
+			    flex: 1;
+			    text-align: center;
+			    line-height: 40px;
+			    color: #000;
+				&.active{
+					background: #396de5;
+					color: #fff;
+				}
+			}
+		}
+	}
+	.bottom{
+	    height: 80px;
+		swiper{
+		    height:80px;
+		    width: 100%;
+		    background: #fff;
+			swiper-item{
+			    display: flex;
+			}
+		}
+		.money{
+		    height:30px;
+		    line-height:30px;
+		    color:#999;
+		    font-size:15px;
+		}
+		.time{
+		    height:50px;
+		    line-height:50px;
+		    font-size:18px;
+		    font-weight:600;
+		}
+	}
+}

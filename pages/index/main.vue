@@ -1,84 +1,82 @@
 <template>
 	<div class="index">
-		<div class="indexbox">
-			<div class="localtion">
-				<div 
-				v-if='!!region'
-				@click='opendrawer' 
-				style='height:100%;display: flex;justify-content: center;align-items: center;'>
-					<icon type="search" size="18" color='#666' style="height:20px;"></icon>
-					{{region}}
-				</div>
-				<uni-drawer ref="unidrawer">
-					<div style='height:40px;background:#333;'>
-						<div  style='height: 40px;width: calc(100% - 40px);float: left;text-align: left;color:#fff;font-size:15px;text-indent:10px;'>搜索城市</div>
-						<icon type="search" size="20" color='#fff' style="float: right;width: 40px;height:30px;padding-top: 10px;" @click="tocitys"></icon>
-					</div>
-					<scroll-view style='height:calc(100% - 40px)' scroll-y> 
-							<uni-swipe-action>
-								<uni-swipe-action-item 
-								:right-options="options" 
-								v-for="(item,index) in cityhistory" 
-								:key='index'
-								@click='bindClick($event,item)'
-								>
-									<view style="display: flex;width: 100%;height: 50px;line-height: 50px;border-bottom: 1px solid #ccc;" @click.stop="closedrawer(item.data.city,item._id)">
-										<div style='flex:70%;text-align:left;text-indent:10px;font-size:15px;'>{{item.data.city.split(',')[item.data.city.split(',').length-1]}}</div>
-										<div style='flex:30%;text-align:left;font-size:15px;'>
-											{{item.data.temp}}℃
-											<image :src="'/static/weathercn/'+item.data.img+'.png'" mode="" style="width: 25px;height: 25px;margin-top: 10px; float: right;"></image>
-										</div>
-									</view>
-								</uni-swipe-action-item>
-							</uni-swipe-action>
-					</scroll-view>
-				</uni-drawer>
+		<div class="localtion">
+			<div 
+			v-if='!!region'
+			@click='opendrawer' 
+			style='height:100%;display: flex;justify-content: center;align-items: center;'>
+				<icon type="search" size="18" color='#666' style="height:20px;"></icon>
+				{{region}}
 			</div>
-			<div class='showrequest' v-if='weathermsg'>
-				<div class='data_weather'  v-if="!!Object.values(dateweather).length" @click="totodydetail">
-					<div class='left'>
-						<image style='width:60px;height:60px;' :src="`/static/weathercn/${dateweather.img}.png`"/>
-						<div>{{dateweather.wind_direction}} {{dateweather.wind_level}} 湿度:{{dateweather.humidity}}%</div>
-					</div>
-					<div class="right">
-						<div >{{dateweather.current_condition}}</div>
-						<div :style="'background:'+dateweather.background">{{dateweather.quality_level}}    {{dateweather.aqi}}</div>
-					</div>
+			<uni-drawer ref="unidrawer">
+				<div style='height:40px;background:#333;'>
+					<div  style='height: 40px;width: calc(100% - 40px);float: left;text-align: left;color:#fff;font-size:15px;text-indent:10px;'>搜索城市</div>
+					<icon type="search" size="20" color='#fff' style="float: right;width: 40px;height:30px;padding-top: 10px;" @click="tocitys"></icon>
 				</div>
-				<!-- 一周天气 -->
-				<div class='weakWeather' v-if="forecastlist.length">
-					<h2>一周天气预报</h2>
-					<swiper display-multiple-items="3" duration="500">
-					  <block v-for="(item,index) in forecastlist" :key="index">
-						<swiper-item @click="gotodetail(index)">
-							<div>{{item.week}}</div>
-							<div>{{item.date}}</div>
-							<div style='font-size:13px;'>{{item.day.weather==item.night.weather? item.day.weather:item.day.weather+'转'+item.night.weather}}</div>
-							<div>{{item.night.templow}}</div>
-							<div>{{item.day.temphigh}}</div>
-							<div>{{item.day.winddirect=='持续无风向'? '微风':item.day.winddirect}}</div>
-							<div>{{item.day.windpower==item.night.windpower? item.day.windpower:item.day.windpower+'转'+item.night.windpower}}</div>
-						</swiper-item>
-					  </block>
-					</swiper>
+				<scroll-view style='height:calc(100% - 40px)' scroll-y> 
+						<uni-swipe-action>
+							<uni-swipe-action-item 
+							:right-options="options" 
+							v-for="(item,index) in cityhistory" 
+							:key='index'
+							@click='bindClick($event,item)'
+							>
+								<view style="display: flex;width: 100%;height: 50px;line-height: 50px;border-bottom: 1px solid #ccc;" @click.stop="closedrawer(item.data.city,item._id)">
+									<div style='flex:70%;text-align:left;text-indent:10px;font-size:15px;'>{{item.data.city.split(',')[item.data.city.split(',').length-1]}}</div>
+									<div style='flex:30%;text-align:left;font-size:15px;'>
+										{{item.data.temp}}℃
+										<image :src="'/static/weathercn/'+item.data.img+'.png'" mode="" style="width: 25px;height: 25px;margin-top: 10px; float: right;"></image>
+									</div>
+								</view>
+							</uni-swipe-action-item>
+						</uni-swipe-action>
+				</scroll-view>
+			</uni-drawer>
+		</div>
+		<div class='showrequest' v-if='weathermsg'>
+			<div class='data_weather'  v-if="!!Object.values(dateweather).length" @click="totodydetail">
+				<div class='left'>
+					<image style='width:60px;height:60px;' :src="`/static/weathercn/${dateweather.img}.png`"/>
+					<div>{{dateweather.wind_direction}} {{dateweather.wind_level}} 湿度:{{dateweather.humidity}}%</div>
 				</div>
-				<!-- 24小时天气 -->
-				<div class="hour" v-if="hourlist.length">
-					<h2>24小时天气预报</h2>
-					<swiper display-multiple-items="6" interval="500" duration="500">
-					  <block v-for="(item,index) in hourlist" :key="index">
-						<swiper-item>
-							<div>{{item.condition}}</div>
-							<div>{{item.temperature}}</div>
-							<div>{{item.hour}}</div>
-						</swiper-item>
-					  </block>
-					</swiper>
+				<div class="right">
+					<div >{{dateweather.current_condition}}</div>
+					<div :style="'background:'+dateweather.background">{{dateweather.quality_level}}    {{dateweather.aqi}}</div>
 				</div>
 			</div>
-			<div class="noweathermsg" style='height: calc(100% - 40px);text-align: center;line-height: 100px;font-size: 18px;' v-else>
-				当前城市天气查询失败
+			<!-- 一周天气 -->
+			<div class='weakWeather' v-if="forecastlist.length">
+				<h2>一周天气预报</h2>
+				<swiper display-multiple-items="3" duration="500">
+				  <block v-for="(item,index) in forecastlist" :key="index">
+					<swiper-item @click="gotodetail(index)">
+						<div>{{item.week}}</div>
+						<div>{{item.date}}</div>
+						<div style='font-size:13px;'>{{item.day.weather==item.night.weather? item.day.weather:item.day.weather+'转'+item.night.weather}}</div>
+						<div>{{item.night.templow}}</div>
+						<div>{{item.day.temphigh}}</div>
+						<div>{{item.day.winddirect=='持续无风向'? '微风':item.day.winddirect}}</div>
+						<div>{{item.day.windpower==item.night.windpower? item.day.windpower:item.day.windpower+'转'+item.night.windpower}}</div>
+					</swiper-item>
+				  </block>
+				</swiper>
 			</div>
+			<!-- 24小时天气 -->
+			<div class="hour" v-if="hourlist.length">
+				<h2>24小时天气预报</h2>
+				<swiper display-multiple-items="6" interval="500" duration="500">
+				  <block v-for="(item,index) in hourlist" :key="index">
+					<swiper-item>
+						<div>{{item.condition}}</div>
+						<div>{{item.temperature}}</div>
+						<div>{{item.hour}}</div>
+					</swiper-item>
+				  </block>
+				</swiper>
+			</div>
+		</div>
+		<div class="noweathermsg" style='height: calc(100% - 40px);text-align: center;line-height: 100px;font-size: 18px;' v-else>
+			当前城市天气查询失败
 		</div>
 	</div>
 </template>
@@ -326,6 +324,6 @@ export default {
 	}
 }
 </script>
-<style scoped>
-	@import 'index.css';
+<style lang="scss" scoped>
+	@import 'index.scss';
 </style>

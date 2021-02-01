@@ -304,6 +304,6 @@ export default {
     }
 }
 </script>
-<style scoped>
-    @import './index.css';
+<style lang="scss" scoped>
+  @import './index.scss';
 </style>

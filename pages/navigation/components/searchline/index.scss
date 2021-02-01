@@ -1,0 +1,85 @@
+.searchline{
+    height: 100%;
+	overflow: hidden;
+	.autofocus{
+	    height: 40px;
+	    position: relative;
+		margin: 10px 3%;
+		icon{
+		    position: absolute;
+		    top: 8px;
+		    right: 10px;
+		}
+		input{
+		    float:left;
+			width: 100%;
+		    height:100%;
+		    line-height:40px;
+		    box-sizing:border-box;
+		    color:#666;
+		    border:1px solid #ccc;
+		    border-radius:20px;
+		    font-size:15px;
+			padding:0 20px;
+		}
+	}
+	/* 历史搜索记录 */
+	.pointhistory{
+	    height: calc(100% - 70px);
+	    overflow-y: auto;
+	    -webkit-overflow-scrolling: touch;
+		label{
+		    display:block;
+		    margin:0 10px;
+		    height:50px;
+		    line-height:50px;
+		    text-align:center;
+		    font-size:15px;
+		}
+	}
+	/* 当前搜索列表 */
+	.lifelist{
+	    height: calc(100% - 40px);
+	    overflow-y: auto;
+	    -webkit-overflow-scrolling: touch;
+		label{
+		    display:block;
+		    margin:0 10px;
+		    height:50px;
+		    line-height:50px;
+		    text-align:center;
+		    font-size:15px;
+		}
+		.lists{
+		    height: 58px;
+		    text-align:left;
+		    padding: 4px 0;
+		    box-sizing: border-box;
+		    border-bottom: 1px solid #999;
+		    margin: 0 10px;
+			&:last-child{
+				border: none;
+			}
+			view{
+				&:first-child{
+					height: 35px;
+					line-height: 35px;
+					font-size:18px;
+					color: #444;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+				&:last-child{
+					height: 15px;
+					line-height:15px;
+					font-size:13px;
+					color: #666;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+			}
+		}
+	}
+}

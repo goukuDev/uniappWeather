@@ -1,0 +1,66 @@
+.life{
+  height: 100%;
+  overflow: hidden;
+  .play{
+    position:fixed;
+    width:94%;
+    height:40px;
+    z-index:1;
+    line-height:40px;
+    margin:10px 3%;
+    background:#fff;
+    font-size:15px;
+    border-radius:3px;
+    color:#666;
+    padding-left:10px;
+    box-sizing: border-box;
+    display: flex;
+	.inputbox{
+	  height: 100%;
+	  flex: 1;
+	  line-height: 40px;
+	}
+	.deletebox{
+	  height: 100%;
+	  width: 10%;
+	  line-height: 40px;
+	  text-align: center;
+	}
+  }
+  .bottom{
+    position:fixed;
+    bottom:10px;
+    width:94%;
+    margin:0 3%;
+    background:#fff;
+    border-radius:3px;
+	.title{
+	  height: 30px;
+	  line-height: 30px;
+	  padding:10px 10px 0;
+	  color: #000;
+	  font-size:18px;
+	}
+	.address{
+	  height: 20px;
+	  line-height: 20px;
+	  padding: 10px;
+	  color: #666;
+	  font-size:15px;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
+	}
+	.line{
+	  height: 35px;
+	  background:#396de5;
+	  color:#fff;
+	  width:65px;
+	  float: right;
+	  border-radius: 0;
+	  line-height:35px;
+		text-align:center;
+		font-size:18px;	
+	}
+  }
+}
