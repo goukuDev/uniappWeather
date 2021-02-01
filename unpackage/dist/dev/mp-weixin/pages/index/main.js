@@ -255,12 +255,13 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
 //初始化数据库
 wx.cloud.init();
 var db = wx.cloud.database({});
-var citylist = db.collection('citylist');var _default =
+var citylist = db.collection('citylist');
+
+var result,lifeindex = null;var _default =
+
 {
   data: function data() {
     return {
-      lifeindex: null,
-      result: null,
       listdata: null,
       region: null,
       // 今天天气信息
@@ -386,24 +387,24 @@ var citylist = db.collection('citylist');var _default =
         }
         _this5.weathermsg = true;
         wx.hideLoading();
-        _this5.result = res.data.result;
-        _this5.lifeindex = _this5.result.index;
+        result = res.data.result;
+        lifeindex = result.index;
         _this5.dateweather = {
-          current_temperature: _this5.result.temp,
-          current_condition: _this5.result.weather,
-          wind_direction: _this5.result.winddirect,
-          wind_level: _this5.result.windpower,
-          quality_level: _this5.result.aqi.quality,
-          aqi: _this5.result.aqi.aqi,
-          background: _this5.result.aqi.aqiinfo.color,
-          humidity: _this5.result.humidity,
-          img: _this5.result.img },
+          current_temperature: result.temp,
+          current_condition: result.weather,
+          wind_direction: result.winddirect,
+          wind_level: result.windpower,
+          quality_level: result.aqi.quality,
+          aqi: result.aqi.aqi,
+          background: result.aqi.aqiinfo.color,
+          humidity: result.humidity,
+          img: result.img },
 
-        _this5.forecastlist = _this5.result.daily;
-        _this5.hourlist = _this5.result.hourly.map(function (o) {return Object.assign({}, { 'condition': o.weather, 'hour': o.time, 'temperature': o.temp });});
+        _this5.forecastlist = result.daily;
+        _this5.hourlist = result.hourly.map(function (o) {return Object.assign({}, { 'condition': o.weather, 'hour': o.time, 'temperature': o.temp });});
         wx.stopPullDownRefresh();
         //储存城市天气历史记录
-        _this5.listdata = { city: position, temp: _this5.result.temp, img: _this5.result.img };
+        _this5.listdata = { city: position, temp: result.temp, img: result.img };
         citylist.get({
           success: function success(res) {
             // 没有历史结果就保存,有历史结果就更新
@@ -434,21 +435,21 @@ var citylist = db.collection('citylist');var _default =
     //去到详情页
     gotodetail: function gotodetail(index) {
       wx.navigateTo({
-        url: "../../pages/index/components/weatherdetail/main?data=".concat(JSON.stringify(this.forecastlist), "&lifeindex=").concat(JSON.stringify(this.lifeindex), "&index=").concat(index) });
+        url: "../../pages/index/components/weatherdetail/main?data=".concat(JSON.stringify(this.forecastlist), "&lifeindex=").concat(JSON.stringify(lifeindex), "&index=").concat(index) });
 
     },
     totodydetail: function totodydetail() {
       var data = {
-        weather: this.result.weather,
-        winddirect: this.result.winddirect,
-        windpower: this.result.windpower,
-        temp: this.result.temp,
-        pressure: this.result.pressure,
-        humidity: this.result.humidity,
-        quality: this.result.aqi.quality,
-        ipm2_5: this.result.aqi.ipm2_5,
-        aqi: this.result.index[0].detail,
-        img: this.result.img };
+        weather: result.weather,
+        winddirect: result.winddirect,
+        windpower: result.windpower,
+        temp: result.temp,
+        pressure: result.pressure,
+        humidity: result.humidity,
+        quality: result.aqi.quality,
+        ipm2_5: result.aqi.ipm2_5,
+        aqi: result.index[0].detail,
+        img: result.img };
 
       wx.navigateTo({
         url: "../../pages/index/components/todydetail/main?data=".concat(JSON.stringify(data)) });

@@ -138,13 +138,13 @@ export default {
 		},
 		tolifedetail(){
 		  wx.navigateTo({
-			url:'../../pages/life/components/searchline/main?city='+region+'&value='+this.coverview,
+			url:'../../pages/navigation/components/searchline/main?city='+region+'&value='+this.coverview,
 		  })
 		},
 		//显示不同类型的路线图
 		showlinedetail(to){
 		  wx.navigateTo({
-			url:'../../pages/life/components/line/main?localtion='+JSON.stringify(nowpoint)+'&to='+JSON.stringify(to)+'&mypoint='+address+'&topoint='+this.coverview,
+			url:'../../pages/navigation/components/line/main?localtion='+JSON.stringify(nowpoint)+'&to='+JSON.stringify(to)+'&mypoint='+address+'&topoint='+this.coverview,
 		  })
 		},
 		deletebox(){

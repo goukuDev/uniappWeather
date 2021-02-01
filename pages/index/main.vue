@@ -91,11 +91,12 @@ import {uniDrawer,uniSwipeAction,uniSwipeActionItem} from "@dcloudio/uni-ui";
 wx.cloud.init();
 const db = wx.cloud.database({});
 const citylist = db.collection('citylist');
+
+let result,lifeindex = null;
+
 export default {
 	data () {
 		return {
-			lifeindex:null,
-			result:null,
 			listdata:null,
 			region:null,
 			// 今天天气信息
@@ -221,24 +222,24 @@ export default {
 				}
 				this.weathermsg = true;
 				wx.hideLoading();
-				this.result =  res.data.result;
-				this.lifeindex = this.result.index;
+				result =  res.data.result;
+				lifeindex = result.index;
 				this.dateweather={
-				  current_temperature: this.result.temp,
-				  current_condition: this.result.weather,
-				  wind_direction: this.result.winddirect,
-				  wind_level: this.result.windpower,
-				  quality_level: this.result.aqi.quality,
-				  aqi: this.result.aqi.aqi,
-				  background:this.result.aqi.aqiinfo.color,
-				  humidity:this.result.humidity,
-				  img:this.result.img
+				  current_temperature: result.temp,
+				  current_condition: result.weather,
+				  wind_direction: result.winddirect,
+				  wind_level: result.windpower,
+				  quality_level: result.aqi.quality,
+				  aqi: result.aqi.aqi,
+				  background:result.aqi.aqiinfo.color,
+				  humidity:result.humidity,
+				  img:result.img
 				},
-				this.forecastlist = this.result.daily;
-				this.hourlist = this.result.hourly.map(o=>Object.assign({},{'condition': o.weather,'hour':o.time,'temperature':o.temp}))
+				this.forecastlist = result.daily;
+				this.hourlist = result.hourly.map(o=>Object.assign({},{'condition': o.weather,'hour':o.time,'temperature':o.temp}))
 				wx.stopPullDownRefresh();
 				//储存城市天气历史记录
-				this.listdata = {city:position,temp:this.result.temp,img:this.result.img};
+				this.listdata = {city:position,temp:result.temp,img:result.img};
 				citylist.get({
 					success:res=>{
 						// 没有历史结果就保存,有历史结果就更新
@@ -269,21 +270,21 @@ export default {
 		//去到详情页
 		gotodetail(index){
 			wx.navigateTo({
-				url:`../../pages/index/components/weatherdetail/main?data=${JSON.stringify(this.forecastlist)}&lifeindex=${JSON.stringify(this.lifeindex)}&index=${index}`
+				url:`../../pages/index/components/weatherdetail/main?data=${JSON.stringify(this.forecastlist)}&lifeindex=${JSON.stringify(lifeindex)}&index=${index}`
 			})
 		},
 		totodydetail(){
 			let data = {
-				weather:this.result.weather,
-				winddirect:this.result.winddirect,
-				windpower:this.result.windpower,
-				temp:this.result.temp,
-				pressure:this.result.pressure,
-				humidity:this.result.humidity,
-				quality:this.result.aqi.quality,
-				ipm2_5:this.result.aqi.ipm2_5,
-				aqi:this.result.index[0].detail,
-				img:this.result.img
+				weather:result.weather,
+				winddirect:result.winddirect,
+				windpower:result.windpower,
+				temp:result.temp,
+				pressure:result.pressure,
+				humidity:result.humidity,
+				quality:result.aqi.quality,
+				ipm2_5:result.aqi.ipm2_5,
+				aqi:result.index[0].detail,
+				img:result.img
 			}
 			wx.navigateTo({
 				url:`../../pages/index/components/todydetail/main?data=${JSON.stringify(data)}`
