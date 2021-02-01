@@ -36,29 +36,18 @@
 			</div>
 			<div class='showrequest' v-if='weathermsg'>
 				<div class='data_weather'  v-if="!!Object.values(dateweather).length" @click="totodydetail">
-					<div class='now_weather'>
-						<div class='temperature'>{{dateweather.current_temperature}}℃</div>
-						<div class='wind'>{{dateweather.wind_direction}} {{dateweather.wind_level}} 湿度:{{dateweather.humidity}}%</div>
+					<div class='left'>
+						<image style='width:60px;height:60px;' :src="`/static/weathercn/${dateweather.img}.png`"/>
+						<div>{{dateweather.wind_direction}} {{dateweather.wind_level}} 湿度:{{dateweather.humidity}}%</div>
 					</div>
-					<div class='condition'>{{dateweather.current_condition}}</div>
-					<div class="quality" :style="'background:'+dateweather.background">{{dateweather.quality_level}}    {{dateweather.aqi}}</div>
-					<image style='width:70px;height:70px;' :src="'/static/weathercn/'+dateweather.img+'.png'"/>
-				</div>
-				<!-- 今明两天天气 -->
-				<div class='tomorrow_weather' v-if="twodateweather.length">
-					<swiper display-multiple-items="1" duration="500" :circular='true'>
-					  <block v-for="(item,index) in twodateweather" :key="index">
-						<swiper-item>
-							<div>{{item.week}}</div>
-							<div>{{item.day.weather==item.night.weather? item.day.weather:item.day.weather+'转'+item.night.weather}}</div>
-							<div>{{item.night.templow}}/{{item.day.temphigh}}℃</div>
-							<div>{{item.day.winddirect=='持续无风向'? '微风':item.day.winddirect}}</div>
-						</swiper-item>
-					  </block>
-					</swiper>
+					<div class="right">
+						<div >{{dateweather.current_condition}}</div>
+						<div :style="'background:'+dateweather.background">{{dateweather.quality_level}}    {{dateweather.aqi}}</div>
+					</div>
 				</div>
 				<!-- 一周天气 -->
-				<div class='halfmonth' v-if="forecastlist.length">
+				<div class='weakWeather' v-if="forecastlist.length">
+					<h2>一周天气预报</h2>
 					<swiper display-multiple-items="3" duration="500">
 					  <block v-for="(item,index) in forecastlist" :key="index">
 						<swiper-item @click="gotodetail(index)">
@@ -75,6 +64,7 @@
 				</div>
 				<!-- 24小时天气 -->
 				<div class="hour" v-if="hourlist.length">
+					<h2>24小时天气预报</h2>
 					<swiper display-multiple-items="6" interval="500" duration="500">
 					  <block v-for="(item,index) in hourlist" :key="index">
 						<swiper-item>
@@ -108,7 +98,6 @@ export default {
 			result:null,
 			listdata:null,
 			region:null,
-			twodateweather:[],
 			// 今天天气信息
 			dateweather:{},
 			// 15天天气
@@ -234,7 +223,6 @@ export default {
 				wx.hideLoading();
 				this.result =  res.data.result;
 				this.lifeindex = this.result.index;
-				this.twodateweather= this.result.daily.slice(0,2)
 				this.dateweather={
 				  current_temperature: this.result.temp,
 				  current_condition: this.result.weather,

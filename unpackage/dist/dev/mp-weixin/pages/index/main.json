@@ -3,8 +3,8 @@
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
   "usingComponents": {
-    "uni-drawer": "/node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer",
-    "uni-swipe-action": "/node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action",
-    "uni-swipe-action-item": "/node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item"
+    "uni-drawer": "/node-modules/_@dcloudio_uni-ui@1.2.10@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer",
+    "uni-swipe-action": "/node-modules/_@dcloudio_uni-ui@1.2.10@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action",
+    "uni-swipe-action-item": "/node-modules/_@dcloudio_uni-ui@1.2.10@@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item"
   }
 }

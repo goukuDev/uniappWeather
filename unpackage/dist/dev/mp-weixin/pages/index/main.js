@@ -17,9 +17,9 @@
 /* 15 */,
 /* 16 */,
 /* 17 */
-/*!********************************************************************!*\
-  !*** E:/小程序/uniappWeather/main.js?{"page":"pages%2Findex%2Fmain"} ***!
-  \********************************************************************/
+/*!****************************************************************!*\
+  !*** F:/uniappWeather/main.js?{"page":"pages%2Findex%2Fmain"} ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32,9 +32,9 @@ createPage(_main.default);
 
 /***/ }),
 /* 18 */
-/*!*************************************************!*\
-  !*** E:/小程序/uniappWeather/pages/index/main.vue ***!
-  \*************************************************/
+/*!*********************************************!*\
+  !*** F:/uniappWeather/pages/index/main.vue ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -72,9 +72,9 @@ component.options.__file = "pages/index/main.vue"
 
 /***/ }),
 /* 19 */
-/*!********************************************************************************************!*\
-  !*** E:/小程序/uniappWeather/pages/index/main.vue?vue&type=template&id=3120bf0f&scoped=true& ***!
-  \********************************************************************************************/
+/*!****************************************************************************************!*\
+  !*** F:/uniappWeather/pages/index/main.vue?vue&type=template&id=3120bf0f&scoped=true& ***!
+  \****************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -93,9 +93,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 /* 20 */
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!E:/小程序/uniappWeather/pages/index/main.vue?vue&type=template&id=3120bf0f&scoped=true& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/uniappWeather/pages/index/main.vue?vue&type=template&id=3120bf0f&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -141,9 +141,9 @@ render._withStripped = true
 
 /***/ }),
 /* 21 */
-/*!**************************************************************************!*\
-  !*** E:/小程序/uniappWeather/pages/index/main.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************/
+/*!**********************************************************************!*\
+  !*** F:/uniappWeather/pages/index/main.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -156,9 +156,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 /* 22 */
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!E:/小程序/uniappWeather/pages/index/main.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/uniappWeather/pages/index/main.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -249,18 +249,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-
-
-
-
-
-
-
-
-
-
 var _utils = __webpack_require__(/*! utils */ 23);
-var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _uniSwipeActionItem = function _uniSwipeActionItem() {Promise.all(/*! require.ensure | node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item")]).then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item */ 101));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _uniSwipeAction = function _uniSwipeAction() {__webpack_require__.e(/*! require.ensure | node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action */ "node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action").then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action */ 111));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _uniDrawer = function _uniDrawer() {__webpack_require__.e(/*! require.ensure | node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer */ "node-modules/_@dcloudio_uni-ui@1.2.7@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer").then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-drawer/uni-drawer */ 116));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _uniSwipeActionItem = function _uniSwipeActionItem() {Promise.all(/*! require.ensure | node-modules/_@dcloudio_uni-ui@1.2.10@@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/_@dcloudio_uni-ui@1.2.10@@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item")]).then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item */ 101));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _uniSwipeAction = function _uniSwipeAction() {__webpack_require__.e(/*! require.ensure | node-modules/_@dcloudio_uni-ui@1.2.10@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action */ "node-modules/_@dcloudio_uni-ui@1.2.10@@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action").then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action */ 111));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _uniDrawer = function _uniDrawer() {__webpack_require__.e(/*! require.ensure | node-modules/_@dcloudio_uni-ui@1.2.10@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer */ "node-modules/_@dcloudio_uni-ui@1.2.10@@dcloudio/uni-ui/lib/uni-drawer/uni-drawer").then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-drawer/uni-drawer */ 116));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 //初始化数据库
 wx.cloud.init();
@@ -273,7 +263,6 @@ var citylist = db.collection('citylist');var _default =
       result: null,
       listdata: null,
       region: null,
-      twodateweather: [],
       // 今天天气信息
       dateweather: {},
       // 15天天气
@@ -399,7 +388,6 @@ var citylist = db.collection('citylist');var _default =
         wx.hideLoading();
         _this5.result = res.data.result;
         _this5.lifeindex = _this5.result.index;
-        _this5.twodateweather = _this5.result.daily.slice(0, 2);
         _this5.dateweather = {
           current_temperature: _this5.result.temp,
           current_condition: _this5.result.weather,
@@ -503,9 +491,9 @@ var citylist = db.collection('citylist');var _default =
 /***/ }),
 /* 23 */,
 /* 24 */
-/*!**********************************************************************************************************!*\
-  !*** E:/小程序/uniappWeather/pages/index/main.vue?vue&type=style&index=0&id=3120bf0f&scoped=true&lang=css& ***!
-  \**********************************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** F:/uniappWeather/pages/index/main.vue?vue&type=style&index=0&id=3120bf0f&scoped=true&lang=css& ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -518,9 +506,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 /* 25 */
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!E:/小程序/uniappWeather/pages/index/main.vue?vue&type=style&index=0&id=3120bf0f&scoped=true&lang=css& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-2!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/uniappWeather/pages/index/main.vue?vue&type=style&index=0&id=3120bf0f&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
