@@ -50,8 +50,6 @@ export default {
       sevendayweather:[],
       clickindex:null,
       displaymultipleitems:'4',
-      dayaqi:[],
-      lifeindex:'',
 	  dayindex:'',
     }
   },
@@ -64,9 +62,7 @@ export default {
   onLoad(options) {
 	this.clickindex  = options.index;
 	this.sevendayweather = JSON.parse(options.data);
-	this.dayaqi = this.sevendayweather[this.clickindex];
 	this.dayindex = JSON.parse(options.lifeindex);
-	this.lifeindex = this.dayindex[this.clickindex];
   },
   methods:{
 	  addclickindex(index){
@@ -77,12 +73,6 @@ export default {
 		  this.clickindex = ev.target.current;
 	  }
   },
-  watch:{
-    clickindex(val,oldval){
-      this.dayaqi = this.sevendayweather[val];
-      this.lifeindex = this.dayindex[val];
-    }
-  }
 }
 </script>
 

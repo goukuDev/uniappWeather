@@ -49,19 +49,6 @@
 			"style":{
 				"navigationBarTitleText":"线路"
 			}
-		},
-		{
-			"path":"pages/music/main",
-			"style":{
-				"navigationBarTitleText":"音乐"
-			}
-		},
-		{
-			"path" : "pages/music/components/musicdetail/main",
-			"style": {
-				"navigationBarTitleText": "音乐详情",
-				"enablePullDownRefresh": false
-			}
 		}
     ],
   "globalStyle": {

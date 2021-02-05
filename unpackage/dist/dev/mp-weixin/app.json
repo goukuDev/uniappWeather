@@ -7,9 +7,7 @@
     "pages/navigation/main",
     "pages/navigation/components/searchline/main",
     "pages/navigation/components/linedetail/main",
-    "pages/navigation/components/line/main",
-    "pages/music/main",
-    "pages/music/components/musicdetail/main"
+    "pages/navigation/components/line/main"
   ],
   "subPackages": [],
   "window": {

@@ -8,7 +8,7 @@
 				placeholder="输入城市全名,如:杭州市" 
 				v-model="city"
 				@focus="showcitylist=false" 
-				@blur="showcitylist=true"
+				@blur="showcitylist=true" 
 				@input="checkcity"
 				/>
 			</div>
@@ -141,33 +141,37 @@
 			  }, wait)
 			},
 			checkcity(){
-				if(!this.city) return this.checkcitylist = null;
-				this.debounce(this.search, 400);
+				this.debounce(this.search, 1000);
 			},
 			search(){
-				request(`https://ali-city.showapi.com/areaName?&areaName=${this.city}`,{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000'})
-				.then(res=>{
-					if(res.statusCode === 200){
-						this.checkcitylist = res.data.showapi_res_body.data
-						.filter(o=>
-						!(o.areaName.endsWith('乡') || 
-						o.areaName.endsWith('镇') || 
-						o.areaName.endsWith('街道') || 
-						o.areaName.includes('村') ||
-						o.areaName.includes('村民') ||
-						o.areaName.includes('委会') || 
-						o.areaName.includes('社区') ||
-						o.areaName.includes('居委会') ||
-						o.areaName.includes('居民') ||
-						o.areaName.includes('场') ||
-						o.areaName.includes('开发') ||
-						o.areaName.includes('工业')
-						))
-						.map(o=>Object.assign({},{province:o.wholeName? o.wholeName.split('中国,')[1]:o.areaName,city:o.areaName}));
-					}else{
-						this.checkcitylist = null;
-					}
-				})
+				if(!!this.city){
+					request(`https://ali-city.showapi.com/areaName?&areaName=${this.city}`,{'Authorization':'APPCODE def0b8f2c0304cb59b0a7cdaa24dd000'})
+					.then(res=>{
+						if(res.statusCode === 200){
+							this.checkcitylist = res.data.showapi_res_body.data
+							.filter(o=>
+							!(o.areaName.endsWith('乡') || 
+							o.areaName.endsWith('镇') || 
+							o.areaName.endsWith('街道') || 
+							o.areaName.includes('村') ||
+							o.areaName.includes('村民') ||
+							o.areaName.includes('委会') || 
+							o.areaName.includes('社区') ||
+							o.areaName.includes('居委会') ||
+							o.areaName.includes('居民') ||
+							o.areaName.includes('场') ||
+							o.areaName.includes('开发') ||
+							o.areaName.includes('工业')
+							))
+							.map(o=>Object.assign({},{province:o.wholeName? o.wholeName.split('中国,')[1]:o.areaName,city:o.areaName}));
+						}else{
+							this.checkcitylist = null;
+						}
+					})
+				}else{
+					this.checkcitylist = null; 
+					this.showcitylist = true;
+				}
 			},
 			toindex(point){
 				wx.navigateBack({

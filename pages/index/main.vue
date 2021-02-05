@@ -41,12 +41,12 @@
 				</div>
 				<div class="right">
 					<div >{{dateweather.current_condition}}</div>
-					<div :style="'background:'+dateweather.background">{{dateweather.quality_level}}    {{dateweather.aqi}}</div>
+					<div :style="'background:'+dateweather.background">{{dateweather.quality_level}}</div>
 				</div>
 			</div>
 			<!-- 一周天气 -->
 			<div class='weakWeather' v-if="forecastlist.length">
-				<h2>一周天气预报</h2>
+				<h2>七天预报</h2>
 				<swiper display-multiple-items="3" duration="500">
 				  <block v-for="(item,index) in forecastlist" :key="index">
 					<swiper-item @click="gotodetail(index)">
@@ -63,7 +63,7 @@
 			</div>
 			<!-- 24小时天气 -->
 			<div class="hour" v-if="hourlist.length">
-				<h2>24小时天气预报</h2>
+				<h2>24小时预报</h2>
 				<swiper display-multiple-items="6" interval="500" duration="500">
 				  <block v-for="(item,index) in hourlist" :key="index">
 					<swiper-item>

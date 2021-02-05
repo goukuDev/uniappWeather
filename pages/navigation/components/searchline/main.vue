@@ -113,9 +113,10 @@ export default {
 		getsuggest(index){
 		    if(!this.value) return this.suggestion = [];
 			this.pages = index;
-			this.debounce(this.search, 600);
+			this.debounce(this.search, 1000);
 		},
 		search(){
+			if(!this.value) return;
 			//调用关键词提示接口
 			this.qqmapsdk.getSuggestion({
 			    keyword:this.value, //用户输入的关键词，可设置固定值,如keyword:'KFC'

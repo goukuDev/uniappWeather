@@ -12,7 +12,7 @@ var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 5));
 var _index = _interopRequireDefault(__webpack_require__(/*! store/index.js */ 11));
 
 
-var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ./static/js/qqmap-wx-jssdk.js */ 16));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _qqmapWxJssdk = _interopRequireDefault(__webpack_require__(/*! ./static/js/qqmap-wx-jssdk.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 var qqmapsdk = new _qqmapWxJssdk.default({
   key: 'N6JBZ-PVUCV-KJVPE-UYY2R-LZDHZ-DBFKL' //自己的key秘钥 http://lbs.qq.com/console/mykey.html 在这个网址申请
 });
